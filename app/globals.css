@@ -95,3 +95,108 @@ body {
     padding-top: 28px !important;
   }
 }
+
+/* "Trusted Films We Use" — the original CSS hides this on any viewport
+   shorter than 820px (kills every phone). Force-show it and stack
+   in-flow under the hero content so Safari's URL bar doesn't clip it. */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    gap: clamp(32px, 6vh, 64px);
+  }
+  .hero__partners {
+    position: static !important;
+    display: flex !important;
+    bottom: auto !important;
+  }
+}
+
+/* Service cards: kill the lighter-bg hover (was var(--bg-3)) and add a
+   rotating border highlight that sweeps around the card. On phone width
+   we trigger one full rotation when the card scrolls into view (.is-in
+   is added by the existing IntersectionObserver). */
+@property --service-card-glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.service-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--line);
+}
+.service-card:hover {
+  background: var(--bg) !important;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--service-card-glow-angle, 0deg),
+    transparent 0deg,
+    transparent 250deg,
+    rgba(245, 245, 245, 0.35) 310deg,
+    rgba(255, 255, 255, 0.95) 345deg,
+    rgba(245, 245, 245, 0.35) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes service-card-glow {
+  from { --service-card-glow-angle: 0deg; }
+  to { --service-card-glow-angle: 360deg; }
+}
+@keyframes service-card-glow-once {
+  0%   { opacity: 0; --service-card-glow-angle: 0deg; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; --service-card-glow-angle: 360deg; }
+}
+@media (hover: hover) {
+  .service-card:hover::after {
+    opacity: 1;
+    animation: service-card-glow 2.6s linear infinite;
+  }
+}
+@media (max-width: 900px) {
+  .service-card.is-in::after {
+    animation: service-card-glow-once 2.6s linear 1;
+  }
+}
+
+/* Reasons section ("The Standard We Build To") — drop the icon block. */
+.reason__icon {
+  display: none !important;
+}
+
+/* Phone-width process layout: drop all step dividers and alternate
+   alignment (01 left, 02 right, 03 left, 04 right). */
+@media (max-width: 560px) {
+  .cprocess__step,
+  .cprocess__step + .cprocess__step {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    padding: 24px 0 !important;
+  }
+  .cprocess__step:first-child {
+    padding-top: 0 !important;
+  }
+  .cprocess__step:last-child {
+    padding-bottom: 0 !important;
+  }
+  .cprocess__step:nth-child(even) {
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+  .cprocess__step:nth-child(even) .cprocess__body {
+    text-align: right !important;
+  }
+}

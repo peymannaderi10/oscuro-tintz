@@ -452,6 +452,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ============ WARRANTY BANNER ============ */}
+      <section className="banner" data-screen-label="06b Warranty">
+        <div
+          className="banner__bg"
+          style={{
+            backgroundImage:
+              "url('https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp')",
+          }}
+        ></div>
+        <div className="banner__overlay banner__overlay--center"></div>
+        <div className="container">
+          <div className="banner__content is-center reveal">
+            <span className="eyebrow">Backed For Life</span>
+            <h2>
+              Lifetime
+              <br />
+              Warranty.
+            </h2>
+            <p>
+              Every install is covered for as long as you own the vehicle. Bubbles, peeling, fading, we fix it. No fine
+              print, no excuses.
+            </p>
+            <div className="banner__ctas is-center">
+              <Link href="/book" className="btn btn--primary">
+                Book Your Install
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ TESTIMONIALS ============ */}
+      <section className="section" data-screen-label="07 Reviews">
+        <div className="container">
+          <div className="section-head reveal">
+            <span className="eyebrow">Testimonials</span>
+            <h2>
+              Reviews From
+              <br />
+              Our Customers
+            </h2>
+          </div>
+        </div>
+        <HomeReviews />
+        <div className="container">
+          <div className="gallery__cta reveal" style={{ marginTop: 56 }}>
+            <Link href="/reviews" className="btn btn--ghost">
+              Read All Reviews
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ============ ABOUT TEASER ============ */}
       <section className="aboutcta" data-screen-label="05b About Teaser">
         <div className="container aboutcta__inner reveal">
@@ -522,88 +575,6 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ WARRANTY BANNER ============ */}
-      <section className="banner" data-screen-label="06b Warranty">
-        <div
-          className="banner__bg"
-          style={{
-            backgroundImage:
-              "url('https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp')",
-          }}
-        ></div>
-        <div className="banner__overlay banner__overlay--center"></div>
-        <div className="container">
-          <div className="banner__content is-center reveal">
-            <span className="eyebrow">Backed For Life</span>
-            <h2>
-              Lifetime
-              <br />
-              Warranty.
-            </h2>
-            <p>
-              Every install is covered for as long as you own the vehicle. Bubbles, peeling, fading, we fix it. No fine
-              print, no excuses.
-            </p>
-            <div className="banner__ctas is-center">
-              <Link href="/book" className="btn btn--primary">
-                Book Your Install
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ IMAGE MARQUEE ============ */}
-      <section className="marquee marquee--images marquee--fast" aria-hidden="true">
-        <div className="marquee__track">
-          {[
-            'https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/2127733/pexels-photo-2127733.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/2127733/pexels-photo-2127733.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-            'https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=900&fm=webp',
-          ].map((src, i) => (
-            <div className="marquee__item" key={i}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="" loading="lazy" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ============ TESTIMONIALS ============ */}
-      <section className="section" data-screen-label="07 Reviews">
-        <div className="container">
-          <div className="section-head reveal">
-            <span className="eyebrow">Testimonials</span>
-            <h2>
-              Reviews From
-              <br />
-              Our Customers
-            </h2>
-          </div>
-        </div>
-        <HomeReviews />
-        <div className="container">
-          <div className="gallery__cta reveal" style={{ marginTop: 56 }}>
-            <Link href="/reviews" className="btn btn--ghost">
-              Read All Reviews
-            </Link>
           </div>
         </div>
       </section>
