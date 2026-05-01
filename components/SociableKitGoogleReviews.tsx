@@ -98,16 +98,15 @@ const OVERRIDES = `
   border-color: #E9E9E9 !important;
 }
 
-/* Footer buttons (View on Google, share) — ghost style */
+/* Footer buttons (View on Google, share) — borderless ghost */
 .sk-ww-google-reviews .sk-post__button {
   background: transparent !important;
   color: #B0B0B0 !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  transition: color 0.2s, border-color 0.2s, background 0.2s !important;
+  border: 0 !important;
+  transition: color 0.2s, background 0.2s !important;
 }
 .sk-ww-google-reviews .sk-post__button:hover {
   color: #F5F5F5 !important;
-  border-color: rgba(255, 255, 255, 0.22) !important;
   background: #171717 !important;
 }
 .sk-ww-google-reviews .sk-post__button p {
