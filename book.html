@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book, Oscuro Tintz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/cinematic-additions.css">
+<style>
+  .book-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 5vw, 72px); align-items: flex-start; }
+  @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } }
+
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .steps li { padding: 20px 24px; border: 1px solid var(--line); background: var(--bg-2); display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; transition: border-color .2s; }
+  .steps li.is-current { border-color: var(--ink); background: var(--bg-3); }
+  .steps li.is-done { opacity: 0.6; }
+  .steps__n { width: 40px; height: 40px; border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 16px; letter-spacing: 0.1em; }
+  .steps li.is-current .steps__n { border-color: var(--ink); background: var(--ink); color: #000; }
+  .steps__label { font-family: 'Oswald', sans-serif; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .steps__sub { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 4px; }
+
+  .booking-panel { border: 1px solid var(--line); background: var(--bg-2); padding: clamp(28px, 4vw, 48px); min-height: 560px; }
+  .panel-title { font-family: 'Oswald', sans-serif; font-size: 28px; text-transform: uppercase; margin-bottom: 10px; }
+  .panel-sub { color: var(--ink-muted); margin-bottom: 32px; }
+
+  .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+  @media (max-width: 600px) { .tile-grid { grid-template-columns: repeat(2, 1fr); } }
+  .tile { padding: 20px 18px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; transition: all .2s; text-align: left; display: grid; gap: 6px; }
+  .tile:hover { border-color: var(--line-strong); }
+  .tile.is-selected { border-color: var(--ink); background: var(--bg-3); }
+  .tile__label { font-family: 'Oswald', sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tile__meta { font-size: 12px; color: var(--ink-muted); }
+
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 24px; }
+  .cal__day, .cal__cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; border: 1px solid transparent; }
+  .cal__day { color: var(--ink-dim); font-size: 10px; letter-spacing: 0.2em; aspect-ratio: auto; padding: 10px 0; }
+  .cal__cell { background: var(--bg); border-color: var(--line); cursor: pointer; color: var(--ink); transition: all .15s; }
+  .cal__cell:hover { border-color: var(--line-strong); background: var(--bg-3); }
+  .cal__cell.is-disabled { color: var(--ink-dim); cursor: not-allowed; background: transparent; border-color: transparent; }
+  .cal__cell.is-selected { background: var(--ink); color: #000; border-color: var(--ink); font-weight: 700; }
+
+  .times { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 600px) { .times { grid-template-columns: repeat(3, 1fr); } }
+  .time { padding: 12px 0; text-align: center; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font-size: 13px; letter-spacing: 0.1em; transition: all .2s; }
+  .time:hover { border-color: var(--line-strong); }
+  .time.is-selected { background: var(--ink); color: #000; border-color: var(--ink); font-weight: 700; }
+
+  .summary { border: 1px solid var(--line); padding: 24px; background: var(--bg); margin-top: 32px; display: grid; gap: 12px; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 14px; }
+  .summary-row dt { color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+  .summary-row dd { margin: 0; font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .panel-nav { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); gap: 14px; }
+
+  .success { text-align: center; padding: 40px 20px; }
+  .success__icon { width: 80px; height: 80px; border: 1px solid var(--chrome-3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 32px; color: var(--chrome-3); }
+
+  .api-note { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-dim); padding: 14px 18px; border: 1px dashed var(--line-strong); margin-top: 24px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- ============ FLOATING LIQUID-GLASS NAV ============ -->
+<header class="cnav" id="cnav" role="banner">
+  <div class="cnav__inner lg">
+    <a href="index.html" class="cnav__brand" aria-label="Oscuro Tintz home">
+      <img class="cnav__brand-logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+    </a>
+    <nav class="cnav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="book.html" class="cnav__cta">
+      Book Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 L17 7 M9 7 H17 V15"/></svg>
+    </a>
+    <button class="cnav__hamburger" id="cnavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="cnav__sheet lg-strong" id="cnavSheet" role="dialog" aria-label="Mobile menu">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="book.html" class="is-cta">Book Now</a>
+  </div>
+</header>
+
+<section class="pagehead">
+  <div class="pagehead__bg"></div>
+  <div class="container pagehead__inner reveal">
+    <div class="breadcrumbs"><a href="index.html">Home</a> <span class="sep">/</span> <span>Book</span></div>
+    <span class="eyebrow">Reserve Your Install</span>
+    <h1>Book An Appointment</h1>
+    <p>Four quick steps, service, date &amp; time, vehicle, and your info. We'll confirm by text.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container book-grid">
+    <aside>
+      <ol class="steps" id="steps">
+        <li class="is-current" data-step="1"><div class="steps__n">01</div><div><div class="steps__label">Service</div><div class="steps__sub">Pick your film &amp; job</div></div></li>
+        <li data-step="2"><div class="steps__n">02</div><div><div class="steps__label">Date &amp; Time</div><div class="steps__sub">Choose a slot</div></div></li>
+        <li data-step="3"><div class="steps__n">03</div><div><div class="steps__label">Vehicle</div><div class="steps__sub">Year / make / model</div></div></li>
+        <li data-step="4"><div class="steps__n">04</div><div><div class="steps__label">Your Info</div><div class="steps__sub">Confirm &amp; book</div></div></li>
+      </ol>
+      <div class="api-note">Square Appointments integration, API to be wired</div>
+    </aside>
+
+    <div class="booking-panel" id="panel">
+      <!-- STEP 1: Service -->
+      <div data-panel="1">
+        <div class="panel-title">01 · Select A Service</div>
+        <p class="panel-sub">Choose the install or service you're booking.</p>
+        <div class="tile-grid" data-group="service">
+          <button class="tile is-selected" data-value="Ceramic Tint, Full"><span class="tile__label">Ceramic, Full</span><span class="tile__meta">From $390 · ~3 hrs</span></button>
+          <button class="tile" data-value="Carbon Tint, Full"><span class="tile__label">Carbon, Full</span><span class="tile__meta">From $290 · ~3 hrs</span></button>
+          <button class="tile" data-value="Front Two Windows"><span class="tile__label">Front Two</span><span class="tile__meta">From $120 · ~1 hr</span></button>
+          <button class="tile" data-value="Windshield, 70%"><span class="tile__label">Windshield 70%</span><span class="tile__meta">From $150 · ~1 hr</span></button>
+          <button class="tile" data-value="Tint Removal"><span class="tile__label">Tint Removal</span><span class="tile__meta">From $50 · ~1–2 hrs</span></button>
+          <button class="tile" data-value="Custom / Not Sure"><span class="tile__label">Custom</span><span class="tile__meta">We'll confirm</span></button>
+        </div>
+        <div class="panel-title" style="margin-top: 32px;">Install Location</div>
+        <div class="tile-grid" data-group="location">
+          <button class="tile is-selected" data-value="Shop, Yuba City"><span class="tile__label">Our Shop</span><span class="tile__meta">Yuba City, CA</span></button>
+          <button class="tile" data-value="Mobile, At Your Location"><span class="tile__label">Mobile</span><span class="tile__meta">We come to you</span></button>
+        </div>
+        <div class="panel-nav">
+          <span></span>
+          <button class="btn btn--primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Date & Time -->
+      <div data-panel="2" hidden>
+        <div class="panel-title">02 · Pick A Date</div>
+        <p class="panel-sub">Available dates this month. All times in PT.</p>
+        <div class="cal" id="cal"></div>
+        <div class="panel-title" style="margin-top: 28px;">Available Times</div>
+        <div class="times" data-group="time">
+          <button class="time">8:00 AM</button>
+          <button class="time">9:30 AM</button>
+          <button class="time is-selected">11:00 AM</button>
+          <button class="time">12:30 PM</button>
+          <button class="time">2:00 PM</button>
+          <button class="time">3:30 PM</button>
+          <button class="time">5:00 PM</button>
+          <button class="time">6:30 PM</button>
+        </div>
+        <div class="panel-nav">
+          <button class="btn btn--ghost" data-prev>← Back</button>
+          <button class="btn btn--primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Vehicle -->
+      <div data-panel="3" hidden>
+        <div class="panel-title">03 · Vehicle Details</div>
+        <p class="panel-sub">A few quick details so we have the right film on hand.</p>
+        <form class="form" onsubmit="return false;">
+          <div class="form__row">
+            <div><label>Year</label><input type="text" id="f-year" placeholder="2022"></div>
+            <div><label>Make</label><input type="text" id="f-make" placeholder="Toyota"></div>
+          </div>
+          <div class="form__row">
+            <div><label>Model</label><input type="text" id="f-model" placeholder="Tacoma"></div>
+            <div><label>Body Style</label>
+              <select id="f-body">
+                <option>Sedan</option><option>Coupe</option><option>SUV</option>
+                <option>Truck</option><option>Van / Wagon</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div><label>Notes (optional)</label><textarea id="f-notes" placeholder="Shade preference, specific windows, anything we should know…"></textarea></div>
+        </form>
+        <div class="panel-nav">
+          <button class="btn btn--ghost" data-prev>← Back</button>
+          <button class="btn btn--primary" data-next>Continue</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Info -->
+      <div data-panel="4" hidden>
+        <div class="panel-title">04 · Your Info</div>
+        <p class="panel-sub">We'll send a text confirmation shortly.</p>
+        <form class="form" onsubmit="return false;">
+          <div class="form__row">
+            <div><label>Full Name</label><input type="text" id="c-name" placeholder="Your name"></div>
+            <div><label>Phone</label><input type="tel" id="c-phone" placeholder="(xxx) xxx-xxxx"></div>
+          </div>
+          <div><label>Email</label><input type="email" id="c-email" placeholder="you@example.com"></div>
+        </form>
+        <dl class="summary" id="summary">
+          <div class="summary-row"><dt>Service</dt><dd id="s-service">Ceramic Tint, Full</dd></div>
+          <div class="summary-row"><dt>Location</dt><dd id="s-location">Shop, Yuba City</dd></div>
+          <div class="summary-row"><dt>Date</dt><dd id="s-date">—</dd></div>
+          <div class="summary-row"><dt>Time</dt><dd id="s-time">11:00 AM</dd></div>
+        </dl>
+        <div class="panel-nav">
+          <button class="btn btn--ghost" data-prev>← Back</button>
+          <button class="btn btn--primary" id="confirm-btn">Confirm Booking</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div data-panel="5" hidden>
+        <div class="success">
+          <div class="success__icon">✓</div>
+          <div class="panel-title">You're Booked.</div>
+          <p class="panel-sub">We've got you on the schedule. A confirmation text is on its way.<br>Questions? Call or text <strong style="color:var(--ink)">(530) 443-4336</strong>.</p>
+          <dl class="summary" style="text-align:left; max-width: 480px; margin: 24px auto 0;">
+            <div class="summary-row"><dt>Service</dt><dd id="s2-service">—</dd></div>
+            <div class="summary-row"><dt>Date</dt><dd id="s2-date">—</dd></div>
+            <div class="summary-row"><dt>Time</dt><dd id="s2-time">—</dd></div>
+          </dl>
+          <div style="margin-top: 32px;"><a href="index.html" class="btn btn--ghost">Back To Home</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a href="index.html" class="logo">
+          <img class="footer__logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+        </a>
+        <p>Premium window tinting in Yuba City, CA.</p>
+        <div class="footer__social"><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8.5a6.5 6.5 0 0 1-3.8-1.2v7.9a5.8 5.8 0 1 1-5-5.7v2.9a2.9 2.9 0 1 0 2 2.8V3h2.9a3.6 3.6 0 0 0 3.6 3.6h.3V8.5z"/></svg></a></div>
+      </div>
+      <div class="footer__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer__col"><h4>Contact</h4><ul><li><a href="tel:+15304434336">(530) 443-4336</a></li><li><a href="mailto:oscurotintz@gmail.com">oscurotintz@gmail.com</a></li><li><span style="color:var(--ink-muted);">Mon–Sun · 8AM – 7PM</span></li></ul></div>
+      <div class="footer__col"><h4>Services</h4><ul><li><a href="services.html#carbon">Carbon Tint</a></li><li><a href="services.html#ceramic">Ceramic Tint</a></li><li><a href="services.html#removal">Tint Removal</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><div>© 2026 Oscuro Tintz. All rights reserved.</div><div class="tag">Yuba City · Sutter County · CA</div></div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/cinematic-additions.js"></script>
+<script>
+(function () {
+  const state = {
+    step: 1,
+    service: 'Ceramic Tint, Full',
+    location: 'Shop, Yuba City',
+    date: null,
+    time: '11:00 AM',
+  };
+
+  // Tile select groups
+  document.querySelectorAll('[data-group]').forEach(group => {
+    group.addEventListener('click', (e) => {
+      const el = e.target.closest('.tile, .time');
+      if (!el) return;
+      group.querySelectorAll('.tile, .time').forEach(x => x.classList.remove('is-selected'));
+      el.classList.add('is-selected');
+      const key = group.dataset.group;
+      if (key === 'service') state.service = el.dataset.value;
+      if (key === 'location') state.location = el.dataset.value;
+      if (key === 'time') state.time = el.textContent.trim();
+    });
+  });
+
+  // Calendar
+  const cal = document.getElementById('cal');
+  const today = new Date(2026, 3, 20); // April 20, 2026
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const first = new Date(year, month, 1);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const startDay = first.getDay();
+  const dayLabels = ['S','M','T','W','T','F','S'];
+  cal.innerHTML = '';
+  dayLabels.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal__day';
+    el.textContent = d;
+    cal.appendChild(el);
+  });
+  for (let i = 0; i < startDay; i++) {
+    const blank = document.createElement('div');
+    blank.className = 'cal__cell is-disabled';
+    cal.appendChild(blank);
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const cell = document.createElement('button');
+    cell.className = 'cal__cell';
+    cell.textContent = d;
+    const dateObj = new Date(year, month, d);
+    if (dateObj < today) {
+      cell.classList.add('is-disabled');
+      cell.disabled = true;
+    }
+    if (d === 24) {
+      cell.classList.add('is-selected');
+      state.date = `April ${d}, ${year}`;
+    }
+    cell.addEventListener('click', () => {
+      if (cell.disabled) return;
+      cal.querySelectorAll('.cal__cell').forEach(x => x.classList.remove('is-selected'));
+      cell.classList.add('is-selected');
+      state.date = `April ${d}, ${year}`;
+    });
+    cal.appendChild(cell);
+  }
+
+  // Step navigation
+  const panels = document.querySelectorAll('[data-panel]');
+  const steps = document.querySelectorAll('#steps li');
+  const go = (n) => {
+    state.step = n;
+    panels.forEach(p => p.hidden = parseInt(p.dataset.panel) !== n);
+    steps.forEach(s => {
+      const i = parseInt(s.dataset.step);
+      s.classList.toggle('is-current', i === n);
+      s.classList.toggle('is-done', i < n);
+    });
+    window.scrollTo({ top: document.querySelector('.book-grid').offsetTop - 100, behavior: 'smooth' });
+    // refresh summary
+    const sd = document.getElementById('s-date'); if (sd) sd.textContent = state.date || '—';
+    const st = document.getElementById('s-time'); if (st) st.textContent = state.time;
+    const ss = document.getElementById('s-service'); if (ss) ss.textContent = state.service;
+    const sl = document.getElementById('s-location'); if (sl) sl.textContent = state.location;
+  };
+  document.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', () => go(state.step + 1)));
+  document.querySelectorAll('[data-prev]').forEach(b => b.addEventListener('click', () => go(state.step - 1)));
+  document.getElementById('confirm-btn').addEventListener('click', () => {
+    document.getElementById('s2-service').textContent = state.service;
+    document.getElementById('s2-date').textContent = state.date || ',';
+    document.getElementById('s2-time').textContent = state.time;
+    go(5);
+  });
+})();
+</script>
+</body>
+</html>

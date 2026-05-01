@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oscuro Tintz, Cinematic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cinematic.css">
+</head>
+<body>
+
+<!-- ============ NAVBAR (floating liquid-glass pill) ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner liquid-glass">
+    <a href="#" class="nav__brand">
+      <span class="nav__mark">
+        <svg viewBox="0 0 30 30" width="22" height="22"><rect x="1" y="1" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M 7 7 L 23 23 M 23 7 L 7 23" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="15" cy="15" r="3" fill="currentColor"/></svg>
+      </span>
+      <span class="nav__name">Oscuro Tintz</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#services" data-section="services">Services</a>
+      <a href="#why" data-section="why">Why Us</a>
+      <a href="#process" data-section="process">Process</a>
+      <a href="#reviews" data-section="reviews">Reviews</a>
+      <a href="#faq" data-section="faq">FAQ</a>
+    </nav>
+    <a href="#cta" class="btn btn--solid btn--sm">
+      Book Now
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 L17 7 M9 7 H17 V15"/></svg>
+    </a>
+    <button class="nav__hamburger" aria-label="Menu" id="navHamburger">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__sheet liquid-glass-strong" id="navSheet">
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta" class="btn btn--solid">Book Now</a>
+  </div>
+</header>
+
+<!-- ============ HERO (scroll-scrubbed video) ============ -->
+<section class="hero" id="hero">
+  <div class="hero__sticky">
+    <video class="hero__video" id="heroVideo" muted playsinline preload="auto" aria-hidden="true" crossorigin="anonymous">
+      <source src="https://videos.pexels.com/video-files/4274798/4274798-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="hero__vignette"></div>
+    <div class="hero__fade-bottom"></div>
+
+    <div class="hero__content">
+      <div class="hero__badge liquid-glass anim-fade-up">
+        <span class="hero__badge-pill">New</span>
+        <span class="hero__badge-text">Premium window tinting</span>
+      </div>
+
+      <h1 class="hero__headline display-uppercase anim-blur" data-blur-text>
+        See clearer. Feel cooler.
+      </h1>
+
+      <p class="hero__sub anim-fade-up" style="--delay: 0.9s;">
+        Hitek ceramic and carbon film, hand-installed in Yuba City. Lifetime warranty on every install.
+      </p>
+
+      <div class="hero__cta anim-fade-up" style="--delay: 1.1s;">
+        <a href="#cta" class="btn btn--primary">
+          Book Free Quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 L17 7 M9 7 H17 V15"/></svg>
+        </a>
+        <a href="#process" class="btn btn--glass">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 4 L20 12 L5 20 Z"/></svg>
+          See The Process
+        </a>
+      </div>
+
+      <div class="hero__partners">
+        <span class="hero__partners-label liquid-glass">Trusted Films We Use</span>
+        <div class="hero__partners-row">
+          <span>Hitek IR</span>
+          <span>Hitek Ceramic</span>
+          <span>Carbon Pro</span>
+          <span>Crystalline</span>
+          <span>Nano Ceramic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES (bento) ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge liquid-glass">What We Offer</span>
+      <h2 class="display-uppercase anim-blur" data-blur-text>Every shade. Every glass.</h2>
+      <p class="section-sub">From daily drivers to show cars, every install gets the same hand-finished detail.</p>
+    </div>
+
+    <div class="bento">
+      <article class="bento__card bento__card--tall liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12 H21 M12 3 V21 M5.6 5.6 L18.4 18.4 M5.6 18.4 L18.4 5.6"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Hitek Ceramic IR</h3>
+        <p class="bento__body">Top-tier infrared rejection. Up to 98% IR blocked, 99% UV. Cooler cabin without going dark.</p>
+        <span class="bento__price">From $390</span>
+      </article>
+
+      <article class="bento__card liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9 H21 M9 3 V21"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Hitek Carbon</h3>
+        <p class="bento__body">Deep, no-purple tone. Excellent heat reduction at a great price.</p>
+        <span class="bento__price">From $290</span>
+      </article>
+
+      <article class="bento__card liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 L9 6 L21 6 L21 18 L9 18 Z"/><path d="M9 6 V18"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Tint Removal</h3>
+        <p class="bento__body">Old, bubbled, or purple film stripped clean, glass restored.</p>
+        <span class="bento__price">From $50</span>
+      </article>
+
+      <article class="bento__card bento__card--wide liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="14" height="10" rx="1"/><path d="M16 10 H20 L22 13 V17 H16"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Mobile Service</h3>
+        <p class="bento__body">We come to your driveway, office, or shop, fully equipped to install on-site across Yuba and Sutter County.</p>
+      </article>
+
+      <article class="bento__card liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 L4 7 V12 C 4 17 8 21 12 22 C 16 21 20 17 20 12 V7 Z"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Lifetime Warranty</h3>
+        <p class="bento__body">Every install backed for life. No bubbles, no fading, no purple, ever.</p>
+      </article>
+
+      <article class="bento__card bento__card--full liquid-glass">
+        <div class="bento__icon liquid-glass-strong">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M2 12 C 5 7 9 5 12 5 C 15 5 19 7 22 12 C 19 17 15 19 12 19 C 9 19 5 17 2 12 Z"/></svg>
+        </div>
+        <h3 class="bento__title display-uppercase">Windshield Ceramic, the One Most People Skip.</h3>
+        <p class="bento__body">A 70% ceramic windshield film blocks heat without darkening glass. The biggest comfort upgrade you can make to a car.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US (4 columns) ============ -->
+<section class="section section--bordered" id="why">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="badge liquid-glass">Why Us</span>
+      <h2 class="display-uppercase anim-blur" data-blur-text>Hand-finished. Computer-cut.</h2>
+      <p class="section-sub">A small shop with a big-shop discipline. Every step has a checklist.</p>
+    </div>
+
+    <div class="reasons">
+      <div class="reason liquid-glass">
+        <div class="reason__icon liquid-glass-strong"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 L4 6 V12 C 4 17 8 21 12 22 C 16 21 20 17 20 12 V6 Z M9 12 L11 14 L15 10"/></svg></div>
+        <h3 class="reason__title display-uppercase">Lifetime Warranty</h3>
+        <p class="reason__body">Backed in writing on every install. No fine print.</p>
+        <div class="reason__accent"></div>
+      </div>
+      <div class="reason liquid-glass">
+        <div class="reason__icon liquid-glass-strong"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15 14"/></svg></div>
+        <h3 class="reason__title display-uppercase">Same-Day Turnaround</h3>
+        <p class="reason__body">Most full-vehicle installs done in 3 hours, in and out.</p>
+        <div class="reason__accent"></div>
+      </div>
+      <div class="reason liquid-glass">
+        <div class="reason__icon liquid-glass-strong"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6 H21 M3 12 H21 M3 18 H21"/><circle cx="7" cy="6" r="1.5" fill="currentColor"/><circle cx="14" cy="12" r="1.5" fill="currentColor"/><circle cx="9" cy="18" r="1.5" fill="currentColor"/></svg></div>
+        <h3 class="reason__title display-uppercase">Computer-Cut Patterns</h3>
+        <p class="reason__body">No razors on your paint, no edge guesswork, no scratched defrosters.</p>
+        <div class="reason__accent"></div>
+      </div>
+      <div class="reason liquid-glass">
+        <div class="reason__icon liquid-glass-strong"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 L14 8 L20 9 L16 13 L17 19 L12 16 L7 19 L8 13 L4 9 L10 8 Z"/></svg></div>
+        <h3 class="reason__title display-uppercase">5-Star Rated</h3>
+        <p class="reason__body">200+ Google reviews, 4.9 average. Repeat work and word-of-mouth, mostly.</p>
+        <div class="reason__accent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge liquid-glass">How It Works</span>
+      <h2 class="display-uppercase anim-blur" data-blur-text>Four steps. Done right.</h2>
+    </div>
+
+    <div class="process">
+      <div class="process__step">
+        <span class="process__num display-uppercase">01</span>
+        <h3 class="process__title display-uppercase">Quote</h3>
+        <p class="process__body">Text a few photos of your vehicle. We send a fixed price the same day, no surprises.</p>
+      </div>
+      <div class="process__step">
+        <span class="process__num display-uppercase">02</span>
+        <h3 class="process__title display-uppercase">Pick Your Shade</h3>
+        <p class="process__body">5%, 20%, 35%, 50%. We hold real samples to your glass so you see the exact look.</p>
+      </div>
+      <div class="process__step">
+        <span class="process__num display-uppercase">03</span>
+        <h3 class="process__title display-uppercase">Install</h3>
+        <p class="process__body">In our climate-controlled bay or at your location. Computer-cut, hand-installed, dust-free.</p>
+      </div>
+      <div class="process__step">
+        <span class="process__num display-uppercase">04</span>
+        <h3 class="process__title display-uppercase">Drive Off</h3>
+        <p class="process__body">Care card, warranty paperwork, and a follow-up text. Most cars are ready in under 3 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <video class="stats__bg" autoplay loop muted playsinline aria-hidden="true">
+    <source src="https://videos.pexels.com/video-files/4274798/4274798-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="stats__fade-t"></div>
+  <div class="stats__fade-b"></div>
+  <div class="container">
+    <div class="stats__card liquid-glass">
+      <div class="stats__grid">
+        <div class="stat">
+          <span class="stat__value display-italic" data-count-to="500">500+</span>
+          <span class="stat__label">Cars Tinted</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value display-italic" data-count-to="200">200+</span>
+          <span class="stat__label">5-Star Reviews</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value display-italic">24<span class="stat__small">h</span></span>
+          <span class="stat__label">Quote Turnaround</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value display-italic">10<span class="stat__small">yr</span></span>
+          <span class="stat__label">Installer Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS (marquee) ============ -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge liquid-glass">Reviews</span>
+      <h2 class="display-uppercase anim-blur" data-blur-text>They say it better.</h2>
+    </div>
+  </div>
+
+  <div class="marquee-rows" id="marqueeRows">
+    <div class="marquee-row">
+      <div class="marquee-row__track" id="mqRow1"></div>
+    </div>
+    <div class="marquee-row marquee-row--rev">
+      <div class="marquee-row__track" id="mqRow2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="container faq">
+    <div class="faq__left">
+      <span class="badge liquid-glass">FAQ</span>
+      <h2 class="display-uppercase anim-blur" data-blur-text>Frequently asked.</h2>
+      <p class="section-sub">If your question isn't here, text us. Real human, fast reply.</p>
+      <a href="#cta" class="btn btn--glass" style="margin-top: 16px;">Ask A Question</a>
+    </div>
+    <div class="faq__right" id="faqList">
+      <details class="faq__item">
+        <summary>How long does a full-vehicle tint take?</summary>
+        <div class="faq__a">Most sedans and small SUVs are done in 2 to 3 hours. Trucks and larger SUVs can run 3 to 4. We give you a real time estimate when you book.</div>
+      </details>
+      <details class="faq__item">
+        <summary>Will the tint bubble or turn purple?</summary>
+        <div class="faq__a">Not on Hitek film. The dyes are stable and the adhesive is engineered to stay clear for the life of the install. That's what the lifetime warranty covers.</div>
+      </details>
+      <details class="faq__item">
+        <summary>How dark can I legally go in California?</summary>
+        <div class="faq__a">Front side windows must allow more than 70% of light through. Rear and rear-side windows can be any darkness. Windshield, top 4 inches only. We follow the law on every install.</div>
+      </details>
+      <details class="faq__item">
+        <summary>How soon can I roll my windows down?</summary>
+        <div class="faq__a">Wait 3 to 5 days. The film needs to fully bond. We send a care card and a follow-up text on day 3 to remind you.</div>
+      </details>
+      <details class="faq__item">
+        <summary>Do you offer mobile installs?</summary>
+        <div class="faq__a">Yes. Driveway, office parking lot, body shop. We bring everything we need and work in any clean, covered space. Yuba and Sutter County, no extra charge.</div>
+      </details>
+      <details class="faq__item">
+        <summary>What if I have old, bad tint already?</summary>
+        <div class="faq__a">We strip it. Removal starts at $50 per window depending on age and adhesive. New install can go on the same day in most cases.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA + FOOTER ============ -->
+<section class="cta" id="cta">
+  <video class="cta__bg" autoplay loop muted playsinline aria-hidden="true">
+    <source src="https://videos.pexels.com/video-files/4274798/4274798-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="cta__fade-t"></div>
+  <div class="cta__fade-b"></div>
+
+  <div class="cta__content">
+    <h2 class="cta__headline display-italic anim-blur" data-blur-text>Ready when you are.</h2>
+    <p class="cta__sub">One text. Honest quote. Clean install. Lifetime warranty.</p>
+    <div class="cta__buttons">
+      <a href="tel:+15304434336" class="btn btn--primary">
+        Call Now
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5 C 5 13 11 19 19 19 L 19 16 L 16 14 L 13 16 C 11 14 10 13 8 11 L 10 8 L 8 5 Z"/></svg>
+      </a>
+      <a href="#" class="btn btn--glass">View Pricing</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container footer__inner">
+      <span class="footer__copy">© 2026 Oscuro Tintz. All rights reserved.</span>
+      <nav class="footer__links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Warranty</a>
+        <a href="#">Sitemap</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<script src="assets/cinematic.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services, Oscuro Tintz</title>
+<meta name="description" content="Carbon tint, Ceramic tint, and tint removal, premium window tinting services in Yuba City, CA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/cinematic-additions.css">
+<style>
+  .service-detail { padding: clamp(72px, 10vw, 120px) 0; }
+  .service-detail:last-of-type { border-bottom: none; }
+  .service-detail__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .service-detail__img { aspect-ratio: 4/3; position: relative; overflow: hidden; border: 1px solid var(--line); }
+  .service-detail__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    border: 1px solid var(--line-strong);
+    margin-bottom: 24px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--chrome-3);
+  }
+  .service-detail__tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--chrome-3);
+    border-radius: 50%;
+  }
+  .service-detail__icon { width: 64px; height: 64px; color: var(--chrome-3); margin-bottom: 28px; }
+  .service-detail__body h2 { margin-bottom: 24px; }
+  .service-detail__features { list-style: none; padding: 0; margin: 24px 0 32px; display: grid; gap: 14px; }
+  .service-detail__features li { display: flex; gap: 14px; color: var(--ink-muted); font-size: 15px; }
+  .service-detail__features li::before { content: ','; color: var(--chrome-3); flex-shrink: 0; }
+  .service-detail__pricing { padding: 24px 0; margin: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 18px; }
+  .service-detail__pricing dt { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-dim); margin: 0; }
+  .service-detail__pricing dd { font-family: 'Oswald', sans-serif; font-size: 32px; margin: 0; }
+  .service-detail.is-reverse .service-detail__grid { grid-template-columns: 1.1fr 1fr; }
+  .service-detail.is-reverse .service-detail__body { order: -1; }
+  @media (max-width: 900px) {
+    .service-detail__grid, .service-detail.is-reverse .service-detail__grid { grid-template-columns: 1fr; }
+    .service-detail.is-reverse .service-detail__body { order: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ FLOATING LIQUID-GLASS NAV ============ -->
+<header class="cnav" id="cnav" role="banner">
+  <div class="cnav__inner lg">
+    <a href="index.html" class="cnav__brand" aria-label="Oscuro Tintz home">
+      <img class="cnav__brand-logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+    </a>
+    <nav class="cnav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="services.html" class="is-active">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="book.html" class="cnav__cta">
+      Book Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 L17 7 M9 7 H17 V15"/></svg>
+    </a>
+    <button class="cnav__hamburger" id="cnavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="cnav__sheet lg-strong" id="cnavSheet" role="dialog" aria-label="Mobile menu">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="book.html" class="is-cta">Book Now</a>
+  </div>
+</header>
+
+<section class="pagehead">
+  <div class="pagehead__bg"></div>
+  <div class="container pagehead__inner reveal">
+    <div class="breadcrumbs"><a href="index.html">Home</a> <span class="sep">/</span> <span>Services</span></div>
+    <span class="eyebrow">What We Do</span>
+    <h1>Our Services</h1>
+    <p>Premium window tint installations and removals. Done right, backed by a lifetime warranty, priced honestly.</p>
+  </div>
+</section>
+
+<section class="service-detail" id="carbon">
+  <div class="container">
+    <div class="service-detail__grid">
+      <div class="service-detail__img reveal"><img src="https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp" alt="Carbon Install" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="service-detail__body reveal reveal--delay-1">
+        <div class="service-detail__tag">Hitek Carbon IR</div>
+        <h2>Carbon Window Tinting</h2>
+        <p class="muted">Hitek Carbon IR film. A clean, reliable tint with solid heat and glare reduction. The right choice for most daily drivers who want a sharp look and meaningful comfort without paying for top-shelf ceramic.</p>
+        <ul class="service-detail__features">
+          <li>Solid IR heat rejection and glare control</li>
+          <li>Deep, non-fading charcoal finish</li>
+          <li>99% UV protection, protects skin &amp; interior</li>
+          <li>No signal or GPS interference</li>
+          <li>Lifetime warranty on film and install</li>
+        </ul>
+        <dl class="service-detail__pricing">
+          <dt>Starting At</dt>
+          <dd>$290</dd>
+        </dl>
+        <a href="book.html" class="btn btn--primary">Book Carbon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="service-detail is-reverse" id="ceramic">
+  <div class="container">
+    <div class="service-detail__grid">
+      <div class="service-detail__body reveal">
+        <div class="service-detail__tag">Hitek Ceramic IR</div>
+        <h2>Ceramic Window Tinting</h2>
+        <p class="muted">Our premium option. Hitek Ceramic IR rejects up to 75% of infrared heat for a noticeably cooler, more comfortable cabin. The clearest, deepest look we offer, and the best long-term investment.</p>
+        <ul class="service-detail__features">
+          <li>Up to 75% infrared heat rejection</li>
+          <li>Highest clarity, minimal interior distortion</li>
+          <li>99% UV protection</li>
+          <li>Zero interference with phone, GPS, or radar</li>
+          <li>Lifetime warranty, no bubbles, no fade</li>
+        </ul>
+        <dl class="service-detail__pricing">
+          <dt>Starting At</dt>
+          <dd>$390</dd>
+        </dl>
+        <a href="book.html" class="btn btn--primary">Book Ceramic</a>
+      </div>
+      <div class="service-detail__img reveal reveal--delay-1"><img src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp" alt="Ceramic Install" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="service-detail" id="removal">
+  <div class="container">
+    <div class="service-detail__grid">
+      <div class="service-detail__img reveal"><img src="https://images.pexels.com/photos/13065692/pexels-photo-13065692.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp" alt="Removal Process" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="service-detail__body reveal reveal--delay-1">
+        <div class="service-detail__tag">Old Film &amp; Adhesive</div>
+        <h2>Tint Removal</h2>
+        <p class="muted">Safe, careful removal of old, bubbled, or damaged film, including the adhesive residue most shops skip. We prep the glass correctly so your new tint goes on clean.</p>
+        <ul class="service-detail__features">
+          <li>Full film &amp; adhesive removal</li>
+          <li>No scratched glass, no damaged defrost lines</li>
+          <li>Per-window pricing available</li>
+          <li>Bundle with a new install for a package rate</li>
+        </ul>
+        <dl class="service-detail__pricing">
+          <dt>Starting At</dt>
+          <dd>$50</dd>
+        </dl>
+        <a href="contact.html" class="btn btn--ghost">Get A Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="final-cta__bg"></div>
+  <div class="final-cta__overlay"></div>
+  <div class="reveal">
+    <span class="eyebrow" style="justify-content:center;">Ready When You Are</span>
+    <h2 style="margin-top: 20px;">Book Your Install</h2>
+    <p>Most appointments are available within the week. Mobile service available.</p>
+    <a href="book.html" class="btn btn--primary">Book Now</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a href="index.html" class="logo">
+          <img class="footer__logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+        </a>
+        <p>Premium window tinting in Yuba City, CA. Hitek Carbon &amp; Ceramic film installs backed by a full lifetime warranty.</p>
+        <div class="footer__social"><a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8.5a6.5 6.5 0 0 1-3.8-1.2v7.9a5.8 5.8 0 1 1-5-5.7v2.9a2.9 2.9 0 1 0 2 2.8V3h2.9a3.6 3.6 0 0 0 3.6 3.6h.3V8.5z"/></svg></a></div>
+      </div>
+      <div class="footer__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="index.html#faq">FAQs</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer__col"><h4>Contact</h4><ul><li><a href="contact.html">Yuba City &amp; Service Area</a></li><li><a href="tel:+15304434336">(530) 443-4336</a></li><li><a href="mailto:oscurotintz@gmail.com">oscurotintz@gmail.com</a></li><li><span style="color:var(--ink-muted);">Mon–Sun · 8AM – 7PM</span></li></ul></div>
+      <div class="footer__col"><h4>Services</h4><ul><li><a href="services.html#carbon">Carbon Tint</a></li><li><a href="services.html#ceramic">Ceramic Tint</a></li><li><a href="services.html#removal">Tint Removal</a></li><li><a href="book.html">Book Appointment</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><div>© 2026 Oscuro Tintz. All rights reserved.</div><div class="tag">Yuba City · Sutter County · CA</div></div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/cinematic-additions.js"></script>
+</body>
+</html>

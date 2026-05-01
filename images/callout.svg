@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="g1" cx="70%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#252525"></stop>
+      <stop offset="60%" stop-color="#0a0a0a"></stop>
+      <stop offset="100%" stop-color="#000"></stop>
+    </radialGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a"></stop>
+      <stop offset="100%" stop-color="#050505"></stop>
+    </linearGradient>
+    <linearGradient id="glass2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"></stop>
+      <stop offset="100%" stop-color="#1a1a1a"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g1)"></rect>
+
+  
+  <polygon points="0,0 800,0 400,1080 0,1080" fill="#fff" opacity="0.03"></polygon>
+  <polygon points="1500,0 1920,0 1920,400 1700,400" fill="#fff" opacity="0.025"></polygon>
+
+  
+  <g transform="translate(700 480)">
+    <ellipse cx="450" cy="310" rx="480" ry="20" fill="#000" opacity="0.8"></ellipse>
+
+    <path d="M 20 250 &#xA;             Q 30 180 100 160&#xA;             L 220 110&#xA;             Q 320 70 480 60&#xA;             L 680 60&#xA;             Q 800 70 860 110&#xA;             L 880 250&#xA;             Q 880 270 860 270&#xA;             L 40 270&#xA;             Q 20 270 20 250 Z" fill="url(#g2)"></path>
+
+    
+    <path d="M 250 115 L 470 80 L 670 80 L 790 120 L 780 190 L 270 190 Z" fill="url(#glass2)"></path>
+    <path d="M 400 80 L 400 190" stroke="#000" stroke-width="1" opacity="0.4"></path>
+
+    
+    <line x1="40" y1="210" x2="870" y2="210" stroke="#fff" opacity="0.08"></line>
+
+    
+    <circle cx="200" cy="270" r="58" fill="#030303"></circle>
+    <circle cx="200" cy="270" r="44" fill="#0d0d0d"></circle>
+    <circle cx="200" cy="270" r="18" fill="#1a1a1a"></circle>
+    <circle cx="720" cy="270" r="58" fill="#030303"></circle>
+    <circle cx="720" cy="270" r="44" fill="#0d0d0d"></circle>
+    <circle cx="720" cy="270" r="18" fill="#1a1a1a"></circle>
+  </g>
+
+  
+  <g transform="translate(200 300)" opacity="0.45">
+    <rect x="0" y="0" width="600" height="8" fill="#888"></rect>
+    <rect x="280" y="-120" width="40" height="120" fill="#2a2a2a"></rect>
+    <rect x="260" y="-150" width="80" height="30" rx="4" fill="#1a1a1a"></rect>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000" opacity="0.2"></rect>
+</svg>

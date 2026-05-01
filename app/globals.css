@@ -1,0 +1,25 @@
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* Seamless marquee loop fix.
+   The marquee animation translates the track by -50%, but flex `gap`
+   creates one fewer gap than children, so -50% lands a half-gap short
+   of the duplicate's start position and the loop snaps. Replacing
+   `gap` with per-item `margin-right` makes each child own its trailing
+   space — total width is exactly 2x a single set, so -50% wraps cleanly. */
+.marquee__track,
+.review-row__track {
+  gap: 0;
+}
+.marquee__track > * {
+  margin-right: clamp(40px, 6vw, 96px);
+}
+.marquee--images .marquee__track > * {
+  margin-right: 12px;
+}
+.review-row__track > * {
+  margin-right: 16px;
+}

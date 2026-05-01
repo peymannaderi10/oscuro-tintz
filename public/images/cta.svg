@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="cg1" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#2a2a2a"></stop>
+      <stop offset="40%" stop-color="#0e0e0e"></stop>
+      <stop offset="100%" stop-color="#000"></stop>
+    </radialGradient>
+    <linearGradient id="cbody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d1d1d"></stop>
+      <stop offset="100%" stop-color="#050505"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#cg1)"></rect>
+
+  
+  <g opacity="0.25">
+    <rect x="940" y="900" width="40" height="10" fill="#666"></rect>
+    <rect x="940" y="950" width="40" height="10" fill="#888"></rect>
+    <rect x="940" y="1010" width="40" height="10" fill="#aaa"></rect>
+  </g>
+
+  
+  <g transform="translate(460 380)">
+    <ellipse cx="500" cy="400" rx="540" ry="26" fill="#000" opacity="0.7"></ellipse>
+
+    <path d="M 40 340 &#xA;             Q 60 240 160 220&#xA;             L 300 180&#xA;             Q 400 140 540 130&#xA;             L 760 130&#xA;             Q 860 140 920 180&#xA;             L 980 340&#xA;             Q 1000 380 980 400&#xA;             L 60 400&#xA;             Q 40 400 40 380 Z" fill="url(#cbody)"></path>
+
+    
+    <path d="M 320 200 L 540 160 L 740 160 L 880 210 L 840 290 L 360 290 Z" fill="#0a0a0a"></path>
+    <path d="M 370 290 L 830 290" stroke="#1a1a1a"></path>
+
+    
+    <rect x="880" y="320" width="100" height="18" rx="4" fill="#6b0000" opacity="0.8"></rect>
+    <rect x="60" y="320" width="100" height="18" rx="4" fill="#6b0000" opacity="0.5"></rect>
+
+    
+    <circle cx="220" cy="400" r="56" fill="#030303"></circle>
+    <circle cx="220" cy="400" r="42" fill="#0d0d0d"></circle>
+    <circle cx="820" cy="400" r="56" fill="#030303"></circle>
+    <circle cx="820" cy="400" r="42" fill="#0d0d0d"></circle>
+
+    
+    <path d="M 80 340 Q 500 350 980 340" stroke="#fff" stroke-width="1" opacity="0.06" fill="none"></path>
+  </g>
+
+  
+  <rect width="1920" height="1080" fill="url(#cg1)" opacity="0.3"></rect>
+  <rect width="1920" height="1080" fill="#000" opacity="0.15"></rect>
+</svg>

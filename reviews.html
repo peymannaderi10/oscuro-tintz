@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews, Oscuro Tintz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/cinematic-additions.css">
+<style>
+  .review-summary { display: grid; grid-template-columns: auto 1fr auto; gap: 48px; align-items: center; padding: 40px; border: 1px solid var(--line); margin-bottom: 64px; background: var(--bg-2); }
+  .review-summary__score { font-family: 'Oswald', sans-serif; font-size: 96px; line-height: 1; }
+  .review-summary__stars { color: #fff; font-size: 22px; letter-spacing: 3px; margin-bottom: 6px; }
+  .review-summary__count { font-size: 13px; color: var(--ink-muted); letter-spacing: 0.14em; text-transform: uppercase; }
+  .review-summary__cta { align-self: center; }
+  @media (max-width: 760px) { .review-summary { grid-template-columns: 1fr; text-align: center; gap: 20px; padding: 32px 24px; } }
+
+  .reviews-all { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 800px) { .reviews-all { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ============ FLOATING LIQUID-GLASS NAV ============ -->
+<header class="cnav" id="cnav" role="banner">
+  <div class="cnav__inner lg">
+    <a href="index.html" class="cnav__brand" aria-label="Oscuro Tintz home">
+      <img class="cnav__brand-logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+    </a>
+    <nav class="cnav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="reviews.html" class="is-active">Reviews</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="book.html" class="cnav__cta">
+      Book Now
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 L17 7 M9 7 H17 V15"/></svg>
+    </a>
+    <button class="cnav__hamburger" id="cnavBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="cnav__sheet lg-strong" id="cnavSheet" role="dialog" aria-label="Mobile menu">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="book.html" class="is-cta">Book Now</a>
+  </div>
+</header>
+
+<section class="pagehead">
+  <div class="pagehead__bg"></div>
+  <div class="container pagehead__inner reveal">
+    <div class="breadcrumbs"><a href="index.html">Home</a> <span class="sep">/</span> <span>Reviews</span></div>
+    <span class="eyebrow">Customer Reviews</span>
+    <h1>What People Are<br>Saying</h1>
+    <p>Every review below came from a real customer. Read the full set on Google, or leave yours after your install.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="review-summary reveal">
+      <div class="review-summary__score chrome-text">5.0</div>
+      <div>
+        <div class="review-summary__stars">★★★★★</div>
+        <div class="review-summary__count">Based on 87 Google reviews</div>
+      </div>
+      <a href="#" class="btn btn--ghost review-summary__cta">View on Google</a>
+    </div>
+
+    <div class="reviews-all">
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Clean install, no bubbles, and the ceramic tint is a night-and-day difference on hot days. Already booked my wife's car."</p><div class="review__author"><div class="review__avatar">JM</div><div><div class="review__name">Jake M.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal reveal--delay-1"><div class="review__stars">★★★★★</div><p class="review__text">"Best tint shop in Yuba City, hands down. Fair pricing, clean work, and he actually cares about getting it right. Highly recommend."</p><div class="review__author"><div class="review__avatar">RC</div><div><div class="review__name">Ricardo C.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Mobile service was clutch. Came to my house, knocked it out in a few hours, and my truck looks incredible. Professional from start to finish."</p><div class="review__author"><div class="review__avatar">TP</div><div><div class="review__name">Tyler P.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal reveal--delay-1"><div class="review__stars">★★★★★</div><p class="review__text">"Honest guy, honest price. Took his time and the finish is factory-quality. Zero complaints, will send my family his way."</p><div class="review__author"><div class="review__avatar">AS</div><div><div class="review__name">Alyssa S.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Ceramic tint on my Model 3 looks unreal. Way cooler inside and the deep black matches the car perfectly. Worth every dollar."</p><div class="review__author"><div class="review__avatar">DN</div><div><div class="review__name">Devon N.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal reveal--delay-1"><div class="review__stars">★★★★★</div><p class="review__text">"I've had tint done at bigger shops and always had issues. This is the first install I've had that came out perfect. Stop looking and book him."</p><div class="review__author"><div class="review__avatar">MV</div><div><div class="review__name">Marcos V.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal"><div class="review__stars">★★★★★</div><p class="review__text">"Got the full windshield done ceramic 70%, can't believe how much cooler the cabin is. Wish I'd done it sooner."</p><div class="review__author"><div class="review__avatar">KH</div><div><div class="review__name">Kayla H.</div><div class="review__meta">Google · Verified</div></div></div></article>
+      <article class="review reveal reveal--delay-1"><div class="review__stars">★★★★★</div><p class="review__text">"Did my truck and my daughter's car the same week. Both look amazing. You can tell he cares about the details."</p><div class="review__author"><div class="review__avatar">BG</div><div><div class="review__name">Brian G.</div><div class="review__meta">Google · Verified</div></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="final-cta__bg"></div>
+  <div class="final-cta__overlay"></div>
+  <div class="reveal">
+    <h2>Your Turn.</h2>
+    <p>Join 500+ satisfied customers across Yuba City and Sutter County.</p>
+    <a href="book.html" class="btn btn--primary">Book Now</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a href="index.html" class="logo">
+          <img class="footer__logo" src="assets/oscuro-logo.png" alt="Oscuro Tintz" />
+        </a>
+        <p>Premium window tinting in Yuba City, CA.</p>
+        <div class="footer__social"><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8.5a6.5 6.5 0 0 1-3.8-1.2v7.9a5.8 5.8 0 1 1-5-5.7v2.9a2.9 2.9 0 1 0 2 2.8V3h2.9a3.6 3.6 0 0 0 3.6 3.6h.3V8.5z"/></svg></a></div>
+      </div>
+      <div class="footer__col"><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer__col"><h4>Contact</h4><ul><li><a href="tel:+15304434336">(530) 443-4336</a></li><li><a href="mailto:oscurotintz@gmail.com">oscurotintz@gmail.com</a></li><li><span style="color:var(--ink-muted);">Mon–Sun · 8AM – 7PM</span></li></ul></div>
+      <div class="footer__col"><h4>Services</h4><ul><li><a href="services.html#carbon">Carbon Tint</a></li><li><a href="services.html#ceramic">Ceramic Tint</a></li><li><a href="services.html#removal">Tint Removal</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><div>© 2026 Oscuro Tintz. All rights reserved.</div><div class="tag">Yuba City · Sutter County · CA</div></div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/cinematic-additions.js"></script>
+</body>
+</html>
