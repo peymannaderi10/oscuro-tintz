@@ -46,7 +46,14 @@ export function LegacyScripts() {
     });
 
     // ---------- Reveal observers ----------
+    // Defer observer attachment by two animation frames. With slow remote
+    // images the layout used to settle gradually, giving the browser time
+    // to commit the initial opacity:0 / blur(10px) styles before .is-in
+    // was added. With local webp the page paints instantly, the observer
+    // fires synchronously, and the transition has no diff to animate.
+    // Two rAFs guarantee at least one paint with the initial styles.
     const observers: IntersectionObserver[] = [];
+    let cancelled = false;
 
     const blurObs = new IntersectionObserver(
       (entries) => {
@@ -59,7 +66,6 @@ export function LegacyScripts() {
       },
       { threshold: 0.2 }
     );
-    document.querySelectorAll('.c-blur').forEach((el) => blurObs.observe(el));
     observers.push(blurObs);
 
     const fadeObs = new IntersectionObserver(
@@ -73,8 +79,15 @@ export function LegacyScripts() {
       },
       { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
     );
-    document.querySelectorAll('.reveal').forEach((el) => fadeObs.observe(el));
     observers.push(fadeObs);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (cancelled) return;
+        document.querySelectorAll('.c-blur').forEach((el) => blurObs.observe(el));
+        document.querySelectorAll('.reveal').forEach((el) => fadeObs.observe(el));
+      });
+    });
 
     // ---------- Count-up ----------
     const countObs = new IntersectionObserver(
@@ -120,6 +133,7 @@ export function LegacyScripts() {
     });
 
     return () => {
+      cancelled = true;
       observers.forEach((o) => o.disconnect());
       faqHandlers.forEach(({ q, fn }) => q.removeEventListener('click', fn));
     };
