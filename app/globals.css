@@ -177,6 +177,41 @@ body {
   display: none !important;
 }
 
+/* Reveal animations — switch from CSS transitions to keyframe animations.
+   With local webp images the page paints instantly and the IntersectionObserver
+   adds .is-in before the browser has committed the initial opacity:0 styles,
+   so transitions had no state diff to animate. CSS animations always play
+   when the triggering class is added, regardless of paint timing. */
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal.is-in {
+  animation: reveal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  /* Override the legacy transition so we don't double-animate. */
+  transition: none !important;
+}
+.reveal.is-in.reveal--delay-1 { animation-delay: 0.08s; }
+.reveal.is-in.reveal--delay-2 { animation-delay: 0.16s; }
+.reveal.is-in.reveal--delay-3 { animation-delay: 0.24s; }
+
+@keyframes c-blur-in {
+  from { filter: blur(10px); opacity: 0; transform: translateY(20%); }
+  to   { filter: blur(0);    opacity: 1; transform: translateY(0); }
+}
+.c-blur.is-in > span {
+  animation: c-blur-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* The legacy transition rule on the same selector is harmless once the
+     animation keyframe takes over the visible properties. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-in,
+  .c-blur.is-in > span {
+    animation: none !important;
+  }
+}
+
 /* About teaser — give the strip a background image with overlay so the
    cuttingfilm shot reads behind the text without losing legibility. */
 .aboutcta {
