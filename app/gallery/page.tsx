@@ -102,10 +102,6 @@ const galleryStyles = `
     color: var(--ink-muted);
   }
 
-  .filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-  .filter button { padding: 10px 18px; border: 1px solid var(--line); background: transparent; color: var(--ink-muted); font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; transition: all .25s; }
-  .filter button:hover { color: var(--ink); border-color: var(--line-strong); }
-  .filter button.is-active { background: var(--ink); color: #000; border-color: var(--ink); }
 `;
 
 // Folder name has a space — encode as %20 for URLs.
@@ -137,15 +133,6 @@ export default function GalleryPage() {
 
       <section className="section">
         <div className="container">
-          <div className="filter reveal">
-            <button className="is-active">All</button>
-            <button>Ceramic</button>
-            <button>Carbon</button>
-            <button>Trucks &amp; SUVs</button>
-            <button>Sedans</button>
-            <button>Windshields</button>
-          </div>
-
           <div className="ba-grid reveal">
             {ITEMS.map((it, i) => (
               <div key={i}>
