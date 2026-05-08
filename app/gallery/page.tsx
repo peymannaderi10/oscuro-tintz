@@ -135,16 +135,21 @@ export default function GalleryPage() {
 
       <section className="section">
         <div className="container">
-          <div className="ba-grid reveal">
-            {ITEMS.map((it, i) => (
-              <div key={i}>
-                <BeforeAfter before={it.before} after={it.after} />
-                <div className="ba__caption">
-                  <h3>{it.title}</h3>
-                  <span>{it.sub}</span>
+          <div className="ba-grid">
+            {ITEMS.map((it, i) => {
+              // Stagger only the first row (i=0,1) so the cascade shows up
+              // on initial paint; later rows trigger fresh as scrolled in.
+              const delay = i === 1 ? ' reveal--delay-1' : '';
+              return (
+                <div key={i} className={`reveal${delay}`}>
+                  <BeforeAfter before={it.before} after={it.after} />
+                  <div className="ba__caption">
+                    <h3>{it.title}</h3>
+                    <span>{it.sub}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
