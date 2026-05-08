@@ -177,6 +177,47 @@ body {
   display: none !important;
 }
 
+/* About teaser — give the strip a background image with overlay so the
+   cuttingfilm shot reads behind the text without losing legibility. */
+.aboutcta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.aboutcta__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+.aboutcta__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.7) 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  z-index: -1;
+}
+
+/* Stats grid — center each stat block within its cell so the value, the
+   "h"/"yr" suffix, and the label all align on the same vertical axis. */
+.cstat {
+  align-items: center;
+  text-align: center;
+}
+.cstat__value {
+  justify-content: center;
+  /* Italic glyphs (and the trailing "+") can spill past the text box,
+     and -webkit-background-clip: text clips them. Pad + overflow:visible
+     so the suffix renders fully. */
+  padding-right: 0.12em;
+  overflow: visible;
+}
+
 /* Phone-width process layout: drop all step dividers and alternate
    alignment (01 left, 02 right, 03 left, 04 right). */
 @media (max-width: 560px) {

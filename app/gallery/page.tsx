@@ -108,44 +108,15 @@ const galleryStyles = `
   .filter button.is-active { background: var(--ink); color: #000; border-color: var(--ink); }
 `;
 
-const ITEMS: { title: string; sub: string; before: string; after: string }[] = [
-  {
-    title: 'BMW 3-Series',
-    sub: 'Ceramic · 20%',
-    before: 'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-  {
-    title: 'F-150 Crew Cab',
-    sub: 'Ceramic · 15%',
-    before: 'https://images.pexels.com/photos/2127733/pexels-photo-2127733.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/2533092/pexels-photo-2533092.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-  {
-    title: 'Honda Civic',
-    sub: 'Carbon · 35%',
-    before: 'https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/100656/pexels-photo-100656.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-  {
-    title: 'Toyota Tacoma',
-    sub: 'Ceramic · 20%',
-    before: 'https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/707046/pexels-photo-707046.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-  {
-    title: 'Dodge Challenger',
-    sub: 'Ceramic · 5%',
-    before: 'https://images.pexels.com/photos/1719648/pexels-photo-1719648.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/2127039/pexels-photo-2127039.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-  {
-    title: 'Windshield',
-    sub: 'Ceramic · 70%',
-    before: 'https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-    after: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp',
-  },
-];
+// Folder name has a space — encode as %20 for URLs.
+const DIR = '/Oscuro%20tints';
+const PAIRS = ['9', '8', '7', '6', '5', '3', '2', ''];
+const ITEMS: { title: string; sub: string; before: string; after: string }[] = PAIRS.map((n, i) => ({
+  title: `Install ${String(i + 1).padStart(2, '0')}`,
+  sub: 'Window Tint',
+  before: `${DIR}/before${n}.webp`,
+  after: `${DIR}/after${n}.webp`,
+}));
 
 export default function GalleryPage() {
   return (

@@ -71,10 +71,10 @@ export default function AboutPage() {
           <div className="about-story__img reveal">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.pexels.com/photos/8985454/pexels-photo-8985454.jpeg?auto=compress&cs=tinysrgb&w=1000&fm=webp"
+              src="/Oscuro%20tints/cuttingfilm.webp"
               alt="Owner Portrait"
               loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
             />
           </div>
           <div className="about-story__body reveal reveal--delay-1">

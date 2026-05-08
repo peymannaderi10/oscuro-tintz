@@ -229,8 +229,7 @@ export default function HomePage() {
         <div
           className="banner__bg"
           style={{
-            backgroundImage:
-              "url('https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp')",
+            backgroundImage: "url('/Oscuro%20tints/tint_from_insideview.webp')",
           }}
         ></div>
         <div className="banner__overlay banner__overlay--left"></div>
@@ -377,7 +376,7 @@ export default function HomePage() {
       {/* ============ STATS ============ */}
       <section className="cstats" data-screen-label="04c Stats">
         <video className="cstats__bg" autoPlay loop muted playsInline aria-hidden="true">
-          <source src="https://videos.pexels.com/video-files/4274798/4274798-hd_1920_1080_25fps.mp4" type="video/mp4" />
+          <source src="/Oscuro%20tints/video1.webm" type="video/webm" />
         </video>
         <div className="cstats__fade-t"></div>
         <div className="cstats__fade-b"></div>
@@ -430,17 +429,22 @@ export default function HomePage() {
           </div>
           <div className="gallery__grid reveal">
             {[
-              { wide: true, src: 'https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Sedan · Ceramic 20%' },
-              { wide: false, src: 'https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Coupe · Carbon 35%' },
-              { wide: false, src: 'https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Truck · Ceramic 15%' },
-              { wide: false, src: 'https://images.pexels.com/photos/2127733/pexels-photo-2127733.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Sedan · Carbon 20%' },
-              { wide: false, src: 'https://images.pexels.com/photos/2127039/pexels-photo-2127039.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'SUV · Ceramic 5%' },
-              { wide: false, src: 'https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Windshield · 70% Ceramic' },
-              { wide: true, src: 'https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=1200&fm=webp', alt: 'Detail · Edge work' },
-            ].map((g, i) => (
-              <div key={i} className={`gallery__item${g.wide ? ' is-wide' : ''}`}>
+              'after9.webp',
+              'after7.webp',
+              'after6.webp',
+              'IMG_8046.webp',
+              'after2.webp',
+              'after3.webp',
+              'IMG_8148.webp',
+            ].map((file, i) => (
+              <div key={i} className="gallery__item">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={g.src} alt={g.alt} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img
+                  src={`/Oscuro%20tints/${file}`}
+                  alt={`Recent Install ${i + 1}`}
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>
@@ -457,8 +461,7 @@ export default function HomePage() {
         <div
           className="banner__bg"
           style={{
-            backgroundImage:
-              "url('https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1920&fm=webp')",
+            backgroundImage: "url('/Oscuro%20tints/IMG_8148.webp')",
           }}
         ></div>
         <div className="banner__overlay banner__overlay--center"></div>
@@ -507,6 +510,11 @@ export default function HomePage() {
 
       {/* ============ ABOUT TEASER ============ */}
       <section className="aboutcta" data-screen-label="05b About Teaser">
+        <div
+          className="aboutcta__bg"
+          style={{ backgroundImage: "url('/Oscuro%20tints/cuttingfilm.webp')" }}
+        ></div>
+        <div className="aboutcta__overlay"></div>
         <div className="container aboutcta__inner reveal">
           <div className="aboutcta__text">
             <span className="eyebrow">About Oscuro Tintz</span>

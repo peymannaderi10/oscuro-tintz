@@ -44,7 +44,8 @@ const servicesStyles = `
   .service-detail.is-reverse .service-detail__body { order: -1; }
   @media (max-width: 900px) {
     .service-detail__grid, .service-detail.is-reverse .service-detail__grid { grid-template-columns: 1fr; }
-    .service-detail.is-reverse .service-detail__body { order: 0; }
+    .service-detail.is-reverse .service-detail__body { order: 2; }
+    .service-detail.is-reverse .service-detail__img { order: 1; }
   }
 `;
 
@@ -71,7 +72,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.pexels.com/photos/3786091/pexels-photo-3786091.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp"
+                src="/Oscuro%20tints/15039.webp"
                 alt="Carbon Install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -131,10 +132,10 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.pexels.com/photos/1592384/pexels-photo-1592384.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp"
+                src="/Oscuro%20tints/15286.webp"
                 alt="Ceramic Install"
                 loading="lazy"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
             </div>
           </div>
@@ -147,7 +148,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://images.pexels.com/photos/13065692/pexels-photo-13065692.jpeg?auto=compress&cs=tinysrgb&w=1400&fm=webp"
+                src="/Oscuro%20tints/6636.webp"
                 alt="Removal Process"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
