@@ -26,8 +26,10 @@ const galleryStyles = `
   .ba__layer {
     position: absolute; inset: 0;
     width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    -webkit-user-drag: none;
   }
   .ba__layer--before { z-index: 1; }
   .ba__layer--after {

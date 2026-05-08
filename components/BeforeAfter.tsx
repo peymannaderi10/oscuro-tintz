@@ -4,19 +4,14 @@ import { useEffect, useRef } from 'react';
 
 export function BeforeAfter({ before, after }: { before: string; after: string }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const beforeRef = useRef<HTMLDivElement | null>(null);
-  const afterRef = useRef<HTMLDivElement | null>(null);
+  const afterRef = useRef<HTMLImageElement | null>(null);
   const handleRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const el = rootRef.current;
-    const beforeLayer = beforeRef.current;
     const afterLayer = afterRef.current;
     const handle = handleRef.current;
-    if (!el || !beforeLayer || !afterLayer || !handle) return;
-
-    beforeLayer.style.backgroundImage = `url('${before}')`;
-    afterLayer.style.backgroundImage = `url('${after}')`;
+    if (!el || !afterLayer || !handle) return;
 
     let dragging = false;
 
@@ -63,8 +58,10 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
 
   return (
     <div className="ba" data-ba ref={rootRef}>
-      <div className="ba__layer ba__layer--before" ref={beforeRef}></div>
-      <div className="ba__layer ba__layer--after" ref={afterRef}></div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="ba__layer ba__layer--before" src={before} alt="" loading="eager" decoding="async" draggable={false} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="ba__layer ba__layer--after" src={after} alt="" loading="eager" decoding="async" draggable={false} ref={afterRef} />
       <span className="ba__tag ba__tag--before">Before</span>
       <span className="ba__tag ba__tag--after">After</span>
       <div className="ba__handle" ref={handleRef}>
