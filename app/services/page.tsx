@@ -63,7 +63,7 @@ export default function ServicesPage() {
           <span className="eyebrow">What We Do</span>
           <h1>Our Services</h1>
           <p>
-            Carbon IR, Ceramic IR, Ceramic Plus, windshield, sunroof, and tint removal—premium installs done right and
+            Carbon IR, Ceramic IR, Ceramic Plus, windshield, sunroof, and tint removal. Premium installs done right and
             backed by a lifetime warranty.
           </p>
         </div>
@@ -192,7 +192,7 @@ export default function ServicesPage() {
               <div className="service-detail__tag">Old Film &amp; Adhesive</div>
               <h2>Tint Removal</h2>
               <p className="muted">
-                Safe, professional removal of old, bubbled, faded, or damaged window film—including adhesive cleanup
+                Safe, professional removal of old, bubbled, faded, or damaged window film, including adhesive cleanup
                 for a clean surface before reinstallation. Whether you need a single window stripped or a full vehicle
                 refresh, we remove old tint with care.
               </p>

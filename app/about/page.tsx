@@ -138,8 +138,8 @@ export default function AboutPage() {
             <div className="values__num">02</div>
             <div className="values__label">Honesty</div>
             <p className="values__desc">
-              Straight answers on film options, pricing, and what actually makes sense for your vehicle—no pressure, no
-              upsell games.
+              Straight answers on film options, pricing, and what actually makes sense for your vehicle. No pressure,
+              no upsell games.
             </p>
           </div>
           <div className="values__item reveal reveal--delay-2">

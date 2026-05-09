@@ -114,8 +114,15 @@ export function BookingFlow() {
   const go = (n: number) => {
     setStep(n);
     if (typeof window !== 'undefined') {
-      const grid = document.querySelector('.book-grid') as HTMLElement | null;
-      if (grid) window.scrollTo({ top: grid.offsetTop - 100, behavior: 'smooth' });
+      // Scroll to the top of the form panel (not the whole .book-grid which
+      // also contains the step list above the form on mobile). This keeps
+      // the user focused on the next step's content instead of jumping
+      // back up past the page header.
+      const panel = document.querySelector('.booking-panel') as HTMLElement | null;
+      if (panel) {
+        const top = panel.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
     }
   };
 
@@ -354,7 +361,7 @@ export function BookingFlow() {
                   fontSize: 13,
                 }}
               >
-                Got it — one-piece rear glass takes more film and time. We&apos;ll send a custom quote based on your
+                Got it. One-piece rear glass takes more film and time. We&apos;ll send a custom quote based on your
                 vehicle&apos;s actual glass area before confirming.
               </p>
             )}
@@ -405,7 +412,7 @@ export function BookingFlow() {
               </div>
               <div className="summary-row">
                 <dt>Date</dt>
-                <dd>{dateStr ?? '—'}</dd>
+                <dd>{dateStr ?? 'Not selected'}</dd>
               </div>
               <div className="summary-row">
                 <dt>Time</dt>
@@ -444,7 +451,7 @@ export function BookingFlow() {
                 </div>
                 <div className="summary-row">
                   <dt>Date</dt>
-                  <dd>{dateStr ?? '—'}</dd>
+                  <dd>{dateStr ?? 'Not selected'}</dd>
                 </div>
                 <div className="summary-row">
                   <dt>Time</dt>
