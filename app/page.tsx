@@ -165,6 +165,12 @@ export default function HomePage() {
               </Link>
             </article>
           </div>
+
+          <div className="gallery__cta reveal">
+            <Link href="/services" className="btn btn--ghost">
+              View More Services
+            </Link>
+          </div>
         </div>
       </section>
 
