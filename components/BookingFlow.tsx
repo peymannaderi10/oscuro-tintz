@@ -139,7 +139,6 @@ export function BookingFlow() {
             );
           })}
         </ol>
-        <div className="api-note">Square Appointments integration, API to be wired</div>
       </aside>
 
       <div className="booking-panel">
