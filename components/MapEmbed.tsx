@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import type { Map as LeafletMap } from 'leaflet';
 
 export function MapEmbed() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -8,10 +9,13 @@ export function MapEmbed() {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    let cleanup: (() => void) | undefined;
+
+    let map: LeafletMap | null = null;
+    let cancelled = false;
 
     (async () => {
       const L = (await import('leaflet')).default;
+      if (cancelled || !ref.current) return;
 
       // Inject Leaflet CSS once
       const existing = document.querySelector('link[data-leaflet-css]');
@@ -25,8 +29,17 @@ export function MapEmbed() {
         document.head.appendChild(link);
       }
 
+      // React 18 strict mode runs the effect twice in dev; if a prior
+      // invocation already initialized the container Leaflet sets a
+      // `_leaflet_id` on the node and L.map() will throw. Clear it so
+      // we can re-initialize cleanly.
+      const nodeWithLeaflet = node as HTMLDivElement & { _leaflet_id?: number };
+      if (nodeWithLeaflet._leaflet_id) {
+        delete nodeWithLeaflet._leaflet_id;
+      }
+
       const yubaCity: [number, number] = [39.1404, -121.6169];
-      const map = L.map(node, {
+      map = L.map(node, {
         center: yubaCity,
         zoom: 12,
         scrollWheelZoom: false,
@@ -51,16 +64,23 @@ export function MapEmbed() {
         .addTo(map)
         .bindPopup('<strong>Oscuro Tintz</strong><br>Yuba City, CA<br>(530) 443-4336', { className: 'map__popup' });
 
-      map.on('click', () => map.scrollWheelZoom.enable());
-      map.on('mouseout', () => map.scrollWheelZoom.disable());
+      map.on('click', () => map?.scrollWheelZoom.enable());
+      map.on('mouseout', () => map?.scrollWheelZoom.disable());
 
-      cleanup = () => {
+      // If the component already unmounted while we were awaiting the
+      // import, dispose immediately.
+      if (cancelled) {
         map.remove();
-      };
+        map = null;
+      }
     })();
 
     return () => {
-      cleanup?.();
+      cancelled = true;
+      if (map) {
+        map.remove();
+        map = null;
+      }
     };
   }, []);
 

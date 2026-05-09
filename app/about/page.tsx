@@ -40,6 +40,7 @@ const aboutStyles = `
     .values__item:last-child { border-bottom: none; }
   }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin: 72px 0 0; padding-top: 72px; border-top: 1px solid var(--line); }
+  .stat { text-align: center; }
   .stat__num { font-family: 'Oswald', sans-serif; font-size: clamp(56px, 7vw, 96px); line-height: 1; margin-bottom: 12px; }
   .stat__label { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
   @media (max-width: 700px) { .stats { grid-template-columns: 1fr; } }
@@ -121,29 +122,40 @@ export default function AboutPage() {
         <div className="container">
           <div className="section-head reveal">
             <span className="eyebrow">The Values</span>
-            <h2>What We Stand On</h2>
+            <h2>The Oscuro Standard</h2>
           </div>
         </div>
         <div className="values">
           <div className="values__item reveal">
             <div className="values__num">01</div>
             <div className="values__label">Craft</div>
-            <p className="values__desc">Clean cuts, tight edges, and film applied with patience. The small stuff adds up.</p>
+            <p className="values__desc">
+              Clean cuts, tight edges, and installs done with patience and precision. The details are what separate a
+              clean job from a rushed one.
+            </p>
           </div>
           <div className="values__item reveal reveal--delay-1">
             <div className="values__num">02</div>
             <div className="values__label">Honesty</div>
-            <p className="values__desc">Straight answers on films, pricing, and what the law actually allows.</p>
+            <p className="values__desc">
+              Straight answers on film options, pricing, and what actually makes sense for your vehicle—no pressure, no
+              upsell games.
+            </p>
           </div>
           <div className="values__item reveal reveal--delay-2">
             <div className="values__num">03</div>
             <div className="values__label">Quality</div>
-            <p className="values__desc">Premium Hitek film on every install, no bargain-bin rolls, no compromises.</p>
+            <p className="values__desc">
+              We use premium HITEK film and proven install methods for long-term performance, clean looks, and reliable
+              results.
+            </p>
           </div>
           <div className="values__item reveal reveal--delay-3">
             <div className="values__num">04</div>
             <div className="values__label">Service</div>
-            <p className="values__desc">Show up, do the work, back it for life. That&apos;s the whole job.</p>
+            <p className="values__desc">
+              Clear communication, respect for your time, and work we stand behind long after the install is done.
+            </p>
           </div>
         </div>
       </section>

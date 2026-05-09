@@ -12,8 +12,8 @@ export function Footer() {
               <img className="footer__logo" src="/assets/oscuro-logo.png" alt="Oscuro Tintz" />
             </Link>
             <p>
-              Premium window tinting in Yuba City, CA. Hitek Carbon &amp; Ceramic film installs backed by a full lifetime
-              warranty.
+              Premium automotive window tinting in Yuba City, CA using HITEK Carbon IR, Ceramic IR, and Ceramic Plus
+              films, backed by lifetime warranty coverage.
             </p>
             <div className="footer__social">
               <a href="#" aria-label="Instagram">
@@ -54,7 +54,7 @@ export function Footer() {
             <h4>Contact</h4>
             <ul>
               <li>
-                <Link href="/contact">Yuba City &amp; Service Area</Link>
+                <Link href="/contact">Serving Yuba City, Marysville &amp; Surrounding Areas</Link>
               </li>
               <li>
                 <a href={`tel:${PHONE_TEL}`}>{PHONE}</a>
@@ -71,13 +71,19 @@ export function Footer() {
             <h4>Services</h4>
             <ul>
               <li>
-                <Link href="/services#carbon">Carbon Tint</Link>
+                <Link href="/services#carbon">Carbon IR</Link>
               </li>
               <li>
-                <Link href="/services#ceramic">Ceramic Tint</Link>
+                <Link href="/services#ceramic">Ceramic IR</Link>
+              </li>
+              <li>
+                <Link href="/services#ceramic-plus">Ceramic Plus</Link>
               </li>
               <li>
                 <Link href="/services#removal">Tint Removal</Link>
+              </li>
+              <li>
+                <Link href="/services#mobile">Mobile Service</Link>
               </li>
               <li>
                 <Link href="/book">Book Appointment</Link>

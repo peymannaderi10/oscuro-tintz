@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Services',
   description:
-    'Carbon tint, Ceramic tint, and tint removal, premium window tinting services in Yuba City, CA.',
+    'Carbon IR, Ceramic IR, Ceramic Plus, tint removal, windshield tint, and sunroof tinting in Yuba City, CA. Lifetime warranty on every install.',
   alternates: { canonical: '/services' },
 };
 
@@ -62,7 +62,10 @@ export default function ServicesPage() {
           </div>
           <span className="eyebrow">What We Do</span>
           <h1>Our Services</h1>
-          <p>Premium window tint installations and removals. Done right, backed by a lifetime warranty, priced honestly.</p>
+          <p>
+            Carbon IR, Ceramic IR, Ceramic Plus, windshield, sunroof, and tint removal—premium installs done right and
+            backed by a lifetime warranty.
+          </p>
         </div>
       </section>
 
@@ -111,8 +114,9 @@ export default function ServicesPage() {
               <div className="service-detail__tag">Hitek Ceramic IR</div>
               <h2>Ceramic Window Tinting</h2>
               <p className="muted">
-                Our premium option. Hitek Ceramic IR rejects up to 75% of infrared heat for a noticeably cooler, more
-                comfortable cabin. The clearest, deepest look we offer, and the best long-term investment.
+                Our upgraded ceramic option. HITEK Ceramic IR delivers up to 75% infrared heat rejection for a cooler,
+                more comfortable cabin with premium clarity and long-term performance. A perfect step up for drivers
+                who want stronger heat rejection than carbon without going all the way to our top-tier Ceramic Plus.
               </p>
               <ul className="service-detail__features">
                 <li>Up to 75% infrared heat rejection</li>
@@ -142,30 +146,61 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="service-detail" id="removal">
+      <section className="service-detail" id="ceramic-plus">
         <div className="container">
           <div className="service-detail__grid">
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/6636.webp"
-                alt="Removal Process"
+                src="/Oscuro%20tints/IMG_8148.webp"
+                alt="Ceramic Plus Install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
             <div className="service-detail__body reveal reveal--delay-1">
+              <div className="service-detail__tag">Hitek Ceramic Plus</div>
+              <h2>Ceramic Plus Window Tinting</h2>
+              <p className="muted">
+                The best we offer. HITEK Ceramic Plus delivers up to 90% infrared heat rejection for maximum comfort,
+                exceptional clarity, and premium long-term performance. Designed for drivers who want the highest
+                level of heat protection without compromise.
+              </p>
+              <ul className="service-detail__features">
+                <li>Up to 90% IR heat rejection</li>
+                <li>99% UV protection</li>
+                <li>Premium ceramic clarity</li>
+                <li>Zero signal interference</li>
+                <li>Lifetime warranty coverage</li>
+              </ul>
+              <dl className="service-detail__pricing">
+                <dt>Starting At</dt>
+                <dd>$500</dd>
+              </dl>
+              <Link href="/book" className="btn btn--primary">
+                Book Ceramic Plus
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="service-detail is-reverse" id="removal">
+        <div className="container">
+          <div className="service-detail__grid">
+            <div className="service-detail__body reveal">
               <div className="service-detail__tag">Old Film &amp; Adhesive</div>
               <h2>Tint Removal</h2>
               <p className="muted">
-                Safe, careful removal of old, bubbled, or damaged film, including the adhesive residue most shops skip.
-                We prep the glass correctly so your new tint goes on clean.
+                Safe, professional removal of old, bubbled, faded, or damaged window film—including adhesive cleanup
+                for a clean surface before reinstallation. Whether you need a single window stripped or a full vehicle
+                refresh, we remove old tint with care.
               </p>
               <ul className="service-detail__features">
-                <li>Full film &amp; adhesive removal</li>
-                <li>No scratched glass, no damaged defrost lines</li>
-                <li>Per-window pricing available</li>
-                <li>Bundle with a new install for a package rate</li>
+                <li>Full film and adhesive removal</li>
+                <li>Careful removal process to minimize risk to glass and rear defroster lines</li>
+                <li>Single-window or full-vehicle service available</li>
+                <li>Bundle with a new tint install for package pricing</li>
               </ul>
               <dl className="service-detail__pricing">
                 <dt>Starting At</dt>
@@ -174,6 +209,93 @@ export default function ServicesPage() {
               <Link href="/contact" className="btn btn--ghost">
                 Get A Quote
               </Link>
+            </div>
+            <div className="service-detail__img reveal reveal--delay-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/Oscuro%20tints/6636.webp"
+                alt="Removal Process"
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="service-detail" id="windshield">
+        <div className="container">
+          <div className="service-detail__grid">
+            <div className="service-detail__img reveal">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/Oscuro%20tints/IMG_8046.webp"
+                alt="Windshield Tint"
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <div className="service-detail__body reveal reveal--delay-1">
+              <div className="service-detail__tag">Windshield</div>
+              <h2>Windshield Tint</h2>
+              <p className="muted">
+                Upgrade your comfort with premium windshield film options designed to reduce heat, glare, and UV
+                exposure while maintaining excellent visibility. Ideal for keeping your cabin cooler and protecting
+                your interior from sun damage.
+              </p>
+              <ul className="service-detail__features">
+                <li>Premium heat rejection</li>
+                <li>Reduced glare &amp; interior heat buildup</li>
+                <li>99% UV protection</li>
+                <li>Clear ceramic options available for maximum heat rejection with minimal appearance change</li>
+              </ul>
+              <p className="muted" style={{ fontSize: 13, marginTop: -8, marginBottom: 24 }}>
+                Windshield film options may vary based on California regulations and customer-specific exemptions.
+              </p>
+              <dl className="service-detail__pricing">
+                <dt>Starting At</dt>
+                <dd>$150</dd>
+              </dl>
+              <Link href="/book" className="btn btn--primary">
+                Book Windshield
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="service-detail is-reverse" id="sunroof">
+        <div className="container">
+          <div className="service-detail__grid">
+            <div className="service-detail__body reveal">
+              <div className="service-detail__tag">Sunroof &amp; Panoramic</div>
+              <h2>Sunroof &amp; Panoramic Roof Tinting</h2>
+              <p className="muted">
+                Reduce overhead heat and glare with premium ceramic protection for sunroofs and panoramic glass roofs.
+                Ceramic only.
+              </p>
+              <ul className="service-detail__features">
+                <li>Major heat reduction</li>
+                <li>UV protection</li>
+                <li>Improved comfort in hot weather</li>
+                <li>Great add-on to full vehicle tint packages</li>
+              </ul>
+              <dl className="service-detail__pricing">
+                <dt>Starting At</dt>
+                <dd>$80</dd>
+              </dl>
+              <Link href="/book" className="btn btn--primary">
+                Book Sunroof
+              </Link>
+            </div>
+            <div className="service-detail__img reveal reveal--delay-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/Oscuro%20tints/15383.webp"
+                alt="Sunroof Tint"
+                loading="lazy"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
         </div>

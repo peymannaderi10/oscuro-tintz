@@ -6,6 +6,27 @@ import { PHONE } from '@/lib/siteMeta';
 
 type Service = string;
 type Location = string;
+type RearGlass = 'standard' | 'one-piece' | 'unsure';
+
+const REAR_GLASS_OPTIONS: { value: RearGlass; label: string; meta: string; img?: string }[] = [
+  {
+    value: 'standard',
+    label: 'Standard',
+    meta: 'Separate rear glass, like most cars',
+    img: '/Oscuro%20tints/standard.png',
+  },
+  {
+    value: 'one-piece',
+    label: 'Full / One-Piece',
+    meta: 'Extends to the roof in one solid panel (Tesla Model 3/Y, etc.)',
+    img: '/Oscuro%20tints/full-one-piece.png',
+  },
+  {
+    value: 'unsure',
+    label: 'Not Sure',
+    meta: "We'll confirm with you",
+  },
+];
 
 const SERVICES: { value: Service; label: string; meta: string }[] = [
   { value: 'Ceramic Tint, Full', label: 'Ceramic, Full', meta: 'From $390 · ~3 hrs' },
@@ -39,16 +60,55 @@ export function BookingFlow() {
   const [location, setLocation] = useState<Location>('Shop, Yuba City');
   const [time, setTime] = useState('11:00 AM');
   const [day, setDay] = useState<number | null>(DEFAULT_DAY);
+  const [rearGlass, setRearGlass] = useState<RearGlass>('standard');
+  const [notes, setNotes] = useState<string[]>([]);
+  // Currently viewed month — separate from the selected day so the user
+  // can browse forward without losing their selection. Eventually the
+  // available date range will be driven by the Square Appointments API.
+  const [viewYear, setViewYear] = useState<number>(TODAY.getFullYear());
+  const [viewMonth, setViewMonth] = useState<number>(TODAY.getMonth());
 
-  const year = TODAY.getFullYear();
-  const month = TODAY.getMonth();
-  const dateStr = day != null ? `April ${day}, ${year}` : null;
+  const year = viewYear;
+  const month = viewMonth;
+  const monthName = new Date(year, month, 1).toLocaleString('en-US', { month: 'long' });
+  const dateStr = day != null ? `${monthName} ${day}, ${year}` : null;
+  const isAtTodayMonth = year === TODAY.getFullYear() && month === TODAY.getMonth();
+  // Cap forward navigation at 6 months out for now; Square will own
+  // this once we wire up real availability.
+  const maxYear = new Date(TODAY.getFullYear(), TODAY.getMonth() + 6, 1).getFullYear();
+  const maxMonth = new Date(TODAY.getFullYear(), TODAY.getMonth() + 6, 1).getMonth();
+  const isAtMaxMonth = year === maxYear && month === maxMonth;
+
+  const goToPrevMonth = () => {
+    if (isAtTodayMonth) return;
+    const prev = new Date(year, month - 1, 1);
+    setViewYear(prev.getFullYear());
+    setViewMonth(prev.getMonth());
+    setDay(null);
+  };
+  const goToNextMonth = () => {
+    if (isAtMaxMonth) return;
+    const next = new Date(year, month + 1, 1);
+    setViewYear(next.getFullYear());
+    setViewMonth(next.getMonth());
+    setDay(null);
+  };
+  const rearGlassLabel =
+    rearGlass === 'one-piece'
+      ? 'Full / One-Piece (custom quote)'
+      : rearGlass === 'unsure'
+        ? "Not Sure (we'll confirm)"
+        : 'Standard';
 
   const calendar = useMemo(() => {
-    const first = new Date(year, month, 1);
+    // Only render today and future dates. Compute the weekday offset for
+    // the first visible day so it aligns under the correct column header.
+    const isCurrentMonth = TODAY.getFullYear() === year && TODAY.getMonth() === month;
+    const firstVisible = isCurrentMonth ? TODAY.getDate() : 1;
+    const firstVisibleDate = new Date(year, month, firstVisible);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const startDay = first.getDay();
-    return { startDay, daysInMonth };
+    const startDay = firstVisibleDate.getDay();
+    return { startDay, daysInMonth, firstVisible };
   }, [year, month]);
 
   const go = (n: number) => {
@@ -126,7 +186,30 @@ export function BookingFlow() {
         {step === 2 && (
           <div>
             <div className="panel-title">02 · Pick A Date</div>
-            <p className="panel-sub">Available dates this month. All times in PT.</p>
+            <p className="panel-sub">Available dates. All times in PT.</p>
+            <div className="cal-header">
+              <button
+                type="button"
+                className="cal-nav"
+                onClick={goToPrevMonth}
+                disabled={isAtTodayMonth}
+                aria-label="Previous month"
+              >
+                ‹
+              </button>
+              <div className="cal-header__month">
+                {monthName} {year}
+              </div>
+              <button
+                type="button"
+                className="cal-nav"
+                onClick={goToNextMonth}
+                disabled={isAtMaxMonth}
+                aria-label="Next month"
+              >
+                ›
+              </button>
+            </div>
             <div className="cal">
               {dayLabels.map((d, i) => (
                 <div key={`dl-${i}`} className="cal__day">
@@ -136,18 +219,11 @@ export function BookingFlow() {
               {Array.from({ length: calendar.startDay }).map((_, i) => (
                 <div key={`bl-${i}`} className="cal__cell is-disabled"></div>
               ))}
-              {Array.from({ length: calendar.daysInMonth }).map((_, i) => {
-                const d = i + 1;
-                const dateObj = new Date(year, month, d);
-                const disabled = dateObj < TODAY;
-                const cls = `cal__cell${disabled ? ' is-disabled' : ''}${d === day ? ' is-selected' : ''}`;
+              {Array.from({ length: calendar.daysInMonth - calendar.firstVisible + 1 }).map((_, i) => {
+                const d = calendar.firstVisible + i;
+                const cls = `cal__cell${d === day ? ' is-selected' : ''}`;
                 return (
-                  <button
-                    key={`d-${d}`}
-                    className={cls}
-                    disabled={disabled}
-                    onClick={() => !disabled && setDay(d)}
-                  >
+                  <button key={`d-${d}`} className={cls} onClick={() => setDay(d)}>
                     {d}
                   </button>
                 );
@@ -208,9 +284,82 @@ export function BookingFlow() {
               </div>
               <div>
                 <label>Notes (optional)</label>
-                <textarea placeholder="Shade preference, specific windows, anything we should know…" />
+                <div className="notes-list">
+                  {notes.map((value, i) => (
+                    <div key={i} className="notes-list__row">
+                      <input
+                        type="text"
+                        value={value}
+                        onChange={(e) => {
+                          const next = [...notes];
+                          next[i] = e.target.value;
+                          setNotes(next);
+                        }}
+                        placeholder="e.g. front two windows only, 20% shade…"
+                      />
+                      <button
+                        type="button"
+                        className="notes-list__remove"
+                        aria-label="Remove note"
+                        onClick={() => setNotes(notes.filter((_, idx) => idx !== i))}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="notes-list__add"
+                    onClick={() => setNotes([...notes, ''])}
+                  >
+                    + Add a note
+                  </button>
+                </div>
               </div>
             </form>
+
+            <div className="panel-title" style={{ marginTop: 32 }}>
+              Rear Window Style
+            </div>
+            <p className="panel-sub">
+              One-piece rear glass (Tesla Model 3/Y, etc.) covers more area, so pricing differs.
+            </p>
+            <div className="tile-grid tile-grid--rear-glass">
+              {REAR_GLASS_OPTIONS.map((r) => {
+                const variant = r.img ? 'tile--rear-glass' : 'tile--rear-glass-bar';
+                return (
+                  <button
+                    key={r.value}
+                    className={`tile ${variant}${rearGlass === r.value ? ' is-selected' : ''}`}
+                    onClick={() => setRearGlass(r.value)}
+                    type="button"
+                  >
+                    {r.img && (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img className="tile__img" src={r.img} alt="" loading="lazy" />
+                    )}
+                    <span className="tile__label">{r.label}</span>
+                    <span className="tile__meta">{r.meta}</span>
+                  </button>
+                );
+              })}
+            </div>
+            {rearGlass === 'one-piece' && (
+              <p
+                className="panel-sub"
+                style={{
+                  marginTop: 16,
+                  padding: '14px 18px',
+                  border: '1px solid var(--line)',
+                  background: 'rgba(255,255,255,0.02)',
+                  fontSize: 13,
+                }}
+              >
+                Got it — one-piece rear glass takes more film and time. We&apos;ll send a custom quote based on your
+                vehicle&apos;s actual glass area before confirming.
+              </p>
+            )}
+
             <div className="panel-nav">
               <button className="btn btn--ghost" onClick={() => go(2)}>
                 ← Back
@@ -252,6 +401,10 @@ export function BookingFlow() {
                 <dd>{location}</dd>
               </div>
               <div className="summary-row">
+                <dt>Rear Window</dt>
+                <dd>{rearGlassLabel}</dd>
+              </div>
+              <div className="summary-row">
                 <dt>Date</dt>
                 <dd>{dateStr ?? '—'}</dd>
               </div>
@@ -285,6 +438,10 @@ export function BookingFlow() {
                 <div className="summary-row">
                   <dt>Service</dt>
                   <dd>{service}</dd>
+                </div>
+                <div className="summary-row">
+                  <dt>Rear Window</dt>
+                  <dd>{rearGlassLabel}</dd>
                 </div>
                 <div className="summary-row">
                   <dt>Date</dt>

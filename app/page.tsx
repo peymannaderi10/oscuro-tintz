@@ -26,8 +26,8 @@ export default function HomePage() {
             <span className="line accent">Beat The Heat.</span>
           </h1>
           <p className="hero__sub c-fade-up" style={{ ['--c-delay' as string]: '0.95s' } as React.CSSProperties}>
-            Hitek Carbon &amp; Ceramic films. Up to 99% UV protection, serious heat rejection, and a lifetime warranty
-            on every install, done right the first time.
+            Hitek Carbon IR, Ceramic IR, and Ceramic Plus films. Up to 99% UV protection, serious heat rejection, and a
+            lifetime warranty on every install, done right the first time.
           </p>
           <div className="hero__ctas c-fade-up" style={{ ['--c-delay' as string]: '1.15s' } as React.CSSProperties}>
             <Link href="/book" className="btn-c btn-c--primary">
@@ -53,11 +53,9 @@ export default function HomePage() {
             Trusted Films We Use
           </span>
           <div className="hero__partners-row c-fade-up" style={{ ['--c-delay' as string]: '1.55s' } as React.CSSProperties}>
-            <span>Hitek IR</span>
-            <span>Hitek Ceramic</span>
-            <span>Carbon Pro</span>
-            <span>Crystalline</span>
-            <span>Nano Ceramic</span>
+            <span>Hitek Carbon IR</span>
+            <span>Hitek Ceramic IR</span>
+            <span>Hitek Ceramic Plus</span>
           </div>
         </div>
       </section>
@@ -245,6 +243,9 @@ export default function HomePage() {
               We bring the shop to you. Serving Yuba City, Marysville, Sutter County, and surrounding areas. Driveways,
               offices, or anywhere you need us. Same premium install, same lifetime warranty.
             </p>
+            <p style={{ marginTop: 12, fontSize: 14, color: 'var(--ink-muted)' }}>
+              Need service farther out? Contact us for availability and custom travel pricing.
+            </p>
             <div className="banner__ctas">
               <Link href="/book" className="btn btn--primary">
                 Book Appointment
@@ -305,11 +306,11 @@ export default function HomePage() {
               <div className="reason__split">
                 <div className="reason__row">
                   <span className="reason__tag">Difference</span>
-                  <p>We use Hitek Carbon IR and Ceramic IR films.</p>
+                  <p>We use premium HITEK Carbon IR, Ceramic IR &amp; Ceramic Plus window films.</p>
                 </div>
                 <div className="reason__row">
                   <span className="reason__tag reason__tag--accent">Benefit</span>
-                  <p>Up to 99% UV protection and serious heat rejection on every install.</p>
+                  <p>Up to 99% UV protection and 90% IR rejection. Serious heat rejection, and zero interference with phone, GPS, Bluetooth, or keyless entry.</p>
                 </div>
               </div>
             </article>
@@ -330,7 +331,28 @@ export default function HomePage() {
                 </div>
                 <div className="reason__row">
                   <span className="reason__tag reason__tag--accent">Benefit</span>
-                  <p>If it ever bubbles, peels, or fades, we fix it.</p>
+                  <p>Long-term peace of mind. If it ever bubbles, peels, or fades, we make it right.</p>
+                </div>
+              </div>
+            </article>
+
+            <article className="reason reveal reveal--delay-3">
+              <div className="reason__num">04</div>
+              <div className="reason__icon">
+                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4">
+                  <path d="M6 26 V20 C6 16 9 13 13 13 H19 C23 13 26 16 26 20 V26" />
+                  <circle cx="16" cy="9" r="4" />
+                </svg>
+              </div>
+              <h3 className="reason__title">Customer-First Service</h3>
+              <div className="reason__split">
+                <div className="reason__row">
+                  <span className="reason__tag">Difference</span>
+                  <p>Clear communication, honest recommendations, no upsell nonsense.</p>
+                </div>
+                <div className="reason__row">
+                  <span className="reason__tag reason__tag--accent">Benefit</span>
+                  <p>You get the right film for your needs and budget.</p>
                 </div>
               </div>
             </article>
@@ -352,22 +374,22 @@ export default function HomePage() {
             <div className="cprocess__step">
               <span className="cprocess__num">01</span>
               <h3 className="cprocess__title">Quote</h3>
-              <p className="cprocess__body">Text us a few photos of your vehicle. We send a fixed price the same day, no surprises.</p>
+              <p className="cprocess__body">Send us your vehicle details for fast, transparent pricing, no guesswork, no surprise charges.</p>
             </div>
             <div className="cprocess__step">
               <span className="cprocess__num">02</span>
               <h3 className="cprocess__title">Pick Your Shade</h3>
-              <p className="cprocess__body">5%, 20%, 35%, 50%. We hold real samples to your glass so you see the exact look before we cut.</p>
+              <p className="cprocess__body">We carry 2%, 5%, 15%, 20%, 35%, 50%, and 70% tint options, and we&apos;ll help you choose the right balance of privacy, heat rejection, and style.</p>
             </div>
             <div className="cprocess__step">
               <span className="cprocess__num">03</span>
-              <h3 className="cprocess__title">Install</h3>
-              <p className="cprocess__body">In our shop or at your location. Computer-cut, hand-installed, dust-free, every time.</p>
+              <h3 className="cprocess__title">Professional Installation</h3>
+              <p className="cprocess__body">Installed in-shop or at your location using precision-cut patterns and proven installation methods for a clean, factory-quality finish.</p>
             </div>
             <div className="cprocess__step">
               <span className="cprocess__num">04</span>
-              <h3 className="cprocess__title">Drive Off</h3>
-              <p className="cprocess__body">Care card, warranty paperwork, and a follow-up text. Most cars are ready in under 3 hours.</p>
+              <h3 className="cprocess__title">Drive Away Protected</h3>
+              <p className="cprocess__body">Leave with cooler comfort, UV protection, warranty coverage, and aftercare instructions so your tint lasts.</p>
             </div>
           </div>
         </div>
@@ -385,31 +407,31 @@ export default function HomePage() {
           <div className="cstats__head">
             <span className="eyebrow">By The Numbers</span>
             <h2 className="c-blur" data-blur-text>
-              Five Years. Zero Shortcuts.
+              Quality Over Shortcuts.
             </h2>
           </div>
 
           <div className="cstats__card lg">
             <div className="cstats__grid">
               <div className="cstat">
-                <span className="cstat__value" data-count-to="500" data-suffix="+">500+</span>
-                <span className="cstat__label">Cars Tinted</span>
+                <span className="cstat__value" data-count-to="200" data-suffix="+">200+</span>
+                <span className="cstat__label">Vehicles Tinted</span>
               </div>
               <div className="cstat">
-                <span className="cstat__value" data-count-to="200" data-suffix="+">200+</span>
+                <span className="cstat__value" data-count-to="14" data-suffix="+">14+</span>
                 <span className="cstat__label">5-Star Reviews</span>
               </div>
               <div className="cstat">
                 <span className="cstat__value">
-                  24<span className="cstat__small">h</span>
+                  24<span className="cstat__small">hr</span>
                 </span>
-                <span className="cstat__label">Quote Turnaround</span>
+                <span className="cstat__label">Quote Response</span>
               </div>
               <div className="cstat">
                 <span className="cstat__value">
-                  10<span className="cstat__small">yr</span>
+                  2<span className="cstat__small">yr</span>
                 </span>
-                <span className="cstat__label">Installer Experience</span>
+                <span className="cstat__label">Experience</span>
               </div>
             </div>
           </div>
@@ -474,8 +496,11 @@ export default function HomePage() {
               Warranty.
             </h2>
             <p>
-              Every install is covered for as long as you own the vehicle. Bubbles, peeling, fading, we fix it. No fine
-              print, no excuses.
+              Every qualifying install is backed for as long as you own the vehicle. If your film bubbles, peels, fades,
+              or shows manufacturer defects, we&apos;ll make it right.
+            </p>
+            <p style={{ marginTop: 16, fontSize: 13, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>
+              Clean, trustworthy, strong.
             </p>
             <div className="banner__ctas is-center">
               <Link href="/book" className="btn btn--primary">
@@ -518,8 +543,11 @@ export default function HomePage() {
         <div className="container aboutcta__inner reveal">
           <div className="aboutcta__text">
             <span className="eyebrow">About Oscuro Tintz</span>
-            <h2>A Passion Turned Into A Profession</h2>
-            <p>One person, one shop, one standard. Built on word-of-mouth and clean installs.</p>
+            <h2>One Shop. One Standard.</h2>
+            <p>
+              As an owner-operated business, every install reflects my name and reputation. That means cleaner work,
+              better communication, and attention to the details bigger shops often miss.
+            </p>
           </div>
           <Link href="/about" className="btn btn--ghost aboutcta__btn">
             Read More About Us
@@ -547,8 +575,59 @@ export default function HomePage() {
           <div className="faq reveal">
             {[
               {
-                q: "What's the difference between Carbon and Ceramic tint?",
-                a: 'Carbon is a reliable everyday film with solid heat and glare control at a great price. Ceramic is our premium option, far better infrared heat rejection, no signal interference, and a cleaner deep-black look that lasts.',
+                q: "What's the difference between your tint options?",
+                a: (
+                  <>
+                    <p style={{ marginBottom: 16 }}>
+                      Three tiers of HITEK film: Carbon IR for value, Ceramic IR for premium comfort, and Ceramic Plus
+                      for maximum heat rejection and long-term performance.
+                    </p>
+                    <div className="faq-chart">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Feature</th>
+                            <th>Carbon IR</th>
+                            <th>Ceramic IR</th>
+                            <th>Ceramic Plus</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>UV Protection</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                            <td>✓</td>
+                          </tr>
+                          <tr>
+                            <td>Heat Rejection</td>
+                            <td>Good</td>
+                            <td>Better</td>
+                            <td>Best</td>
+                          </tr>
+                          <tr>
+                            <td>Infrared Rejection</td>
+                            <td>Good</td>
+                            <td>High</td>
+                            <td>Maximum</td>
+                          </tr>
+                          <tr>
+                            <td>Signal Interference</td>
+                            <td>None</td>
+                            <td>None</td>
+                            <td>None</td>
+                          </tr>
+                          <tr>
+                            <td>Best For</td>
+                            <td>Value</td>
+                            <td>Premium</td>
+                            <td>Maximum Performance</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                ),
               },
               {
                 q: 'How long does tinting take?',
@@ -564,7 +643,23 @@ export default function HomePage() {
               },
               {
                 q: 'Is there a warranty?',
-                a: "Every install is backed by a full lifetime warranty. If the film ever bubbles, peels, or fades, we'll make it right.",
+                a: 'Yes. Our qualifying installs include lifetime warranty coverage against bubbling, peeling, fading, and manufacturer defects for as long as you own the vehicle.',
+              },
+              {
+                q: 'Do you remove old tint?',
+                a: 'Yes, old tint removal is available. Pricing depends on the condition of the existing film and adhesive.',
+              },
+              {
+                q: 'Do you tint windshields?',
+                a: "Yes. We offer windshield tint options for heat rejection, glare reduction, and added comfort while maintaining visibility. If you're unsure what's legal or best for your vehicle, we'll walk you through your options.",
+              },
+              {
+                q: 'How long before I can roll my windows down?',
+                a: 'Please keep your windows rolled up for 3–5 days after installation to allow the film to properly cure and bond to the glass. Cure time may vary depending on weather conditions.',
+              },
+              {
+                q: 'How do I get a quote?',
+                a: "Getting a quote is easy. Send us your vehicle year, make, model, and which windows you'd like tinted, and we'll get back to you with pricing as quickly as possible.",
               },
               {
                 q: 'How do I care for my tint after install?',
@@ -578,7 +673,7 @@ export default function HomePage() {
                 </button>
                 <div className="faq__a">
                   <div className="faq__a-inner">
-                    <p>{f.a}</p>
+                    {typeof f.a === 'string' ? <p>{f.a}</p> : f.a}
                   </div>
                 </div>
               </div>

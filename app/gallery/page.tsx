@@ -108,7 +108,7 @@ const galleryStyles = `
 
 // Folder name has a space — encode as %20 for URLs.
 const DIR = '/Oscuro%20tints';
-const PAIRS = ['9', '8', '7', '6', '5', '3', '2', ''];
+const PAIRS = ['9', '8', '7', '6', '5', '3', '2'];
 const ITEMS: { title: string; sub: string; before: string; after: string }[] = PAIRS.map((n, i) => ({
   title: `Install ${String(i + 1).padStart(2, '0')}`,
   sub: 'Window Tint',

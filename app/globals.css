@@ -172,9 +172,20 @@ body {
   }
 }
 
-/* Reasons section ("The Standard We Build To") — drop the icon block. */
+/* Reasons section ("The Standard We Build To") — drop the icon block,
+   and expand to 4 columns now that there's a 4th reason. */
 .reason__icon {
   display: none !important;
+}
+@media (min-width: 901px) {
+  .reasons {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media (max-width: 900px) and (min-width: 561px) {
+  .reasons {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 /* Reveal animations — switch from CSS transitions to keyframe animations.
@@ -210,6 +221,224 @@ body {
   .c-blur.is-in > span {
     animation: none !important;
   }
+}
+
+/* Booking calendar — month nav header. */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cal-header__month {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  flex: 1;
+  text-align: center;
+}
+.cal-nav {
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.cal-nav:hover:not(:disabled) {
+  border-color: var(--ink);
+  background: rgba(255, 255, 255, 0.04);
+}
+.cal-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.cal-nav:focus {
+  outline: none;
+}
+.cal-nav:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* Notes list — single-line inputs added on demand via "+ Add a note". */
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.notes-list__row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+.notes-list__row input {
+  flex: 1;
+  /* keep .form input height single-line; override the form's default
+     larger padding so the row stays compact */
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+}
+.notes-list__remove {
+  flex-shrink: 0;
+  width: 40px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.notes-list__remove:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.notes-list__add {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--ink-muted);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.notes-list__add:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.notes-list__add:focus {
+  outline: none;
+}
+.notes-list__add:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* Kill the blue tap-highlight / focus-ring flash on booking tile buttons.
+   Keep an accessible focus ring for keyboard users via :focus-visible. */
+.tile {
+  -webkit-tap-highlight-color: transparent;
+}
+.tile:focus {
+  outline: none;
+}
+.tile:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: 2px;
+}
+
+/* Booking flow — rear-window-style tiles with thumbnail icons.
+   The source PNGs are white silhouettes with a dark grey glass panel on
+   a white background. invert(1) flips them: subtle dark silhouette with
+   a light grey glass panel on the dark tile, putting visual focus on
+   the highlighted glass area. */
+.tile-grid--rear-glass {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+@media (max-width: 600px) {
+  .tile-grid--rear-glass {
+    grid-template-columns: 1fr !important;
+  }
+}
+.tile--rear-glass {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  gap: 14px;
+  padding: 18px !important;
+}
+.tile--rear-glass .tile__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 10 / 9;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  filter: invert(1);
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+.tile--rear-glass:hover .tile__img,
+.tile--rear-glass.is-selected .tile__img {
+  opacity: 1;
+}
+
+/* "Not Sure" — horizontal bar spanning both columns under the two image
+   tiles. No image, label and meta laid out side-by-side. */
+.tile--rear-glass-bar {
+  grid-column: 1 / -1;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 14px 18px !important;
+  text-align: left;
+}
+.tile--rear-glass-bar .tile__label {
+  flex-shrink: 0;
+}
+.tile--rear-glass-bar .tile__meta {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .tile--rear-glass-bar {
+    grid-column: 1 / -1;
+    flex-direction: column !important;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+/* FAQ comparison chart (Carbon IR / Ceramic IR / Ceramic Plus). */
+.faq-chart {
+  margin-top: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+}
+.faq-chart table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 520px;
+}
+.faq-chart th,
+.faq-chart td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+}
+.faq-chart th {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.03);
+}
+.faq-chart td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+.faq-chart tbody tr:last-child td {
+  border-bottom: none;
 }
 
 /* About teaser — give the strip a background image with overlay so the
@@ -251,6 +480,11 @@ body {
      so the suffix renders fully. */
   padding-right: 0.12em;
   overflow: visible;
+}
+@media (max-width: 760px) {
+  .cstats__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 /* Phone-width process layout: drop all step dividers and alternate
