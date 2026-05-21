@@ -80,10 +80,22 @@ export function Footer() {
                 <Link href="/services#ceramic-plus">Ceramic Plus</Link>
               </li>
               <li>
-                <Link href="/services#removal">Tint Removal</Link>
+                <Link href="/services#windshield">Windshield</Link>
               </li>
               <li>
-                <Link href="/services#mobile">Mobile Service</Link>
+                <Link href="/services#sunroof">Sunroof</Link>
+              </li>
+              <li>
+                <Link href="/services#panoramic">Panoramic Sunroof</Link>
+              </li>
+              <li>
+                <Link href="/services#sun-strip">Sun Strip</Link>
+              </li>
+              <li>
+                <Link href="/services#overnight">Overnight Appointments</Link>
+              </li>
+              <li>
+                <Link href="/services#removal">Tint Removal</Link>
               </li>
               <li>
                 <Link href="/book">Book Appointment</Link>

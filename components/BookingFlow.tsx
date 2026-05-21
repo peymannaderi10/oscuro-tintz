@@ -28,13 +28,20 @@ const REAR_GLASS_OPTIONS: { value: RearGlass; label: string; meta: string; img?:
   },
 ];
 
-const SERVICES: { value: Service; label: string; meta: string }[] = [
-  { value: 'Ceramic Tint, Full', label: 'Ceramic, Full', meta: 'From $390 · ~3 hrs' },
-  { value: 'Carbon Tint, Full', label: 'Carbon, Full', meta: 'From $290 · ~3 hrs' },
-  { value: 'Front Two Windows', label: 'Front Two', meta: 'From $120 · ~1 hr' },
-  { value: 'Windshield, 70%', label: 'Windshield 70%', meta: 'From $150 · ~1 hr' },
-  { value: 'Tint Removal', label: 'Tint Removal', meta: 'From $50 · ~1–2 hrs' },
-  { value: 'Custom / Not Sure', label: 'Custom', meta: "We'll confirm" },
+// `hasRear` flags services that involve work on the rear window — drives
+// whether the "Rear Window Style" question is shown on the vehicle step.
+// Front-only / windshield-only / sun-strip jobs skip the question.
+const SERVICES: { value: Service; label: string; meta: string; hasRear: boolean }[] = [
+  { value: 'Carbon Tint, Full', label: 'Carbon, Full', meta: 'From $290 · ~3 hrs', hasRear: true },
+  { value: 'Ceramic Tint, Full', label: 'Ceramic, Full', meta: 'From $390 · ~3 hrs', hasRear: true },
+  { value: 'Ceramic Plus, Full', label: 'Ceramic Plus, Full', meta: 'From $500 · ~3 hrs', hasRear: true },
+  { value: 'Front Two Windows', label: 'Front Two', meta: 'From $120 · ~1 hr', hasRear: false },
+  { value: 'Windshield', label: 'Windshield', meta: 'From $140 · ~1 hr', hasRear: false },
+  { value: 'Sunroof', label: 'Sunroof', meta: 'From $80 · ~30 min', hasRear: false },
+  { value: 'Panoramic Sunroof', label: 'Panoramic Sunroof', meta: 'From $120 · ~45 min', hasRear: false },
+  { value: 'Sun Strip', label: 'Sun Strip', meta: 'From $50 · ~30 min', hasRear: false },
+  { value: 'Tint Removal', label: 'Tint Removal', meta: 'From $50 · ~1–2 hrs', hasRear: true },
+  { value: 'Custom / Not Sure', label: 'Custom', meta: "We'll confirm", hasRear: true },
 ];
 
 const LOCATIONS: { value: Location; label: string; meta: string }[] = [
@@ -72,6 +79,8 @@ export function BookingFlow() {
   const month = viewMonth;
   const monthName = new Date(year, month, 1).toLocaleString('en-US', { month: 'long' });
   const dateStr = day != null ? `${monthName} ${day}, ${year}` : null;
+  // Whether the currently selected service involves rear-window work.
+  const serviceHasRear = SERVICES.find((s) => s.value === service)?.hasRear ?? true;
   const isAtTodayMonth = year === TODAY.getFullYear() && month === TODAY.getMonth();
   // Cap forward navigation at 6 months out for now; Square will own
   // this once we wire up real availability.
@@ -93,8 +102,9 @@ export function BookingFlow() {
     setViewMonth(next.getMonth());
     setDay(null);
   };
-  const rearGlassLabel =
-    rearGlass === 'one-piece'
+  const rearGlassLabel = !serviceHasRear
+    ? 'N/A (front-only service)'
+    : rearGlass === 'one-piece'
       ? 'Full / One-Piece (custom quote)'
       : rearGlass === 'unsure'
         ? "Not Sure (we'll confirm)"
@@ -146,6 +156,13 @@ export function BookingFlow() {
             );
           })}
         </ol>
+        <div className="booking-pricing-note">
+          <span className="booking-pricing-note__tag">Pricing Note</span>
+          <p>
+            Prices shown are <strong>starting estimates</strong>. Final pricing depends on your vehicle&apos;s year,
+            make, model, and the windows being tinted. We&apos;ll send a confirmed quote after you submit.
+          </p>
+        </div>
       </aside>
 
       <div className="booking-panel">
@@ -324,6 +341,8 @@ export function BookingFlow() {
               </div>
             </form>
 
+            {serviceHasRear && (
+              <>
             <div className="panel-title" style={{ marginTop: 32 }}>
               Rear Window Style
             </div>
@@ -364,6 +383,8 @@ export function BookingFlow() {
                 Got it. One-piece rear glass takes more film and time. We&apos;ll send a custom quote based on your
                 vehicle&apos;s actual glass area before confirming.
               </p>
+            )}
+              </>
             )}
 
             <div className="panel-nav">
@@ -406,10 +427,12 @@ export function BookingFlow() {
                 <dt>Location</dt>
                 <dd>{location}</dd>
               </div>
-              <div className="summary-row">
-                <dt>Rear Window</dt>
-                <dd>{rearGlassLabel}</dd>
-              </div>
+              {serviceHasRear && (
+                <div className="summary-row">
+                  <dt>Rear Window</dt>
+                  <dd>{rearGlassLabel}</dd>
+                </div>
+              )}
               <div className="summary-row">
                 <dt>Date</dt>
                 <dd>{dateStr ?? 'Not selected'}</dd>
@@ -445,10 +468,12 @@ export function BookingFlow() {
                   <dt>Service</dt>
                   <dd>{service}</dd>
                 </div>
-                <div className="summary-row">
-                  <dt>Rear Window</dt>
-                  <dd>{rearGlassLabel}</dd>
-                </div>
+                {serviceHasRear && (
+                  <div className="summary-row">
+                    <dt>Rear Window</dt>
+                    <dd>{rearGlassLabel}</dd>
+                  </div>
+                )}
                 <div className="summary-row">
                   <dt>Date</dt>
                   <dd>{dateStr ?? 'Not selected'}</dd>

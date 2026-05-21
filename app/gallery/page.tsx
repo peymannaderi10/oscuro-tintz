@@ -108,13 +108,32 @@ const galleryStyles = `
 
 // Folder name has a space — encode as %20 for URLs.
 const DIR = '/Oscuro%20tints';
-const PAIRS = ['9', '8', '7', '6', '5', '3', '2'];
-const ITEMS: { title: string; sub: string; before: string; after: string }[] = PAIRS.map((n, i) => ({
-  title: `Install ${String(i + 1).padStart(2, '0')}`,
-  sub: 'Window Tint',
-  before: `${DIR}/before${n}.webp`,
-  after: `${DIR}/after${n}.webp`,
-}));
+
+// New named pairs (detail shots of specific windows) shown first, then
+// the older numbered pairs (full-vehicle installs).
+const NAMED_PAIRS: { sub: string; slug: string }[] = [
+  { sub: 'Windshield',     slug: 'windshield' },
+  { sub: 'Back Windshield', slug: 'backwindshield' },
+  { sub: 'Back Left',      slug: 'backleft' },
+  { sub: 'Back Right',     slug: 'backright' },
+  { sub: 'Back Passenger', slug: 'backpassenger' },
+];
+const NUMBERED_PAIRS = ['9', '8', '7', '6', '5', '3'];
+
+const ITEMS: { title: string; sub: string; before: string; after: string }[] = [
+  ...NAMED_PAIRS.map((p, i) => ({
+    title: `Install ${String(i + 1).padStart(2, '0')}`,
+    sub: p.sub,
+    before: `${DIR}/${p.slug}-before.webp`,
+    after: `${DIR}/${p.slug}-after.webp`,
+  })),
+  ...NUMBERED_PAIRS.map((n, i) => ({
+    title: `Install ${String(NAMED_PAIRS.length + i + 1).padStart(2, '0')}`,
+    sub: 'Window Tint',
+    before: `${DIR}/before${n}.webp`,
+    after: `${DIR}/after${n}.webp`,
+  })),
+];
 
 export default function GalleryPage() {
   return (
@@ -143,10 +162,6 @@ export default function GalleryPage() {
               return (
                 <div key={i} className={`reveal${delay}`}>
                   <BeforeAfter before={it.before} after={it.after} />
-                  <div className="ba__caption">
-                    <h3>{it.title}</h3>
-                    <span>{it.sub}</span>
-                  </div>
                 </div>
               );
             })}

@@ -268,6 +268,36 @@ body {
   outline-offset: 2px;
 }
 
+/* Booking flow pricing note — mirrors the quote-note card on the
+   services page so the same expectation-setting message is visible
+   inline during step 1. */
+.booking-pricing-note {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  display: grid;
+  gap: 8px;
+}
+.booking-pricing-note__tag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--chrome-3);
+}
+.booking-pricing-note p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.booking-pricing-note p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 /* Notes list — single-line inputs added on demand via "+ Add a note". */
 .notes-list {
   display: flex;

@@ -93,8 +93,9 @@ export default function HomePage() {
             <span className="eyebrow">Find The Right Fit</span>
             <h2>Our Services</h2>
             <p className="muted">
-              Three core services, each built around premium Hitek film and the kind of install detail that holds up
-              year after year.
+              Our most popular installs, all built around premium HITEK film and the kind of install detail that holds
+              up year after year. View all services for the full lineup including windshield, sunroof, sun strip, and
+              more.
             </p>
           </div>
 
@@ -460,7 +461,7 @@ export default function HomePage() {
               'after9.webp',
               'after7.webp',
               'after6.webp',
-              'IMG_8046.webp',
+              'backright-lexus.webp',
               'after2.webp',
               'after3.webp',
               'IMG_8148.webp',
