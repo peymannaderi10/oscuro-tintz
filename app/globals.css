@@ -268,6 +268,34 @@ body {
   outline-offset: 2px;
 }
 
+/* Calendar spinner — replaces the day grid while a month's availability
+   is loading (e.g. navigating to month 4+). */
+.cal-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 0;
+}
+.cal-spinner p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+  letter-spacing: 0.08em;
+}
+.cal-spinner__ring {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--line);
+  border-top-color: var(--ink);
+  border-radius: 50%;
+  animation: cal-spin 0.8s linear infinite;
+}
+@keyframes cal-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Booking flow pricing note — mirrors the quote-note card on the
    services page so the same expectation-setting message is visible
    inline during step 1. */
