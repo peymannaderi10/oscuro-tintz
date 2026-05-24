@@ -32,6 +32,7 @@ function buildBookingEmailHtml(params: {
   notes: string;
   startingPrice: number;
   durationHours: string;
+  manualCreationRequired?: boolean;
 }) {
   const startTime = new Date(params.startAt).toLocaleString('en-US', {
     dateStyle: 'full',
@@ -80,6 +81,9 @@ body{-webkit-text-size-adjust:100%;}
 </td></tr>
 <tr><td style="padding:24px 24px;background-color:#0F0F0F !important;" bgcolor="#0F0F0F" class="pad-inner">
 <p style="margin:0 0 16px 0;font-size:15px;color:#F5F5F5 !important;background-color:transparent;">Hey Juan, here&#39;s your latest booking.</p>
+${params.manualCreationRequired ? `<div style="margin:0 0 20px 0;padding:14px 16px;background-color:#3A1A1A !important;border:1px solid #7A3030;border-radius:2px;" bgcolor="#3A1A1A">
+<p style="margin:0 0 4px 0;font-size:11px;color:#FF9090 !important;text-transform:uppercase;letter-spacing:0.06em;background-color:transparent;font-weight:600;">Action Required</p>
+<p style="margin:0;font-size:14px;color:#F5F5F5 !important;background-color:transparent;line-height:1.5;">This appointment was <strong>not</strong> automatically created in Square (subscription does not support write operations). Please add it to your calendar manually.</p></div>` : ''}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
 ${row('Date & Time', escapeHtml(startTime))}
 ${row('Customer', escapeHtml(`${params.firstName} ${params.lastName}`))}
@@ -161,59 +165,74 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Could not resolve service variation' }, { status: 400 });
     }
 
-    // Find or create customer
-    const searchResponse = await square.customers.search({
-      query: { filter: { emailAddress: { exact: email ?? '' } } },
-    });
-
-    let customerId: string;
-    if (searchResponse.customers && searchResponse.customers.length > 0) {
-      customerId = searchResponse.customers[0].id!;
-    } else {
-      const createResponse = await square.customers.create({
-        idempotencyKey: `customer-${email ?? randomUUID()}`,
-        givenName:    firstName,
-        familyName:   lastName,
-        emailAddress: email,
-        phoneNumber:  phone,
-      });
-      customerId = createResponse.customer!.id!;
-    }
-
     const rearGlassLabel = service.hasRear
       ? REAR_GLASS_LABEL[(rearGlass ?? 'standard') as RearGlass]
       : 'N/A';
 
-    // Structured customer-note Juan will see in Square
-    const noteLines = [
-      `SERVICE: ${service.name}`,
-      `VEHICLE: ${[vehicleYear, vehicleMake, vehicleModel].filter(Boolean).join(' ') || 'Not provided'}`,
-      `BODY STYLE: ${vehicleBody || 'Not provided'}`,
-      `REAR WINDOW: ${rearGlassLabel}`,
-      `LOCATION: ${serviceLocation || 'Not provided'}`,
-      `STARTING PRICE: ${service.startPrice > 0 ? `$${service.startPrice}` : 'To be confirmed'}`,
-      `EST. DURATION: ${service.durationHours} hrs`,
-      ...(notes?.trim() ? [`NOTES: ${notes.trim()}`] : []),
-    ];
-    const customerNote = noteLines.join('\n');
+    // Try Square customer + booking writes. If the subscription doesn't
+    // support writes we fall back to email-only notification.
+    let squareBookingId: string | null = null;
+    let manualCreationRequired = false;
 
-    const bookingResponse = await square.bookings.create({
-      idempotencyKey: randomUUID(),
-      booking: {
-        startAt,
-        locationId: process.env.SQUARE_LOCATION_ID,
-        customerId,
-        customerNote,
-        appointmentSegments: [{
-          teamMemberId,
-          serviceVariationId:      variationId,
-          serviceVariationVersion: BigInt(serviceVariationVersion),
-          durationMinutes:         Math.round(service.durationHours * 60),
-        }],
-      },
-    });
+    try {
+      // Find or create customer
+      const searchResponse = await square.customers.search({
+        query: { filter: { emailAddress: { exact: email ?? '' } } },
+      });
 
-    // Notify the shop via email (fire-and-forget — don't fail the response).
+      let customerId: string;
+      if (searchResponse.customers && searchResponse.customers.length > 0) {
+        customerId = searchResponse.customers[0].id!;
+      } else {
+        const createResponse = await square.customers.create({
+          idempotencyKey: `customer-${email ?? randomUUID()}`,
+          givenName:    firstName,
+          familyName:   lastName,
+          emailAddress: email,
+          phoneNumber:  phone,
+        });
+        customerId = createResponse.customer!.id!;
+      }
+
+      const noteLines = [
+        `SERVICE: ${service.name}`,
+        `VEHICLE: ${[vehicleYear, vehicleMake, vehicleModel].filter(Boolean).join(' ') || 'Not provided'}`,
+        `BODY STYLE: ${vehicleBody || 'Not provided'}`,
+        `REAR WINDOW: ${rearGlassLabel}`,
+        `LOCATION: ${serviceLocation || 'Not provided'}`,
+        `STARTING PRICE: ${service.startPrice > 0 ? `$${service.startPrice}` : 'To be confirmed'}`,
+        `EST. DURATION: ${service.durationHours} hrs`,
+        ...(notes?.trim() ? [`NOTES: ${notes.trim()}`] : []),
+      ];
+
+      const bookingResponse = await square.bookings.create({
+        idempotencyKey: randomUUID(),
+        booking: {
+          startAt,
+          locationId: process.env.SQUARE_LOCATION_ID,
+          customerId,
+          customerNote: noteLines.join('\n'),
+          appointmentSegments: [{
+            teamMemberId,
+            serviceVariationId:      variationId,
+            serviceVariationVersion: BigInt(serviceVariationVersion),
+            durationMinutes:         Math.round(service.durationHours * 60),
+          }],
+        },
+      });
+      squareBookingId = bookingResponse.booking?.id ?? null;
+    } catch (squareWriteErr: unknown) {
+      const sqErr = squareWriteErr as { errors?: { detail?: string }[] };
+      const detail = sqErr.errors?.[0]?.detail ?? '';
+      if (detail.includes('write operation') || detail.includes('subscription')) {
+        console.warn('Square write blocked (subscription limit), falling back to email-only:', detail);
+        manualCreationRequired = true;
+      } else {
+        throw squareWriteErr;
+      }
+    }
+
+    // Notify the shop via email.
     const notifyEmail = process.env.BOOKING_NOTIFY_EMAIL;
     const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'Bookings <bookings@oscurotintz.com>';
     if (notifyEmail && process.env.RESEND_API_KEY) {
@@ -234,11 +253,14 @@ export async function POST(request: NextRequest) {
           notes: notes ?? '',
           startingPrice: service.startPrice,
           durationHours: String(service.durationHours),
+          manualCreationRequired,
         });
         await resend.emails.send({
           from: fromEmail,
           to: notifyEmail,
-          subject: 'You have a new booking',
+          subject: manualCreationRequired
+            ? 'New booking (manual entry needed)'
+            : 'You have a new booking',
           html,
         });
       } catch (emailErr) {
@@ -249,9 +271,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       booking: {
-        id:      bookingResponse.booking!.id,
-        startAt: bookingResponse.booking!.startAt,
-        status:  bookingResponse.booking!.status,
+        id:      squareBookingId ?? `email-only-${randomUUID().slice(0, 8)}`,
+        startAt,
+        status:  manualCreationRequired ? 'PENDING_MANUAL' : 'ACCEPTED',
       },
     });
   } catch (err: unknown) {

@@ -277,14 +277,18 @@ export function BookingFlow() {
     fetchRangeQuiet(serviceKey, fmtDateKey(start), fmtDateKey(end));
   }, [serviceKey, fetchRangeQuiet]);
 
-  // Also fetch the visible month on step 2 (covers months beyond the
-  // 3-month prefetch if the user navigates far out).
+  // Fetch on-demand for months beyond the 3-month prefetch window.
+  // Skip if we already have any cached slots for a date in this month
+  // (meaning the prefetch already covered it).
   useEffect(() => {
-    if (step !== 2) return;
+    if (step !== 2 || !serviceKey) return;
     const startD = new Date(viewYear, viewMonth, 1);
     const endD = new Date(viewYear, viewMonth + 1, 0);
+    const monthKey = fmtDateKey(startD);
+    const alreadyCached = Object.keys(slotsByDate).some((k) => k.startsWith(monthKey.slice(0, 7)));
+    if (alreadyCached) return;
     fetchRange(fmtDateKey(startD), fmtDateKey(endD));
-  }, [step, viewYear, viewMonth, fetchRange]);
+  }, [step, viewYear, viewMonth, serviceKey, fetchRange, slotsByDate]);
 
   const slotsForSelected = selectedDate ? slotsByDate[selectedDate] ?? [] : [];
 
