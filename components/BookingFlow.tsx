@@ -205,27 +205,7 @@ export function BookingFlow() {
     return out;
   }, []);
 
-  // Quiet fetch (no loading spinner) for background prefetching.
-  const fetchRangeQuiet = useCallback(
-    async (service: ServiceKey, startDate: string, endDate: string) => {
-      const key = `${service}|${startDate}|${endDate}`;
-      if (fetchedRangesRef.current.has(key)) return;
-      fetchedRangesRef.current.add(key);
-      try {
-        const res = await fetch(
-          `/api/availability?service=${service}&startDate=${startDate}&endDate=${endDate}`,
-        );
-        const data = await res.json();
-        if (!res.ok) return;
-        setSlotsByDate((prev) => ({ ...prev, ...parseSlots(data) }));
-      } catch {
-        fetchedRangesRef.current.delete(key);
-      }
-    },
-    [parseSlots],
-  );
-
-  // Explicit fetch with loading state (for the visible month on step 2).
+  // Fetch with loading state for the visible month on step 2.
   const fetchRange = useCallback(
     async (startDate: string, endDate: string) => {
       if (!serviceKey) return;
@@ -255,40 +235,23 @@ export function BookingFlow() {
     [serviceKey, parseSlots],
   );
 
-  // Reset cache + selected slot if the user changes service after fetching.
-  const preloadedServiceRef = useRef<ServiceKey | null>(null);
+  // Reset cache + selected slot if the user changes service.
   useEffect(() => {
     fetchedRangesRef.current.clear();
     setSlotsByDate({});
     setSelectedSlot(null);
     setSelectedDate(null);
-    preloadedServiceRef.current = null;
   }, [serviceKey]);
 
-  // Prefetch 3 months of availability in a single request when a service
-  // is selected so slots are cached by the time the user reaches step 2.
-  useEffect(() => {
-    if (!serviceKey) return;
-    if (preloadedServiceRef.current === serviceKey) return;
-    preloadedServiceRef.current = serviceKey;
-    const now = new Date();
-    const start = new Date(now.getFullYear(), now.getMonth(), 1);
-    const end = new Date(now.getFullYear(), now.getMonth() + 3, 0);
-    fetchRangeQuiet(serviceKey, fmtDateKey(start), fmtDateKey(end));
-  }, [serviceKey, fetchRangeQuiet]);
-
-  // Fetch on-demand for months beyond the 3-month prefetch window.
-  // Skip if we already have any cached slots for a date in this month
-  // (meaning the prefetch already covered it).
+  // Fetch the viewed month's availability when on step 2.
+  // For the current month, start from today (skip past days).
   useEffect(() => {
     if (step !== 2 || !serviceKey) return;
-    const startD = new Date(viewYear, viewMonth, 1);
+    const isCurrentMonth = viewYear === today.getFullYear() && viewMonth === today.getMonth();
+    const startD = isCurrentMonth ? today : new Date(viewYear, viewMonth, 1);
     const endD = new Date(viewYear, viewMonth + 1, 0);
-    const monthKey = fmtDateKey(startD);
-    const alreadyCached = Object.keys(slotsByDate).some((k) => k.startsWith(monthKey.slice(0, 7)));
-    if (alreadyCached) return;
     fetchRange(fmtDateKey(startD), fmtDateKey(endD));
-  }, [step, viewYear, viewMonth, serviceKey, fetchRange, slotsByDate]);
+  }, [step, viewYear, viewMonth, serviceKey, today, fetchRange]);
 
   const slotsForSelected = selectedDate ? slotsByDate[selectedDate] ?? [] : [];
 
