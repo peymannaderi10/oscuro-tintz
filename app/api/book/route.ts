@@ -83,7 +83,7 @@ body{-webkit-text-size-adjust:100%;}
 <p style="margin:0 0 16px 0;font-size:15px;color:#F5F5F5 !important;background-color:transparent;">Hey Juan, here&#39;s your latest booking.</p>
 ${params.manualCreationRequired ? `<div style="margin:0 0 20px 0;padding:14px 16px;background-color:#3A1A1A !important;border:1px solid #7A3030;border-radius:2px;" bgcolor="#3A1A1A">
 <p style="margin:0 0 4px 0;font-size:11px;color:#FF9090 !important;text-transform:uppercase;letter-spacing:0.06em;background-color:transparent;font-weight:600;">Action Required</p>
-<p style="margin:0;font-size:14px;color:#F5F5F5 !important;background-color:transparent;line-height:1.5;">This appointment was <strong>not</strong> automatically created in Square (subscription does not support write operations). Please add it to your calendar manually.</p></div>` : ''}
+<p style="margin:0;font-size:14px;color:#F5F5F5 !important;background-color:transparent;line-height:1.5;">This appointment was <strong>not</strong> automatically created in Square. Please add it to your calendar manually.</p></div>` : ''}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
 ${row('Date & Time', escapeHtml(startTime))}
 ${row('Customer', escapeHtml(`${params.firstName} ${params.lastName}`))}
@@ -271,7 +271,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       booking: {
-        id:      squareBookingId ?? `email-only-${randomUUID().slice(0, 8)}`,
+        id:      squareBookingId ?? randomUUID().slice(0, 8).toUpperCase(),
         startAt,
         status:  manualCreationRequired ? 'PENDING_MANUAL' : 'ACCEPTED',
       },

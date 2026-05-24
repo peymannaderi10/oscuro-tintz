@@ -576,13 +576,15 @@ export function BookingFlow() {
                       </button>
                     </div>
                   ))}
-                  <button
-                    type="button"
-                    className="notes-list__add"
-                    onClick={() => setNotes([...notes, ''])}
-                  >
-                    + Add a note
-                  </button>
+                  {notes.length < 5 && (
+                    <button
+                      type="button"
+                      className="notes-list__add"
+                      onClick={() => setNotes([...notes, ''])}
+                    >
+                      + Add a note
+                    </button>
+                  )}
                 </div>
               </div>
             </form>
