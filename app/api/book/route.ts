@@ -161,6 +161,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required booking fields' }, { status: 400 });
     }
 
+    if (!firstName?.trim() || !email?.trim() || !phone?.trim()) {
+      return NextResponse.json({ error: 'Name, email, and phone are required.' }, { status: 400 });
+    }
+
     if (!paymentToken) {
       return NextResponse.json({ error: 'Payment is required to hold your appointment.' }, { status: 400 });
     }

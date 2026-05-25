@@ -38,6 +38,11 @@ export interface SquareCardFormHandle {
   tokenize: () => Promise<string | null>;
 }
 
+interface SquareCardFormProps {
+  onWalletToken?: (token: string) => void;
+  disabled?: boolean;
+}
+
 const SCRIPT_URL = 'https://web.squarecdn.com/v1/square.js';
 
 const CARD_STYLE = {
@@ -69,7 +74,7 @@ const CARD_STYLE = {
   '.message-icon.is-error': { color: '#ff8080' },
 };
 
-export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCardForm(_, ref) {
+export const SquareCardForm = forwardRef<SquareCardFormHandle, SquareCardFormProps>(function SquareCardForm({ onWalletToken, disabled }, ref) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<SquareCard | null>(null);
   const applePayRef = useRef<SquareWallet | null>(null);
@@ -136,20 +141,31 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
     }
   }, []);
 
+  // Keep refs to latest callbacks so the Google Pay click handler
+  // (attached once) always sees fresh values.
+  const onWalletTokenRef = useRef(onWalletToken);
+  const disabledRef = useRef(disabled);
+  useEffect(() => { onWalletTokenRef.current = onWalletToken; }, [onWalletToken]);
+  useEffect(() => { disabledRef.current = disabled; }, [disabled]);
+
   // Google Pay click handler — per Square docs, listen for click on the
-  // container and call tokenize via handlePaymentMethodSubmission pattern.
+  // container and call tokenize.
   useEffect(() => {
     if (!hasGooglePay || !googlePayRef.current) return;
     const btn = document.getElementById('google-pay-button');
     if (!btn) return;
 
     const handler = async () => {
+      if (disabledRef.current) return;
       try {
         const result = await googlePayRef.current!.tokenize();
         if (result.status === 'OK' && result.token) {
           walletTokenRef.current = result.token;
           setWalletPaid(true);
           setError(null);
+          onWalletTokenRef.current?.(result.token);
+        } else if (result.status === 'Cancel') {
+          // User dismissed — let them retry
         }
       } catch (err) {
         setError(`Google Pay error: ${err instanceof Error ? err.message : String(err)}`);
@@ -221,12 +237,15 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
           id="apple-pay-button"
           onClick={async (e) => {
             e.preventDefault();
-            if (!applePayRef.current) return;
+            if (disabled || !applePayRef.current) return;
             const result = await applePayRef.current.tokenize();
             if (result.status === 'OK' && result.token) {
               walletTokenRef.current = result.token;
               setWalletPaid(true);
               setError(null);
+              onWalletToken?.(result.token);
+            } else if (result.status === 'Cancel') {
+              // User dismissed the Apple Pay sheet — do nothing, let them retry
             } else {
               setError(result.errors?.map((err) => err.message).join(', ') || 'Apple Pay failed.');
             }

@@ -281,9 +281,8 @@ export function BookingFlow() {
   const slotsForSelected = selectedDate ? slotsByDate[selectedDate] ?? [] : [];
 
   // ----- Step navigation -----
-  const go = (n: number) => {
+  const go = useCallback((n: number) => {
     setStep(n);
-    // Wait one frame for React to re-render, then scroll to the panel top.
     requestAnimationFrame(() => {
       const panel = document.querySelector('.booking-panel') as HTMLElement | null;
       if (panel) {
@@ -291,20 +290,32 @@ export function BookingFlow() {
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
+  }, []);
+
+  const validateVehicleStep = (): boolean => {
+    const errs: Record<string, string> = {};
+    if (!vehicleYear.trim()) errs.vehicleYear = 'Year is required';
+    if (!vehicleMake.trim()) errs.vehicleMake = 'Make is required';
+    if (!vehicleModel.trim()) errs.vehicleModel = 'Model is required';
+    setFieldErrors(errs);
+    return Object.keys(errs).length === 0;
   };
 
   const validateContactStep = (): boolean => {
     const errs: Record<string, string> = {};
     if (!fullName.trim()) errs.fullName = 'Full name is required';
     if (!phone.trim()) errs.phone = 'Phone is required';
+    else if (!/^\+?[\d\s\-().]{7,}$/.test(phone.trim())) errs.phone = 'Enter a valid phone number';
     if (!email.trim()) errs.email = 'Email is required';
     else if (!/.+@.+\..+/.test(email)) errs.email = 'Enter a valid email';
     setFieldErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleConfirm = async () => {
-    if (!validateContactStep()) return;
+  // Core submit — takes a payment token (from card form OR wallet) and
+  // creates the booking. Called by the manual button and by the wallet
+  // auto-submit callback.
+  const submitBooking = useCallback(async (paymentToken: string) => {
     if (!selectedSlot) {
       setSubmitError('Please pick a date and time before confirming.');
       go(2);
@@ -313,13 +324,6 @@ export function BookingFlow() {
 
     setIsSubmitting(true);
     setSubmitError(null);
-
-    // Tokenize the card for the $30 deposit.
-    const paymentToken = await cardFormRef.current?.tokenize();
-    if (!paymentToken) {
-      setIsSubmitting(false);
-      return;
-    }
 
     const nameParts = fullName.trim().split(/\s+/);
     const firstName = nameParts[0] ?? '';
@@ -361,7 +365,31 @@ export function BookingFlow() {
     } finally {
       setIsSubmitting(false);
     }
+  }, [selectedSlot, fullName, email, phone, serviceKey, selectedKeys, serviceHasRear, rearGlass, vehicleYear, vehicleMake, vehicleModel, vehicleBody, locationLabel, notes, go]);
+
+  // Manual confirm — tokenizes the card form, then submits.
+  const handleConfirm = async () => {
+    if (!validateContactStep()) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const paymentToken = await cardFormRef.current?.tokenize();
+    if (!paymentToken) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    await submitBooking(paymentToken);
   };
+
+  // Wallet auto-submit — called when Apple Pay / Google Pay completes.
+  // Validates contact info first (in case user somehow skipped step 4).
+  const handleWalletToken = useCallback((token: string) => {
+    if (!validateContactStep()) return;
+    submitBooking(token);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [submitBooking]);
 
   const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
@@ -554,6 +582,9 @@ export function BookingFlow() {
                     value={vehicleYear}
                     onChange={(e) => setVehicleYear(e.target.value)}
                   />
+                  {fieldErrors.vehicleYear && (
+                    <p className="form__status" style={{ color: '#ff8080' }}>{fieldErrors.vehicleYear}</p>
+                  )}
                 </div>
                 <div>
                   <label>Make</label>
@@ -563,6 +594,9 @@ export function BookingFlow() {
                     value={vehicleMake}
                     onChange={(e) => setVehicleMake(e.target.value)}
                   />
+                  {fieldErrors.vehicleMake && (
+                    <p className="form__status" style={{ color: '#ff8080' }}>{fieldErrors.vehicleMake}</p>
+                  )}
                 </div>
               </div>
               <div className="form__row">
@@ -574,6 +608,9 @@ export function BookingFlow() {
                     value={vehicleModel}
                     onChange={(e) => setVehicleModel(e.target.value)}
                   />
+                  {fieldErrors.vehicleModel && (
+                    <p className="form__status" style={{ color: '#ff8080' }}>{fieldErrors.vehicleModel}</p>
+                  )}
                 </div>
                 <div>
                   <label>Body Style</label>
@@ -675,7 +712,7 @@ export function BookingFlow() {
               <button className="btn btn--ghost" onClick={() => go(2)}>
                 ← Back
               </button>
-              <button className="btn btn--primary" onClick={() => go(4)}>
+              <button className="btn btn--primary" onClick={() => { if (validateVehicleStep()) go(4); }}>
                 Continue
               </button>
             </div>
@@ -797,7 +834,7 @@ export function BookingFlow() {
                 Applied toward your final invoice. Remaining balance due at the time of service.
               </p>
             </div>
-            <SquareCardForm ref={cardFormRef} />
+            <SquareCardForm ref={cardFormRef} onWalletToken={handleWalletToken} disabled={isSubmitting} />
             {submitError && (
               <p className="form__status" style={{ color: '#ff8080', marginTop: 16 }}>
                 {submitError}
