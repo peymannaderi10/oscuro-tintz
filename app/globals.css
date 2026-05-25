@@ -339,18 +339,22 @@ body {
 }
 /* Native Apple Pay button — uses Safari's built-in rendering */
 .apple-pay-btn {
-  -webkit-appearance: -apple-pay-button;
+  -webkit-appearance: -apple-pay-button !important;
   -apple-pay-button-type: plain;
   -apple-pay-button-style: black;
-  appearance: none;
-  border: none;
+  border: none !important;
+  background: none !important;
   cursor: pointer;
+  min-height: 48px;
   height: 48px;
   width: 100%;
   border-radius: 4px;
   flex: 1;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
-/* Force Google Pay / Apple Pay buttons + iframes to fill their container */
+/* Force Google Pay button + iframe to fill and center within container */
 .square-wallet-buttons button,
 .square-wallet-buttons iframe {
   width: 100% !important;
@@ -359,6 +363,17 @@ body {
 .square-wallet-buttons .gpay-card-info-container {
   width: 100% !important;
   max-width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.square-wallet-buttons .gpay-card-info-container iframe {
+  margin: 0 auto !important;
+}
+.square-wallet-buttons .gpay-button-container-size-match-height {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
 }
 .square-card-form__divider {
   display: flex;
