@@ -339,8 +339,8 @@ body {
   background: none;
 }
 
-/* Google Pay button — SDK injects via attach(). Force full width +
-   rounded corners to match the Apple Pay button style. */
+/* Google Pay button — SDK injects via attach(). Force full width,
+   fixed height, rounded corners, and centered content. */
 #google-pay-button {
   width: 100%;
   min-height: 0;
@@ -352,12 +352,25 @@ body {
 #google-pay-button > div,
 #google-pay-button button {
   width: 100% !important;
-  border-radius: 8px !important;
+  height: 48px !important;
   min-height: 48px !important;
+  max-height: 48px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 #google-pay-button iframe {
   width: 100% !important;
+  height: 48px !important;
   border-radius: 8px !important;
+}
+#google-pay-button .gpay-card-info-animation-container,
+#google-pay-button .gpay-card-info-animation-container-fade-out {
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .square-card-form__divider {
