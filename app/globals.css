@@ -320,6 +320,46 @@ body {
   color: var(--ink-muted);
   margin: 12px 0 0 0;
 }
+/* Apple Pay button — per Square docs: <button id="apple-pay-button">.
+   Safari renders the native Apple Pay look. Matches screenshot style:
+   full-width, black, rounded, ~48px tall. */
+#apple-pay-button {
+  -webkit-appearance: -apple-pay-button;
+  -apple-pay-button-type: plain;
+  -apple-pay-button-style: black;
+  display: block;
+  width: 100%;
+  height: 48px;
+  min-height: 48px;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  background: none;
+}
+
+/* Google Pay button — SDK injects via attach(). Force full width +
+   rounded corners to match the Apple Pay button style. */
+#google-pay-button {
+  width: 100%;
+  min-height: 0;
+  margin: 0 0 10px 0;
+}
+#google-pay-button:empty {
+  display: none;
+}
+#google-pay-button > div,
+#google-pay-button button {
+  width: 100% !important;
+  border-radius: 8px !important;
+  min-height: 48px !important;
+}
+#google-pay-button iframe {
+  width: 100% !important;
+  border-radius: 8px !important;
+}
+
 .square-card-form__divider {
   display: flex;
   align-items: center;
