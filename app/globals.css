@@ -320,23 +320,31 @@ body {
   color: var(--ink-muted);
   margin: 12px 0 0 0;
 }
-/* Apple Pay button — per Square docs: <button id="apple-pay-button">.
-   Safari renders the native Apple Pay look. Matches screenshot style:
-   full-width, black, rounded, ~48px tall. */
-#apple-pay-button {
-  -webkit-appearance: -apple-pay-button;
-  -apple-pay-button-type: plain;
-  -apple-pay-button-style: black;
-  display: block;
+/* Apple Pay button — matches Google Pay style. */
+.apple-pay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 48px;
-  min-height: 48px;
-  border: none;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
-  padding: 0;
-  margin: 0 0 10px 0;
   cursor: pointer;
-  background: none;
+  margin: 0 0 10px 0;
+  padding: 0;
+  transition: border-color 0.2s;
+}
+.apple-pay-btn:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.apple-pay-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.apple-pay-btn__logo {
+  height: 24px;
+  width: auto;
 }
 
 /* Google Pay button — our own styled button matching Apple Pay. */
@@ -362,7 +370,7 @@ body {
   cursor: not-allowed;
 }
 .google-pay-btn__logo {
-  height: 20px;
+  height: 24px;
   width: auto;
 }
 
