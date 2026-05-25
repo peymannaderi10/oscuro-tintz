@@ -398,7 +398,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/after5.webp"
+                src="/Oscuro%20tints/IMG_8418.webp"
                 alt="Sun Strip Tint"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
