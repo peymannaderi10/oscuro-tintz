@@ -83,6 +83,7 @@ const CARD_STYLE = {
 export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCardForm(_, ref) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<SquareCard | null>(null);
+  const applePayRef = useRef<SquareDigitalWallet | null>(null);
   const walletTokenRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
   const [hasApplePay, setHasApplePay] = useState(false);
@@ -130,7 +131,7 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
         try {
           const applePay = await payments.applePay(paymentRequest);
           if (applePay) {
-            await applePay.attach('#square-apple-pay');
+            applePayRef.current = applePay;
             setHasApplePay(true);
             debugLines.push('Apple Pay: ready');
           } else {
@@ -241,12 +242,27 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
 
   return (
     <div className="square-card-form">
-      {/* Apple Pay / Google Pay — containers always in the DOM so the SDK
-          can measure and attach. They start empty (zero height) and the
-          SDK injects the button only if supported. We track which ones
-          initialized successfully to show the divider. */}
+      {/* Apple Pay / Google Pay */}
       <div className="square-wallet-buttons">
-        <div id="square-apple-pay" />
+        {hasApplePay && !walletPaid && (
+          <button
+            type="button"
+            className="apple-pay-btn"
+            onClick={async () => {
+              if (!applePayRef.current) return;
+              try {
+                const result = await applePayRef.current.tokenize();
+                if (result.status === 'OK' && result.token) {
+                  walletTokenRef.current = result.token;
+                  setWalletPaid(true);
+                }
+              } catch (err) {
+                setError(`Apple Pay failed: ${err instanceof Error ? err.message : String(err)}`);
+              }
+            }}
+            aria-label="Pay with Apple Pay"
+          />
+        )}
         <div id="square-google-pay" />
       </div>
       {(hasApplePay || hasGooglePay) && !walletPaid && (
