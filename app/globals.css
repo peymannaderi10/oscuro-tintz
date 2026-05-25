@@ -322,16 +322,30 @@ body {
 }
 .square-wallet-buttons {
   display: flex;
-  justify-content: center;
   gap: 10px;
   width: 100%;
 }
 .square-wallet-buttons > div {
   flex: 1;
-  max-width: 100%;
+  min-width: 0;
 }
+/* Empty containers (SDK didn't inject a button) collapse to zero */
 .square-wallet-buttons > div:empty {
+  display: none !important;
+}
+/* If all children are empty, hide the wrapper gap */
+.square-wallet-buttons:not(:has(> div:not(:empty))) {
   display: none;
+}
+/* Force Google Pay / Apple Pay buttons + iframes to fill their container */
+.square-wallet-buttons button,
+.square-wallet-buttons iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.square-wallet-buttons .gpay-card-info-container {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 .square-card-form__divider {
   display: flex;

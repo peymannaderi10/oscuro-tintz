@@ -85,7 +85,8 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
   const cardRef = useRef<SquareCard | null>(null);
   const walletTokenRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
-  const [walletReady, setWalletReady] = useState(false);
+  const [hasApplePay, setHasApplePay] = useState(false);
+  const [hasGooglePay, setHasGooglePay] = useState(false);
   const [walletPaid, setWalletPaid] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const initAttempted = useRef(false);
@@ -128,19 +129,25 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
           const applePay = await payments.applePay(paymentRequest);
           if (applePay) {
             await applePay.attach('#square-apple-pay');
-            setWalletReady(true);
+            setHasApplePay(true);
           }
-        } catch { /* not supported on this browser/device */ }
+        } catch (appleErr) {
+          console.log('Apple Pay not available:', appleErr);
+        }
 
         // Google Pay
         try {
           const googlePay = await payments.googlePay(paymentRequest);
           if (googlePay) {
             await googlePay.attach('#square-google-pay');
-            setWalletReady(true);
+            setHasGooglePay(true);
           }
-        } catch { /* not supported on this browser/device */ }
-      } catch { /* payment request not supported */ }
+        } catch (googleErr) {
+          console.log('Google Pay not available:', googleErr);
+        }
+      } catch (walletErr) {
+        console.log('Wallet payments not supported:', walletErr);
+      }
 
     } catch (err) {
       console.error('Square card init failed:', err);
@@ -168,7 +175,7 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
       appleEl?.removeEventListener('token', handleWalletToken);
       googleEl?.removeEventListener('token', handleWalletToken);
     };
-  }, [walletReady]);
+  }, [hasApplePay, hasGooglePay]);
 
   useEffect(() => {
     if (window.Square) {
@@ -224,12 +231,15 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
 
   return (
     <div className="square-card-form">
-      {/* Apple Pay / Google Pay buttons — only render if supported */}
-      <div className="square-wallet-buttons" style={{ display: walletReady ? 'grid' : 'none' }}>
+      {/* Apple Pay / Google Pay — containers always in the DOM so the SDK
+          can measure and attach. They start empty (zero height) and the
+          SDK injects the button only if supported. We track which ones
+          initialized successfully to show the divider. */}
+      <div className="square-wallet-buttons">
         <div id="square-apple-pay" />
         <div id="square-google-pay" />
       </div>
-      {walletReady && !walletPaid && (
+      {(hasApplePay || hasGooglePay) && !walletPaid && (
         <div className="square-card-form__divider">
           <span>or pay with card</span>
         </div>

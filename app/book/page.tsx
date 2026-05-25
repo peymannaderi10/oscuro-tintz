@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const bookStyles = `
-  .book-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 5vw, 72px); align-items: flex-start; }
+  .book-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 5vw, 72px); align-items: flex-start; max-width: 100%; overflow: hidden; }
   @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } }
 
   /* Steps — full cards on desktop, compact horizontal bar on mobile */
@@ -49,7 +49,7 @@ const bookStyles = `
   .panel-sub { color: var(--ink-muted); margin-bottom: 32px; }
 
   @media (max-width: 480px) {
-    .booking-panel { padding: 20px 16px; min-height: auto; border-left: none; border-right: none; }
+    .booking-panel { padding: 20px 16px; min-height: auto; border-left: none; border-right: none; overflow-x: hidden; }
     .panel-title { font-size: 22px; }
     .panel-sub { margin-bottom: 20px; font-size: 14px; }
   }
