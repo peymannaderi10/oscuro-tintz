@@ -283,13 +283,14 @@ export function BookingFlow() {
   // ----- Step navigation -----
   const go = (n: number) => {
     setStep(n);
-    if (typeof window !== 'undefined') {
+    // Wait one frame for React to re-render, then scroll to the panel top.
+    requestAnimationFrame(() => {
       const panel = document.querySelector('.booking-panel') as HTMLElement | null;
       if (panel) {
         const top = panel.getBoundingClientRect().top + window.scrollY - 100;
         window.scrollTo({ top, behavior: 'smooth' });
       }
-    }
+    });
   };
 
   const validateContactStep = (): boolean => {
