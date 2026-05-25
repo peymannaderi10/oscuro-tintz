@@ -320,61 +320,6 @@ body {
   color: var(--ink-muted);
   margin: 12px 0 0 0;
 }
-.square-wallet-buttons {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-}
-.square-wallet-buttons > div {
-  flex: 1;
-  min-width: 0;
-}
-/* Empty containers (SDK didn't inject a button) collapse to zero */
-.square-wallet-buttons > div:empty {
-  display: none !important;
-}
-/* If all children are empty, hide the wrapper gap */
-.square-wallet-buttons:not(:has(> div:not(:empty))) {
-  display: none;
-}
-/* Native Apple Pay button — uses Safari's built-in rendering */
-.apple-pay-btn {
-  -webkit-appearance: -apple-pay-button !important;
-  -apple-pay-button-type: plain;
-  -apple-pay-button-style: black;
-  border: none !important;
-  background: none !important;
-  cursor: pointer;
-  min-height: 48px;
-  height: 48px;
-  width: 100%;
-  border-radius: 4px;
-  flex: 1;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-/* Force Google Pay button + iframe to fill and center within container */
-.square-wallet-buttons button,
-.square-wallet-buttons iframe {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-.square-wallet-buttons .gpay-card-info-container {
-  width: 100% !important;
-  max-width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-.square-wallet-buttons .gpay-card-info-container iframe {
-  margin: 0 auto !important;
-}
-.square-wallet-buttons .gpay-button-container-size-match-height {
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-}
 .square-card-form__divider {
   display: flex;
   align-items: center;
