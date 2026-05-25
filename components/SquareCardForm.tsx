@@ -89,6 +89,7 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
   const [hasGooglePay, setHasGooglePay] = useState(false);
   const [walletPaid, setWalletPaid] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [walletDebug, setWalletDebug] = useState<string | null>(null);
   const initAttempted = useRef(false);
 
   const initCard = useCallback(async () => {
@@ -125,14 +126,18 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
         });
 
         // Apple Pay
+        const debugLines: string[] = [];
         try {
           const applePay = await payments.applePay(paymentRequest);
           if (applePay) {
             await applePay.attach('#square-apple-pay');
             setHasApplePay(true);
+            debugLines.push('Apple Pay: ready');
+          } else {
+            debugLines.push('Apple Pay: returned null (no card in Wallet?)');
           }
         } catch (appleErr) {
-          console.log('Apple Pay not available:', appleErr);
+          debugLines.push(`Apple Pay error: ${appleErr instanceof Error ? appleErr.message : String(appleErr)}`);
         }
 
         // Google Pay
@@ -141,12 +146,17 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
           if (googlePay) {
             await googlePay.attach('#square-google-pay');
             setHasGooglePay(true);
+            debugLines.push('Google Pay: ready');
+          } else {
+            debugLines.push('Google Pay: returned null');
           }
         } catch (googleErr) {
-          console.log('Google Pay not available:', googleErr);
+          debugLines.push(`Google Pay error: ${googleErr instanceof Error ? googleErr.message : String(googleErr)}`);
         }
+
+        setWalletDebug(debugLines.join(' | '));
       } catch (walletErr) {
-        console.log('Wallet payments not supported:', walletErr);
+        setWalletDebug(`Wallet init error: ${walletErr instanceof Error ? walletErr.message : String(walletErr)}`);
       }
 
     } catch (err) {
@@ -256,6 +266,11 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
         </>
       )}
       {error && <p className="square-card-form__error">{error}</p>}
+      {walletDebug && (
+        <p style={{ fontSize: 11, color: '#757575', marginTop: 8, fontFamily: 'monospace', wordBreak: 'break-all' }}>
+          {walletDebug}
+        </p>
+      )}
       <div className="square-card-form__badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="5" y="11" width="14" height="10" rx="1.5" />
