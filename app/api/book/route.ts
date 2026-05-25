@@ -32,6 +32,7 @@ function buildBookingEmailHtml(params: {
   notes: string;
   startingPrice: number;
   durationHours: string;
+  depositCollected: boolean;
   manualCreationRequired?: boolean;
 }) {
   const startTime = new Date(params.startAt).toLocaleString('en-US', {
@@ -96,6 +97,7 @@ ${row('Rear window', escapeHtml(params.rearGlassLabel))}
 ${row('Location', escapeHtml(params.serviceLocation))}
 ${row('Starting price', priceStr)}
 ${row('Est. duration', `${params.durationHours} hrs`)}
+${row('Deposit', params.depositCollected ? '$30.00 collected' : 'Not collected')}
 </table>
 ${params.notes?.trim() ? `<div style="margin-top:20px;padding:16px;background-color:#171717 !important;border:1px solid #262626;border-radius:2px;" bgcolor="#171717">
 <p style="margin:0 0 8px 0;font-size:12px;color:#9E9E9E !important;background-color:transparent;text-transform:uppercase;letter-spacing:0.06em;">Notes</p>
@@ -133,6 +135,7 @@ export async function POST(request: NextRequest) {
       startAt,
       serviceVariationVersion,
       teamMemberId,
+      paymentToken,
     } = body as {
       firstName?: string;
       lastName?: string;
@@ -149,10 +152,15 @@ export async function POST(request: NextRequest) {
       startAt?: string;
       serviceVariationVersion?: string | number;
       teamMemberId?: string;
+      paymentToken?: string;
     };
 
     if (!serviceKey || !startAt || !serviceVariationVersion || !teamMemberId) {
       return NextResponse.json({ error: 'Missing required booking fields' }, { status: 400 });
+    }
+
+    if (!paymentToken) {
+      return NextResponse.json({ error: 'Payment is required to hold your appointment.' }, { status: 400 });
     }
 
     const service = SERVICES[serviceKey as ServiceKey];
@@ -163,6 +171,28 @@ export async function POST(request: NextRequest) {
     const variationId = resolveVariationId(serviceKey);
     if (!variationId) {
       return NextResponse.json({ error: 'Could not resolve service variation' }, { status: 400 });
+    }
+
+    // Charge $30 deposit before creating the booking.
+    const DEPOSIT_CENTS = 3000n;
+    let paymentId: string | null = null;
+    try {
+      const paymentResponse = await square.payments.create({
+        sourceId: paymentToken,
+        idempotencyKey: randomUUID(),
+        amountMoney: {
+          amount: DEPOSIT_CENTS,
+          currency: 'USD',
+        },
+        locationId: process.env.SQUARE_LOCATION_ID,
+        note: `$30 booking deposit - ${serviceKey}`,
+      });
+      paymentId = paymentResponse.payment?.id ?? null;
+    } catch (payErr: unknown) {
+      console.error('Deposit payment failed:', payErr);
+      const sqErr = payErr as { errors?: { detail?: string }[] };
+      const detail = sqErr.errors?.[0]?.detail || 'Payment failed. Please check your card and try again.';
+      return NextResponse.json({ error: detail }, { status: 400 });
     }
 
     const rearGlassLabel = service.hasRear
@@ -253,6 +283,7 @@ export async function POST(request: NextRequest) {
           notes: notes ?? '',
           startingPrice: service.startPrice,
           durationHours: String(service.durationHours),
+          depositCollected: !!paymentId,
           manualCreationRequired,
         });
         await resend.emails.send({

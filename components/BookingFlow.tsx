@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { PHONE } from '@/lib/siteMeta';
+import { SquareCardForm } from './SquareCardForm';
+import type { SquareCardFormHandle } from './SquareCardForm';
 
 type ServiceKey =
   | 'carbonFull'
@@ -47,7 +49,8 @@ const STEPS = [
   { n: '01', label: 'Service',     sub: 'Pick your install' },
   { n: '02', label: 'Date & Time', sub: 'Choose a slot' },
   { n: '03', label: 'Vehicle',     sub: 'Year / make / model' },
-  { n: '04', label: 'Your Info',   sub: 'Confirm & book' },
+  { n: '04', label: 'Your Info',   sub: 'Name, phone, email' },
+  { n: '05', label: 'Confirm',     sub: 'Review & pay' },
 ];
 
 type AvailabilitySlot = {
@@ -124,6 +127,9 @@ export function BookingFlow() {
   const [loadingRange, setLoadingRange] = useState(false);
   const [rangeError, setRangeError] = useState<string | null>(null);
   const fetchedRangesRef = useRef<Set<string>>(new Set());
+
+  // Payment
+  const cardFormRef = useRef<SquareCardFormHandle>(null);
 
   // Submit
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -284,8 +290,16 @@ export function BookingFlow() {
       go(2);
       return;
     }
+
     setIsSubmitting(true);
     setSubmitError(null);
+
+    // Tokenize the card for the $30 deposit.
+    const paymentToken = await cardFormRef.current?.tokenize();
+    if (!paymentToken) {
+      setIsSubmitting(false);
+      return;
+    }
 
     const nameParts = fullName.trim().split(/\s+/);
     const firstName = nameParts[0] ?? '';
@@ -311,6 +325,7 @@ export function BookingFlow() {
           startAt: selectedSlot.startAt,
           serviceVariationVersion: selectedSlot.serviceVariationVersion,
           teamMemberId: selectedSlot.teamMemberId,
+          paymentToken,
         }),
       });
       const data = await res.json();
@@ -319,7 +334,7 @@ export function BookingFlow() {
         return;
       }
       setBookingId(data.booking?.id ?? null);
-      go(5);
+      go(6);
     } catch {
       setSubmitError('Could not connect to the server. Please try again.');
     } finally {
@@ -649,7 +664,7 @@ export function BookingFlow() {
         {step === 4 && (
           <div>
             <div className="panel-title">04 · Your Info</div>
-            <p className="panel-sub">We&apos;ll send a text confirmation shortly.</p>
+            <p className="panel-sub">So we can confirm and reach you.</p>
             <form className="form" onSubmit={(e) => e.preventDefault()}>
               <div className="form__row">
                 <div>
@@ -690,7 +705,27 @@ export function BookingFlow() {
                 )}
               </div>
             </form>
-            <dl className="summary">
+            <div className="panel-nav">
+              <button className="btn btn--ghost" onClick={() => go(3)}>
+                ← Back
+              </button>
+              <button
+                className="btn btn--primary"
+                onClick={() => {
+                  if (validateContactStep()) go(5);
+                }}
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step === 5 && (
+          <div>
+            <div className="panel-title">05 · Review &amp; Pay</div>
+            <p className="panel-sub">Confirm your details and pay a $30 deposit to hold your appointment.</p>
+            <dl className="summary checkout-summary">
               <div className="summary-row">
                 <dt>Service</dt>
                 <dd>{service?.label ?? 'Not selected'}</dd>
@@ -713,28 +748,57 @@ export function BookingFlow() {
                 <dt>Time</dt>
                 <dd>{selectedSlot ? formatTime(selectedSlot.startAt) : 'Not selected'}</dd>
               </div>
+              <div className="summary-row">
+                <dt>Customer</dt>
+                <dd>{fullName}</dd>
+              </div>
+              <div className="summary-row">
+                <dt>Phone</dt>
+                <dd>{phone}</dd>
+              </div>
+              <div className="summary-row">
+                <dt>Email</dt>
+                <dd>{email}</dd>
+              </div>
+              {vehicleYear && (
+                <div className="summary-row">
+                  <dt>Vehicle</dt>
+                  <dd>{[vehicleYear, vehicleMake, vehicleModel].filter(Boolean).join(' ')}</dd>
+                </div>
+              )}
             </dl>
+            <div className="checkout-deposit">
+              <div className="checkout-deposit__row">
+                <span>Booking Deposit</span>
+                <span className="checkout-deposit__amount">$30.00</span>
+              </div>
+              <p className="checkout-deposit__note">
+                Applied toward your final invoice. Remaining balance due at the time of service.
+              </p>
+            </div>
+            <SquareCardForm ref={cardFormRef} />
             {submitError && (
               <p className="form__status" style={{ color: '#ff8080', marginTop: 16 }}>
                 {submitError}
               </p>
             )}
             <div className="panel-nav">
-              <button className="btn btn--ghost" onClick={() => go(3)} disabled={isSubmitting}>
+              <button className="btn btn--ghost" onClick={() => go(4)} disabled={isSubmitting}>
                 ← Back
               </button>
               <button
                 className="btn btn--primary"
                 onClick={handleConfirm}
                 disabled={isSubmitting}
+                style={{ minWidth: 180 }}
               >
-                {isSubmitting ? 'Submitting…' : 'Confirm Booking'}
+                {isSubmitting ? 'Processing…' : 'Confirm & Pay Deposit'}
               </button>
             </div>
           </div>
         )}
 
-        {step === 5 && (
+        {step === 6 && (
           <div>
             <div className="success">
               <div className="success__icon">✓</div>
@@ -762,6 +826,10 @@ export function BookingFlow() {
                 <div className="summary-row">
                   <dt>Time</dt>
                   <dd>{selectedSlot ? formatTime(selectedSlot.startAt) : 'Not selected'}</dd>
+                </div>
+                <div className="summary-row">
+                  <dt>Deposit</dt>
+                  <dd>$30.00 paid</dd>
                 </div>
                 {bookingId && (
                   <div className="summary-row">

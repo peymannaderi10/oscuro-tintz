@@ -268,6 +268,76 @@ body {
   outline-offset: 2px;
 }
 
+/* Checkout summary — compact receipt style. */
+.checkout-summary {
+  margin-top: 0 !important;
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.checkout-summary .summary-row {
+  border-bottom: none !important;
+  padding: 3px 0 !important;
+}
+.checkout-deposit {
+  padding: 20px 0;
+}
+.checkout-deposit__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.checkout-deposit__amount {
+  font-size: 22px;
+  font-weight: 500;
+}
+.checkout-deposit__note {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* Square card form — styled to match the dark booking panel. */
+.square-card-form {
+  margin-top: 8px;
+}
+#square-card-container {
+  min-height: 0 !important;
+}
+#square-card-container .sq-card-message {
+  display: none;
+}
+#square-card-container .sq-card-message.sq-card-message--error {
+  display: block;
+}
+.square-card-form__loading {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin: 12px 0 0 0;
+}
+.square-card-form__error {
+  font-size: 13px;
+  color: #ff8080;
+  margin: 12px 0 0 0;
+}
+.square-card-form__badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+.square-card-form__badge svg {
+  opacity: 0.6;
+}
+
 /* Calendar spinner — replaces the day grid while a month's availability
    is loading (e.g. navigating to month 4+). */
 .cal-spinner {
