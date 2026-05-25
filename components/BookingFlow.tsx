@@ -28,16 +28,16 @@ const REAR_GLASS_OPTIONS: { value: RearGlass; label: string; meta: string; img?:
 ];
 
 const SERVICES: { key: ServiceKey; label: string; meta: string; hasRear: boolean }[] = [
-  { key: 'carbonFull',      label: 'Carbon, Full',         meta: 'From $290 · ~3 hrs',            hasRear: true  },
-  { key: 'ceramicFull',     label: 'Ceramic, Full',        meta: 'From $390 · ~3 hrs',            hasRear: true  },
-  { key: 'ceramicPlusFull', label: 'Ceramic Plus, Full',   meta: 'From $500 · ~3 hrs',            hasRear: true  },
-  { key: 'frontTwo',        label: 'Front Two',            meta: 'From $120 · ~1 hr',             hasRear: false },
-  { key: 'windshield',      label: 'Windshield',           meta: 'From $140 · ~1 hr',             hasRear: false },
-  { key: 'sunroof',         label: 'Sunroof',              meta: 'From $80 · ~30 min',            hasRear: false },
-  { key: 'panoramic',       label: 'Panoramic Sunroof',    meta: 'From $120 · ~45 min',           hasRear: false },
-  { key: 'sunStrip',        label: 'Sun Strip',            meta: 'From $50 · ~30 min',            hasRear: false },
-  { key: 'tintRemoval',     label: 'Tint Removal',         meta: 'From $50 · ~1–2 hrs',           hasRear: true  },
-  { key: 'custom',          label: 'Custom',               meta: "We'll confirm",                  hasRear: true  },
+  { key: 'carbonFull',      label: 'Carbon, Side & Back',       meta: 'From $290 · ~3 hrs',       hasRear: true  },
+  { key: 'ceramicFull',     label: 'Ceramic, Side & Back',      meta: 'From $390 · ~3 hrs',       hasRear: true  },
+  { key: 'ceramicPlusFull', label: 'Ceramic Plus, Side & Back', meta: 'From $500 · ~3 hrs',       hasRear: true  },
+  { key: 'frontTwo',        label: 'Front Two Windows',         meta: 'From $120 · ~1 hr',        hasRear: false },
+  { key: 'windshield',      label: 'Windshield',                meta: 'From $140 · ~1 hr',        hasRear: false },
+  { key: 'sunroof',         label: 'Sunroof',                   meta: 'From $80 · ~30 min',       hasRear: false },
+  { key: 'panoramic',       label: 'Panoramic Sunroof',         meta: 'From $120 · ~45 min',      hasRear: false },
+  { key: 'sunStrip',        label: 'Sun Strip',                 meta: 'From $50 · ~30 min',       hasRear: false },
+  { key: 'tintRemoval',     label: 'Tint Removal',              meta: 'From $50 · ~1–2 hrs',      hasRear: true  },
+  { key: 'custom',          label: 'Custom',                    meta: "We'll confirm",              hasRear: true  },
 ];
 
 const LOCATIONS: { value: LocationKey; label: string; meta: string }[] = [
@@ -46,7 +46,7 @@ const LOCATIONS: { value: LocationKey; label: string; meta: string }[] = [
 ];
 
 const STEPS = [
-  { n: '01', label: 'Service',     sub: 'Pick your install' },
+  { n: '01', label: 'Services',    sub: 'Pick your install(s)' },
   { n: '02', label: 'Date & Time', sub: 'Choose a slot' },
   { n: '03', label: 'Vehicle',     sub: 'Year / make / model' },
   { n: '04', label: 'Your Info',   sub: 'Name, phone, email' },
@@ -101,10 +101,24 @@ function formatTime(iso: string) {
 
 export function BookingFlow() {
   const [step, setStep] = useState(1);
-  const [serviceKey, setServiceKey] = useState<ServiceKey | null>(null);
+  const [selectedKeys, setSelectedKeys] = useState<ServiceKey[]>([]);
   const [location, setLocation] = useState<LocationKey>('shop');
   const [rearGlass, setRearGlass] = useState<RearGlass>('standard');
   const [notes, setNotes] = useState<string[]>([]);
+
+  const toggleService = (key: ServiceKey) => {
+    setSelectedKeys((prev) =>
+      prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+    );
+  };
+  // Primary service — drives availability search (longest duration)
+  const serviceKey: ServiceKey | null = selectedKeys.length > 0
+    ? [...selectedKeys].sort((a, b) => {
+        const da = SERVICES.find((s) => s.key === a)?.meta ?? '';
+        const db = SERVICES.find((s) => s.key === b)?.meta ?? '';
+        return db.localeCompare(da);
+      })[0]
+    : null;
 
   // Vehicle
   const [vehicleYear, setVehicleYear] = useState('');
@@ -137,8 +151,10 @@ export function BookingFlow() {
   const [bookingId, setBookingId] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
+  const selectedServices = selectedKeys.map((k) => SERVICES.find((s) => s.key === k)!);
   const service = serviceKey ? SERVICES.find((s) => s.key === serviceKey) ?? null : null;
-  const serviceHasRear = service?.hasRear ?? false;
+  const serviceHasRear = selectedServices.some((s) => s.hasRear);
+  const servicesLabel = selectedServices.map((s) => s.label).join(', ') || 'Not selected';
   const locationLabel = LOCATIONS.find((l) => l.value === location)!.label;
   const monthName = new Date(viewYear, viewMonth, 1).toLocaleString('en-US', { month: 'long' });
 
@@ -241,8 +257,11 @@ export function BookingFlow() {
     [serviceKey, parseSlots],
   );
 
-  // Reset cache + selected slot if the user changes service.
+  // Reset cache + selected slot if the user changes primary service.
+  const prevKeyRef = useRef(serviceKey);
   useEffect(() => {
+    if (prevKeyRef.current === serviceKey) return;
+    prevKeyRef.current = serviceKey;
     fetchedRangesRef.current.clear();
     setSlotsByDate({});
     setSelectedSlot(null);
@@ -315,6 +334,7 @@ export function BookingFlow() {
           email: email.trim(),
           phone: phone.trim(),
           serviceKey,
+          serviceKeys: selectedKeys,
           rearGlass: serviceHasRear ? rearGlass : 'standard',
           vehicleYear: vehicleYear.trim(),
           vehicleMake: vehicleMake.trim(),
@@ -374,14 +394,14 @@ export function BookingFlow() {
       <div className="booking-panel">
         {step === 1 && (
           <div>
-            <div className="panel-title">01 · Select A Service</div>
-            <p className="panel-sub">Choose the install or service you&apos;re booking.</p>
+            <div className="panel-title">01 · Select Services</div>
+            <p className="panel-sub">Choose one or more. You can combine services (e.g. side &amp; back + windshield).</p>
             <div className="tile-grid">
               {SERVICES.map((s) => (
                 <button
                   key={s.key}
-                  className={`tile${serviceKey === s.key ? ' is-selected' : ''}`}
-                  onClick={() => setServiceKey(s.key)}
+                  className={`tile${selectedKeys.includes(s.key) ? ' is-selected' : ''}`}
+                  onClick={() => toggleService(s.key)}
                 >
                   <span className="tile__label">{s.label}</span>
                   <span className="tile__meta">{s.meta}</span>
@@ -405,7 +425,7 @@ export function BookingFlow() {
             </div>
             <div className="panel-nav">
               <span></span>
-              <button className="btn btn--primary" onClick={() => go(2)} disabled={!serviceKey}>
+              <button className="btn btn--primary" onClick={() => go(2)} disabled={selectedKeys.length === 0}>
                 Continue
               </button>
             </div>
@@ -728,7 +748,7 @@ export function BookingFlow() {
             <dl className="summary checkout-summary">
               <div className="summary-row">
                 <dt>Service</dt>
-                <dd>{service?.label ?? 'Not selected'}</dd>
+                <dd>{servicesLabel}</dd>
               </div>
               <div className="summary-row">
                 <dt>Location</dt>
@@ -811,7 +831,7 @@ export function BookingFlow() {
               <dl className="summary" style={{ textAlign: 'left', maxWidth: 480, margin: '24px auto 0' }}>
                 <div className="summary-row">
                   <dt>Service</dt>
-                  <dd>{service?.label ?? 'Not selected'}</dd>
+                  <dd>{servicesLabel}</dd>
                 </div>
                 {serviceHasRear && (
                   <div className="summary-row">

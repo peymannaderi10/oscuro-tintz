@@ -136,6 +136,7 @@ export async function POST(request: NextRequest) {
       serviceVariationVersion,
       teamMemberId,
       paymentToken,
+      serviceKeys,
     } = body as {
       firstName?: string;
       lastName?: string;
@@ -153,6 +154,7 @@ export async function POST(request: NextRequest) {
       serviceVariationVersion?: string | number;
       teamMemberId?: string;
       paymentToken?: string;
+      serviceKeys?: string[];
     };
 
     if (!serviceKey || !startAt || !serviceVariationVersion || !teamMemberId) {
@@ -167,6 +169,13 @@ export async function POST(request: NextRequest) {
     if (!service) {
       return NextResponse.json({ error: 'Unknown service key' }, { status: 400 });
     }
+
+    // Build combined name + total duration from all selected services.
+    const allKeys = (serviceKeys ?? [serviceKey]) as ServiceKey[];
+    const allServices = allKeys.map((k) => SERVICES[k]).filter(Boolean);
+    const combinedServiceName = allServices.map((s) => s.name).join(' + ');
+    const totalDurationHours = allServices.reduce((sum, s) => sum + s.durationHours, 0);
+    const totalStartPrice = allServices.reduce((sum, s) => sum + s.startPrice, 0);
 
     const variationId = resolveVariationId(serviceKey);
     if (!variationId) {
@@ -185,7 +194,7 @@ export async function POST(request: NextRequest) {
           currency: 'USD',
         },
         locationId: process.env.SQUARE_LOCATION_ID,
-        note: `$30 booking deposit - ${serviceKey}`,
+        note: `$30 booking deposit - ${combinedServiceName}`,
       });
       paymentId = paymentResponse.payment?.id ?? null;
     } catch (payErr: unknown) {
@@ -195,7 +204,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: detail }, { status: 400 });
     }
 
-    const rearGlassLabel = service.hasRear
+    const anyHasRear = allServices.some((s) => s.hasRear);
+    const rearGlassLabel = anyHasRear
       ? REAR_GLASS_LABEL[(rearGlass ?? 'standard') as RearGlass]
       : 'N/A';
 
@@ -225,13 +235,13 @@ export async function POST(request: NextRequest) {
       }
 
       const noteLines = [
-        `SERVICE: ${service.name}`,
+        `SERVICE: ${combinedServiceName}`,
         `VEHICLE: ${[vehicleYear, vehicleMake, vehicleModel].filter(Boolean).join(' ') || 'Not provided'}`,
         `BODY STYLE: ${vehicleBody || 'Not provided'}`,
         `REAR WINDOW: ${rearGlassLabel}`,
         `LOCATION: ${serviceLocation || 'Not provided'}`,
-        `STARTING PRICE: ${service.startPrice > 0 ? `$${service.startPrice}` : 'To be confirmed'}`,
-        `EST. DURATION: ${service.durationHours} hrs`,
+        `STARTING PRICE: ${totalStartPrice > 0 ? `$${totalStartPrice}` : 'To be confirmed'}`,
+        `EST. DURATION: ${totalDurationHours} hrs`,
         ...(notes?.trim() ? [`NOTES: ${notes.trim()}`] : []),
       ];
 
@@ -246,7 +256,7 @@ export async function POST(request: NextRequest) {
             teamMemberId,
             serviceVariationId:      variationId,
             serviceVariationVersion: BigInt(serviceVariationVersion),
-            durationMinutes:         Math.round(service.durationHours * 60),
+            durationMinutes:         Math.round(totalDurationHours * 60),
           }],
         },
       });
@@ -277,12 +287,12 @@ export async function POST(request: NextRequest) {
           vehicleMake: vehicleMake ?? '',
           vehicleModel: vehicleModel ?? '',
           vehicleBody: vehicleBody ?? '',
-          serviceName: service.name,
+          serviceName: combinedServiceName,
           rearGlassLabel,
           serviceLocation: serviceLocation ?? '',
           notes: notes ?? '',
-          startingPrice: service.startPrice,
-          durationHours: String(service.durationHours),
+          startingPrice: totalStartPrice,
+          durationHours: String(totalDurationHours),
           depositCollected: !!paymentId,
           manualCreationRequired,
         });

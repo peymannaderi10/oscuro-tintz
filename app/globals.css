@@ -320,6 +320,44 @@ body {
   color: var(--ink-muted);
   margin: 12px 0 0 0;
 }
+.square-wallet-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+.square-wallet-buttons > div {
+  flex: 1;
+  max-width: 100%;
+}
+.square-wallet-buttons > div:empty {
+  display: none;
+}
+.square-card-form__divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0;
+  color: var(--ink-muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.square-card-form__divider::before,
+.square-card-form__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.square-card-form__wallet-ok {
+  margin: 0 0 8px 0;
+  padding: 14px 16px;
+  background: rgba(80, 200, 120, 0.08);
+  border: 1px solid rgba(80, 200, 120, 0.25);
+  font-size: 13px;
+  color: #b6e8c3;
+}
 .square-card-form__error {
   font-size: 13px;
   color: #ff8080;

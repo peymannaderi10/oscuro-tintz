@@ -9,8 +9,22 @@ interface SquareCard {
   destroy: () => void;
 }
 
+interface SquareDigitalWallet {
+  attach: (selector: string) => Promise<void>;
+  tokenize: () => Promise<{ status: string; token?: string; errors?: { message: string }[] }>;
+  destroy: () => void;
+}
+
+interface SquarePaymentRequest {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
+
 interface SquarePayments {
   card: (opts?: Record<string, unknown>) => Promise<SquareCard>;
+  applePay: (paymentRequest: SquarePaymentRequest) => Promise<SquareDigitalWallet | null>;
+  googlePay: (paymentRequest: SquarePaymentRequest) => Promise<SquareDigitalWallet | null>;
+  paymentRequest: (opts: Record<string, unknown>) => SquarePaymentRequest;
 }
 
 interface SquareGlobal {
@@ -69,7 +83,10 @@ const CARD_STYLE = {
 export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCardForm(_, ref) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<SquareCard | null>(null);
+  const walletTokenRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [walletReady, setWalletReady] = useState(false);
+  const [walletPaid, setWalletPaid] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const initAttempted = useRef(false);
 
@@ -87,17 +104,71 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
 
     try {
       const payments = window.Square!.payments(appId, locationId);
+
+      // Card form
       const card = await payments.card({ style: CARD_STYLE });
       if (containerRef.current) {
         await card.attach('#square-card-container');
         cardRef.current = card;
         setReady(true);
       }
+
+      // Apple Pay / Google Pay — only show if browser supports them.
+      // These buttons handle their own UI. On tap they open the native
+      // payment sheet, tokenize, and we store the token.
+      try {
+        const paymentRequest = payments.paymentRequest({
+          countryCode: 'US',
+          currencyCode: 'USD',
+          total: { amount: '30.00', label: 'Booking Deposit' },
+        });
+
+        // Apple Pay
+        try {
+          const applePay = await payments.applePay(paymentRequest);
+          if (applePay) {
+            await applePay.attach('#square-apple-pay');
+            setWalletReady(true);
+          }
+        } catch { /* not supported on this browser/device */ }
+
+        // Google Pay
+        try {
+          const googlePay = await payments.googlePay(paymentRequest);
+          if (googlePay) {
+            await googlePay.attach('#square-google-pay');
+            setWalletReady(true);
+          }
+        } catch { /* not supported on this browser/device */ }
+      } catch { /* payment request not supported */ }
+
     } catch (err) {
       console.error('Square card init failed:', err);
       setError('Could not load the payment form. Please try again.');
     }
   }, []);
+
+  useEffect(() => {
+    // Listen for wallet payment tokens (Apple Pay / Google Pay fire events
+    // on their containers when the user completes the native sheet).
+    const handleWalletToken = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.token) {
+        walletTokenRef.current = detail.token;
+        setWalletPaid(true);
+      }
+    };
+
+    const appleEl = document.getElementById('square-apple-pay');
+    const googleEl = document.getElementById('square-google-pay');
+    appleEl?.addEventListener('token', handleWalletToken);
+    googleEl?.addEventListener('token', handleWalletToken);
+
+    return () => {
+      appleEl?.removeEventListener('token', handleWalletToken);
+      googleEl?.removeEventListener('token', handleWalletToken);
+    };
+  }, [walletReady]);
 
   useEffect(() => {
     if (window.Square) {
@@ -132,6 +203,9 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
 
   useImperativeHandle(ref, () => ({
     async tokenize() {
+      // If user already paid via Apple/Google Pay, use that token
+      if (walletTokenRef.current) return walletTokenRef.current;
+
       if (!cardRef.current) return null;
       try {
         const result = await cardRef.current.tokenize();
@@ -150,8 +224,27 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
 
   return (
     <div className="square-card-form">
-      <div ref={containerRef} id="square-card-container" />
-      {!ready && !error && <p className="square-card-form__loading">Loading payment form…</p>}
+      {/* Apple Pay / Google Pay buttons — only render if supported */}
+      <div className="square-wallet-buttons" style={{ display: walletReady ? 'grid' : 'none' }}>
+        <div id="square-apple-pay" />
+        <div id="square-google-pay" />
+      </div>
+      {walletReady && !walletPaid && (
+        <div className="square-card-form__divider">
+          <span>or pay with card</span>
+        </div>
+      )}
+      {walletPaid && (
+        <p className="square-card-form__wallet-ok">
+          ✓ Payment method ready. Click &quot;Confirm &amp; Pay Deposit&quot; to complete.
+        </p>
+      )}
+      {!walletPaid && (
+        <>
+          <div ref={containerRef} id="square-card-container" />
+          {!ready && !error && <p className="square-card-form__loading">Loading payment form…</p>}
+        </>
+      )}
       {error && <p className="square-card-form__error">{error}</p>}
       <div className="square-card-form__badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
