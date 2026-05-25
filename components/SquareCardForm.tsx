@@ -124,8 +124,13 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
           const applePay = await payments.applePay(paymentRequest);
           addDebug(`applePay returned: ${applePay ? typeof applePay : 'null'}`);
           if (applePay) {
-            const methods = Object.getOwnPropertyNames(Object.getPrototypeOf(applePay)).join(', ');
-            addDebug(`applePay methods: ${methods}`);
+            const ownKeys = Object.keys(applePay).join(', ');
+            const ownNames = Object.getOwnPropertyNames(applePay).join(', ');
+            const protoMethods = Object.getOwnPropertyNames(Object.getPrototypeOf(applePay)).join(', ');
+            addDebug(`applePay own keys: [${ownKeys}]`);
+            addDebug(`applePay own names: [${ownNames}]`);
+            addDebug(`applePay proto: [${protoMethods}]`);
+            addDebug(`applePay JSON: ${JSON.stringify(applePay).slice(0, 200)}`);
             if (typeof applePay.attach === 'function') {
               await applePay.attach('#square-apple-pay');
               setHasWallet(true);
@@ -146,6 +151,8 @@ export const SquareCardForm = forwardRef<SquareCardFormHandle>(function SquareCa
           const googlePay = await payments.googlePay(paymentRequest);
           addDebug(`googlePay returned: ${googlePay ? typeof googlePay : 'null'}`);
           if (googlePay) {
+            const gMethods = Object.getOwnPropertyNames(Object.getPrototypeOf(googlePay)).join(', ');
+            addDebug(`googlePay proto: [${gMethods}]`);
             await googlePay.attach('#square-google-pay');
             setHasWallet(true);
             addDebug('Google Pay attached');
