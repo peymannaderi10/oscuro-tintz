@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    // Inline the (small, ~13KB) global CSS into <head> — removes the
+    // render-blocking stylesheet request Lighthouse flagged (~300ms on slow 4G).
+    inlineCss: true,
+  },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.pexels.com' },

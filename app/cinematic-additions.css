@@ -57,11 +57,15 @@
 
 /* ---------- ANIMATIONS ---------- */
 @keyframes cFadeUp {
-  from { opacity: 0; transform: translate3d(0, 18px, 0); filter: blur(8px); }
+  from { opacity: 0.001; transform: translate3d(0, 18px, 0); filter: blur(8px); }
   to   { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
 }
 .c-fade-up {
-  opacity: 0;
+  /* 0.001 (not 0): Chrome skips paint records for fully transparent elements,
+     so opacity:0 pushed LCP to the end of the entry animation (~+2.9s). At
+     0.001 the element is painted (invisibly) at first paint and LCP registers
+     at FCP time. Visual result is identical. */
+  opacity: 0.001;
   animation: cFadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: var(--c-delay, 0s);
 }

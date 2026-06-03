@@ -27,10 +27,16 @@ export default function HomePage() {
             <span className="hero__badge-pill">New</span>
             <span className="hero__badge-text">Premium Window Tinting · Yuba City, CA</span>
           </div>
-          <h1 className="c-blur" data-blur-text>
+          {/* Self-starting CSS animation (not observer-gated .c-blur): the H1 is an
+              LCP candidate and must not wait for the post-hydration scripts. */}
+          <h1>
             <span className="visually-hidden">Window Tinting in Yuba City, CA — </span>
-            <span className="line">Protect Your Ride.</span>
-            <span className="line accent">Beat The Heat.</span>
+            <span className="line c-fade-up" style={{ ['--c-delay' as string]: '0.25s' } as React.CSSProperties}>
+              Protect Your Ride.
+            </span>
+            <span className="line accent c-fade-up" style={{ ['--c-delay' as string]: '0.4s' } as React.CSSProperties}>
+              Beat The Heat.
+            </span>
           </h1>
           <p className="hero__sub c-fade-up" style={{ ['--c-delay' as string]: '0.45s' } as React.CSSProperties}>
             Hitek Carbon IR, Ceramic IR, and Ceramic Plus films. Up to 99% UV protection, serious heat rejection, and a
