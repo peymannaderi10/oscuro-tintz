@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { PHONE, PHONE_TEL } from '@/lib/siteMeta';
 
 const LINKS: { href: string; label: string }[] = [
   { href: '/', label: 'Home' },
@@ -51,6 +52,11 @@ export function Nav() {
             <path d="M7 17 L17 7 M9 7 H17 V15" />
           </svg>
         </Link>
+        <a href={`tel:${PHONE_TEL}`} className="cnav__call" aria-label={`Call or text ${PHONE}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+            <path d="M5 4h3l2 5-2 1a12 12 0 0 0 6 6l1-2 5 2v3a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z" />
+          </svg>
+        </a>
         <button
           className={`cnav__hamburger${open ? ' is-open' : ''}`}
           id="cnavBurger"
@@ -73,6 +79,9 @@ export function Nav() {
             {l.label}
           </Link>
         ))}
+        <a href={`tel:${PHONE_TEL}`} onClick={() => setOpen(false)}>
+          Call / Text {PHONE}
+        </a>
         <Link href="/book" className="is-cta" onClick={() => setOpen(false)}>
           Book Now
         </Link>

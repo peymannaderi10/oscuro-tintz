@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About Our Yuba City Window Tint Shop',
   description:
-    'A one-person window-tint shop in Yuba City, CA, built on word of mouth, premium Hitek film, and clean installs backed by a lifetime warranty.',
+    'Meet Juan, the owner behind Oscuro Tintz — a one-person window-tint shop in Yuba City, CA, built on word of mouth, premium Hitek film, and clean installs backed by a lifetime warranty.',
   alternates: { canonical: '/about' },
 };
 
@@ -50,6 +51,7 @@ export default function AboutPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: aboutStyles }} />
+      <BreadcrumbJsonLd items={[{ name: 'About', path: '/about' }]} />
 
       <section className="pagehead">
         <div className="pagehead__bg"></div>
@@ -73,7 +75,7 @@ export default function AboutPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/Oscuro%20tints/cuttingfilm.webp"
-              alt="Owner Portrait"
+              alt="Juan, owner of Oscuro Tintz, hand-cutting window tint film in Yuba City, CA"
               loading="lazy"
               style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
             />
@@ -86,7 +88,8 @@ export default function AboutPage() {
               Into A Profession
             </h2>
             <p>
-              I got into window tinting because I wanted my own car tinted but couldn&apos;t afford to pay someone else.
+              I&apos;m Juan, the owner and installer behind Oscuro Tintz. I got into window tinting because I wanted my
+              own car tinted but couldn&apos;t afford to pay someone else.
               So I bought a couple rolls and figured it out. It wasn&apos;t pretty at first, but I kept coming back and
               kept improving. Eventually I decided to take it seriously and put real time into learning the craft.
             </p>
@@ -102,7 +105,7 @@ export default function AboutPage() {
 
             <div className="stats">
               <div className="stat">
-                <div className="stat__num chrome-text">500+</div>
+                <div className="stat__num chrome-text">200+</div>
                 <div className="stat__label">Vehicles Tinted</div>
               </div>
               <div className="stat">

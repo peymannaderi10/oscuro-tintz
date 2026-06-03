@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
 import { MapEmbed } from '@/components/MapEmbed';
-import { EMAIL, PHONE, PHONE_TEL } from '@/lib/siteMeta';
+import { EMAIL, GOOGLE_MAPS_URL, PHONE, PHONE_TEL } from '@/lib/siteMeta';
 
 export const metadata: Metadata = {
-  title: 'Contact',
+  title: 'Contact Oscuro Tintz — Window Tinting in Yuba City, CA',
   description:
     'Call, text, or message Oscuro Tintz for window tinting in Yuba City, Marysville, and Sutter County. Mobile service available.',
   alternates: { canonical: '/contact' },
@@ -51,6 +52,8 @@ export default function ContactPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: contactStyles }} />
 
+      <BreadcrumbJsonLd items={[{ name: 'Contact', path: '/contact' }]} />
+
       <section className="pagehead">
         <div className="pagehead__bg"></div>
         <div className="container pagehead__inner reveal">
@@ -58,7 +61,11 @@ export default function ContactPage() {
             <Link href="/">Home</Link> <span className="sep">/</span> <span>Contact</span>
           </div>
           <span className="eyebrow">Get In Touch</span>
-          <h1>Contact</h1>
+          <h1>
+            Contact Oscuro Tintz
+            <br />
+            Yuba City, CA
+          </h1>
           <p>Questions, quotes, or anything else, send a message, call, or text. We usually respond within a few hours.</p>
         </div>
       </section>
@@ -100,7 +107,13 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4>Service Area</h4>
-                <p>Yuba City · Marysville · Sutter County · Surrounding areas. Mobile service available.</p>
+                <p>
+                  Yuba City · Marysville · Olivehurst · Live Oak · Plumas Lake · Gridley · Sutter County. Mobile
+                  service available.{' '}
+                  <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer">
+                    Find us on Google Maps
+                  </a>
+                </p>
               </div>
             </div>
             <div className="info-item">

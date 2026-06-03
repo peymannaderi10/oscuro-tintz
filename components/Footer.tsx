@@ -1,5 +1,14 @@
 import Link from 'next/link';
-import { EMAIL, HOURS, PHONE, PHONE_TEL, SERVICE_AREA } from '@/lib/siteMeta';
+import {
+  EMAIL,
+  GOOGLE_REVIEW_URL,
+  HOURS,
+  INSTAGRAM_URL,
+  PHONE,
+  PHONE_TEL,
+  SERVICE_AREA,
+  TIKTOK_URL,
+} from '@/lib/siteMeta';
 
 export function Footer() {
   return (
@@ -16,14 +25,14 @@ export function Footer() {
               films, backed by lifetime warranty coverage.
             </p>
             <div className="footer__social">
-              <a href="#" aria-label="Instagram">
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                   <rect x="3" y="3" width="18" height="18" rx="4" />
                   <circle cx="12" cy="12" r="4" />
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
                 </svg>
               </a>
-              <a href="#" aria-label="TikTok">
+              <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19 8.5a6.5 6.5 0 0 1-3.8-1.2v7.9a5.8 5.8 0 1 1-5-5.7v2.9a2.9 2.9 0 1 0 2 2.8V3h2.9a3.6 3.6 0 0 0 3.6 3.6h.3V8.5z" />
                 </svg>
@@ -46,6 +55,12 @@ export function Footer() {
                 <Link href="/#faq">FAQs</Link>
               </li>
               <li>
+                <Link href="/mobile-window-tinting-yuba-city">Mobile Tinting</Link>
+              </li>
+              <li>
+                <Link href="/california-window-tint-laws">CA Tint Laws</Link>
+              </li>
+              <li>
                 <Link href="/contact">Contact</Link>
               </li>
             </ul>
@@ -64,6 +79,11 @@ export function Footer() {
               </li>
               <li>
                 <span style={{ color: 'var(--ink-muted)' }}>{HOURS}</span>
+              </li>
+              <li>
+                <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+                  Review us on Google
+                </a>
               </li>
             </ul>
           </div>
@@ -104,7 +124,10 @@ export function Footer() {
           </div>
         </div>
         <div className="footer__bottom">
-          <div>© 2026 Oscuro Tintz. All rights reserved.</div>
+          <div>
+            © 2026 Oscuro Tintz. All rights reserved. · <Link href="/privacy">Privacy</Link> ·{' '}
+            <Link href="/terms">Terms</Link>
+          </div>
           <div className="tag">{SERVICE_AREA}</div>
         </div>
       </div>

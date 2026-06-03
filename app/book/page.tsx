@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { BookingFlow } from '@/components/BookingFlow';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Book',
+  title: 'Book Window Tinting in Yuba City, CA',
   description:
     'Book a window tinting appointment with Oscuro Tintz. Pick your service, date, time, and vehicle. Mobile service available across Yuba City and Sutter County.',
   alternates: { canonical: '/book' },
@@ -119,6 +120,7 @@ export default function BookPage() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: bookStyles }} />
+      <BreadcrumbJsonLd items={[{ name: 'Book Appointment', path: '/book' }]} />
 
       <section className="pagehead">
         <div className="pagehead__bg"></div>

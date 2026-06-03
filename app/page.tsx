@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { preload } from 'react-dom';
 import { HomeReviews } from '@/components/HomeReviews';
 import { LazyVideo } from '@/components/LazyVideo';
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/siteMeta';
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  // The hero background is a CSS background-image, discovered late by the browser —
+  // preloading it moves the LCP fetch to the start of the page load.
+  preload('/images/hero-bg.webp', { as: 'image', fetchPriority: 'high' });
+
   return (
     <>
       {/* ============ HERO ============ */}
@@ -23,6 +28,7 @@ export default function HomePage() {
             <span className="hero__badge-text">Premium Window Tinting · Yuba City, CA</span>
           </div>
           <h1 className="c-blur" data-blur-text>
+            <span className="visually-hidden">Window Tinting in Yuba City, CA — </span>
             <span className="line">Protect Your Ride.</span>
             <span className="line accent">Beat The Heat.</span>
           </h1>
@@ -201,7 +207,7 @@ export default function HomePage() {
           </span>
           <span className="marquee__item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 3 L15 9 L21 10 L17 14 L18 21 L12 18 L6 21 L7 14 L3 10 L9 9 Z" /></svg>
-            500+ Installs
+            200+ Installs
           </span>
           <span className="marquee__item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 2 L4 6 V12 C4 18 8 21 12 22 C16 21 20 18 20 12 V6 Z" /></svg>
@@ -225,7 +231,7 @@ export default function HomePage() {
           </span>
           <span className="marquee__item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 3 L15 9 L21 10 L17 14 L18 21 L12 18 L6 21 L7 14 L3 10 L9 9 Z" /></svg>
-            500+ Installs
+            200+ Installs
           </span>
         </div>
       </section>
@@ -248,8 +254,9 @@ export default function HomePage() {
               Available
             </h2>
             <p>
-              We bring the shop to you. Serving Yuba City, Marysville, Sutter County, and surrounding areas. Driveways,
-              offices, or anywhere you need us. Same premium install, same lifetime warranty.
+              We bring the shop to you. Serving Yuba City, Marysville, Olivehurst, Live Oak, Plumas Lake, Gridley, and
+              the rest of Sutter and Yuba County. Driveways, offices, or anywhere you need us. Same premium install,
+              same lifetime warranty.
             </p>
             <p style={{ marginTop: 12, fontSize: 14, color: 'var(--ink-muted)' }}>
               Need service farther out? Contact us for availability and custom travel pricing.
@@ -258,8 +265,8 @@ export default function HomePage() {
               <Link href="/book" className="btn btn--primary">
                 Book Appointment
               </Link>
-              <Link href="/services" className="btn btn--ghost">
-                View Services
+              <Link href="/mobile-window-tinting-yuba-city" className="btn btn--ghost">
+                About Mobile Service
               </Link>
             </div>
           </div>
@@ -424,7 +431,7 @@ export default function HomePage() {
                 <span className="cstat__label">Vehicles Tinted</span>
               </div>
               <div className="cstat">
-                <span className="cstat__value" data-count-to="14" data-suffix="+">14+</span>
+                <span className="cstat__value" data-count-to="22" data-suffix="+">22+</span>
                 <span className="cstat__label">5-Star Reviews</span>
               </div>
               <div className="cstat">
@@ -457,19 +464,19 @@ export default function HomePage() {
           </div>
           <div className="gallery__grid reveal">
             {[
-              'after9-thumb.webp',
-              'after7-thumb.webp',
-              'after6-thumb.webp',
-              'backright-lexus-thumb.webp',
-              'after2-thumb.webp',
-              'after3-thumb.webp',
-              'IMG_8148-thumb.webp',
-            ].map((file, i) => (
+              { file: 'after9-thumb.webp', alt: 'Rear window tint install on a sedan at Oscuro Tintz in Yuba City, CA' },
+              { file: 'after7-thumb.webp', alt: 'HITEK ceramic window tint on rear side windows, Yuba City, CA' },
+              { file: 'after6-thumb.webp', alt: 'Full vehicle window tinting result with dark ceramic film, Yuba City, CA' },
+              { file: 'backright-lexus-thumb.webp', alt: 'Ceramic tint on the back-right window of a Lexus, Yuba City, CA' },
+              { file: 'after2-thumb.webp', alt: 'Freshly tinted side windows after professional install, Yuba City, CA' },
+              { file: 'after3-thumb.webp', alt: 'Window tint install with clean factory-match finish, Yuba City, CA' },
+              { file: 'IMG_8148-thumb.webp', alt: 'Precision window tint installation by Oscuro Tintz, Yuba City, CA' },
+            ].map((item, i) => (
               <div key={i} className="gallery__item">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/Oscuro%20tints/${file}`}
-                  alt={`Recent Install ${i + 1}`}
+                  src={`/Oscuro%20tints/${item.file}`}
+                  alt={item.alt}
                   loading="lazy"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -641,7 +648,22 @@ export default function HomePage() {
               },
               {
                 q: 'Is window tinting legal in California?',
-                a: "Yes, within limits. California allows non-reflective tint on the top portion of the windshield and any darkness on rear and back-side windows; front driver/passenger windows must allow more than 70% VLT. We'll walk you through what's legal for your vehicle.",
+                a: (
+                  <>
+                    <p style={{ marginBottom: 12 }}>
+                      Yes, within limits set by California Vehicle Code 26708. Front driver and passenger windows must
+                      allow more than 70% of light through (70%+ VLT). Rear side windows and the back windshield can be
+                      any darkness — but if your back windshield is tinted, you need working side mirrors on both
+                      sides. On the windshield itself, only a non-reflective strip above the manufacturer&apos;s AS-1
+                      line (roughly the top 4–5 inches) is allowed.
+                    </p>
+                    <p>
+                      Medical exemptions exist for drivers with documented light-sensitive conditions. We&apos;ll walk
+                      you through exactly what&apos;s legal for your vehicle —{' '}
+                      <Link href="/california-window-tint-laws">read our full California tint law guide</Link>.
+                    </p>
+                  </>
+                ),
               },
               {
                 q: 'Do you offer mobile service?',

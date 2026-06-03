@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { BeforeAfter } from '@/components/BeforeAfter';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Gallery',
+  title: 'Before & After Window Tint Photos — Yuba City, CA',
   description:
     'Before & after photos of recent window tint installs by Oscuro Tintz, Yuba City, CA. Drag the slider to compare untinted vs. finished.',
   alternates: { canonical: '/gallery' },
@@ -140,6 +141,8 @@ export default function GalleryPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: galleryStyles }} />
 
+      <BreadcrumbJsonLd items={[{ name: 'Gallery', path: '/gallery' }]} />
+
       <section className="pagehead">
         <div className="pagehead__bg"></div>
         <div className="container pagehead__inner reveal">
@@ -148,7 +151,11 @@ export default function GalleryPage() {
           </div>
           <span className="eyebrow">Before &amp; After</span>
           <h1>The Gallery</h1>
-          <p>Drag the slider on each photo to compare the untinted original with the finished install.</p>
+          <p>
+            Real window tint installs from our Yuba City shop and mobile jobs across Marysville and Sutter County —
+            HITEK Carbon IR, Ceramic IR, and Ceramic Plus film on sedans, trucks, and SUVs. Drag the slider on each
+            photo to compare the untinted original with the finished install.
+          </p>
         </div>
       </section>
 
@@ -161,7 +168,13 @@ export default function GalleryPage() {
               const delay = i === 1 ? ' reveal--delay-1' : '';
               return (
                 <div key={i} className={`reveal${delay}`}>
-                  <BeforeAfter before={it.before} after={it.after} />
+                  <BeforeAfter
+                    before={it.before}
+                    after={it.after}
+                    altBefore={`${it.sub} before window tinting — Oscuro Tintz, Yuba City, CA`}
+                    altAfter={`${it.sub} after HITEK window tint install — Oscuro Tintz, Yuba City, CA`}
+                    eager={i < 2}
+                  />
                 </div>
               );
             })}

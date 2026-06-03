@@ -2,7 +2,19 @@
 
 import { useEffect, useRef } from 'react';
 
-export function BeforeAfter({ before, after }: { before: string; after: string }) {
+export function BeforeAfter({
+  before,
+  after,
+  altBefore = '',
+  altAfter = '',
+  eager = false,
+}: {
+  before: string;
+  after: string;
+  altBefore?: string;
+  altAfter?: string;
+  eager?: boolean;
+}) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const afterRef = useRef<HTMLImageElement | null>(null);
   const handleRef = useRef<HTMLDivElement | null>(null);
@@ -59,9 +71,9 @@ export function BeforeAfter({ before, after }: { before: string; after: string }
   return (
     <div className="ba" data-ba ref={rootRef}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="ba__layer ba__layer--before" src={before} alt="" loading="eager" decoding="async" draggable={false} />
+      <img className="ba__layer ba__layer--before" src={before} alt={altBefore} loading={eager ? 'eager' : 'lazy'} decoding="async" draggable={false} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="ba__layer ba__layer--after" src={after} alt="" loading="eager" decoding="async" draggable={false} ref={afterRef} />
+      <img className="ba__layer ba__layer--after" src={after} alt={altAfter} loading={eager ? 'eager' : 'lazy'} decoding="async" draggable={false} ref={afterRef} />
       <span className="ba__tag ba__tag--before">Before</span>
       <span className="ba__tag ba__tag--after">After</span>
       <div className="ba__handle" ref={handleRef}>

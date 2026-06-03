@@ -1,21 +1,27 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/siteMeta';
 
+// lastModified must reflect the date the page's CONTENT last changed — update the
+// date for a page whenever you edit it. Never use new Date(): a runtime timestamp
+// makes every page look freshly modified on every crawl, so Google learns to
+// ignore the signal entirely. changefreq/priority are omitted (Google ignores both).
+const ROUTES: { path: string; lastModified: string }[] = [
+  { path: '/', lastModified: '2026-06-03' },
+  { path: '/services', lastModified: '2026-06-03' },
+  { path: '/book', lastModified: '2026-06-03' },
+  { path: '/gallery', lastModified: '2026-06-03' },
+  { path: '/reviews', lastModified: '2026-06-03' },
+  { path: '/about', lastModified: '2026-06-03' },
+  { path: '/contact', lastModified: '2026-06-03' },
+  { path: '/california-window-tint-laws', lastModified: '2026-06-03' },
+  { path: '/mobile-window-tinting-yuba-city', lastModified: '2026-06-03' },
+  { path: '/privacy', lastModified: '2026-06-03' },
+  { path: '/terms', lastModified: '2026-06-03' },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  const routes: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }[] = [
-    { path: '/', priority: 1.0, changeFrequency: 'weekly' },
-    { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
-    { path: '/book', priority: 0.9, changeFrequency: 'monthly' },
-    { path: '/gallery', priority: 0.7, changeFrequency: 'monthly' },
-    { path: '/reviews', priority: 0.7, changeFrequency: 'weekly' },
-    { path: '/about', priority: 0.6, changeFrequency: 'yearly' },
-    { path: '/contact', priority: 0.8, changeFrequency: 'yearly' },
-  ];
-  return routes.map((r) => ({
+  return ROUTES.map((r) => ({
     url: `${SITE_URL}${r.path}`,
-    lastModified: now,
-    changeFrequency: r.changeFrequency,
-    priority: r.priority,
+    lastModified: new Date(r.lastModified),
   }));
 }

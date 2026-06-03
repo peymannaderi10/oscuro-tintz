@@ -1,0 +1,1580 @@
+{
+  "home": {
+    "desktop": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Protect Your Ride.Beat The Heat.",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 365,
+        "bottom": 603,
+        "left": 424,
+        "right": 1496
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 26,
+        "bottom": 62,
+        "left": 1430,
+        "right": 1552,
+        "width": 122,
+        "height": 35
+      },
+      "document_scroll_width": 1920,
+      "window_inner_width": 1920,
+      "horizontal_overflow": false,
+      "overflow_elements": [
+        {
+          "tag": "DIV",
+          "class": "marquee__track",
+          "right": 8780,
+          "width": 8968
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 1939,
+          "width": 824
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 2056,
+          "width": 25
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item is-outline",
+          "right": 3164,
+          "width": 1016
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 3282,
+          "width": 25
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 4086,
+          "width": 712
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 4204,
+          "width": 25
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 4721,
+          "width": 425
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 4839,
+          "width": 25
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item is-outline",
+          "right": 5389,
+          "width": 458
+        }
+      ],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Services",
+          "width": 82,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 72,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Reviews",
+          "width": 80,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 77,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Book Now",
+          "width": 122,
+          "height": 35,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Carbon Window Tinting",
+          "width": 290,
+          "height": 19,
+          "top": 2170
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Ceramic Window Tinting",
+          "width": 290,
+          "height": 19,
+          "top": 2170
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Tint Removal",
+          "width": 290,
+          "height": 19,
+          "top": 2170
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 12049
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 12049
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 11878
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 11914
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 11949
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 11985
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 12020
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 207,
+          "height": 43,
+          "top": 11878
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 11939
+        }
+      ],
+      "total_interactive": 60,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 9,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\home_desktop.png"
+    },
+    "mobile": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Protect Your Ride.Beat The Heat.",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 207,
+        "bottom": 347,
+        "left": 20,
+        "right": 370
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "document_scroll_width": 390,
+      "window_inner_width": 390,
+      "horizontal_overflow": false,
+      "overflow_elements": [
+        {
+          "tag": "DIV",
+          "class": "marquee__track",
+          "right": 3853,
+          "width": 3925
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item is-outline",
+          "right": 407,
+          "width": 200
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 461,
+          "width": 17
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 859,
+          "width": 360
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 914,
+          "width": 17
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item is-outline",
+          "right": 1396,
+          "width": 444
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 1450,
+          "width": 17
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 1799,
+          "width": 312
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__sep",
+          "right": 1854,
+          "width": 17
+        },
+        {
+          "tag": "SPAN",
+          "class": "marquee__item",
+          "right": 2077,
+          "width": 186
+        }
+      ],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Toggle menu",
+          "width": 38,
+          "height": 38,
+          "top": 25
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Carbon Window Tinting",
+          "width": 282,
+          "height": 19,
+          "top": 1717
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Ceramic Window Tinting",
+          "width": 282,
+          "height": 19,
+          "top": 2160
+        },
+        {
+          "tag": "A",
+          "text": "Learn More about Tint Removal",
+          "width": 282,
+          "height": 19,
+          "top": 2601
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 12314
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 12314
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 12429
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 12465
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 12501
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 12536
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 12572
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 334,
+          "height": 17,
+          "top": 12669
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 12704
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 12740
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 12873
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic IR",
+          "width": 72,
+          "height": 17,
+          "top": 12908
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic Plus",
+          "width": 87,
+          "height": 17,
+          "top": 12944
+        },
+        {
+          "tag": "A",
+          "text": "Windshield",
+          "width": 73,
+          "height": 17,
+          "top": 12979
+        },
+        {
+          "tag": "A",
+          "text": "Sunroof",
+          "width": 53,
+          "height": 17,
+          "top": 13015
+        }
+      ],
+      "total_interactive": 60,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 9,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\home_mobile.png"
+    }
+  },
+  "services": {
+    "desktop": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Our Services",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 348,
+        "left": 566,
+        "right": 1354
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 26,
+        "bottom": 62,
+        "left": 1430,
+        "right": 1552,
+        "width": 122,
+        "height": 35
+      },
+      "document_scroll_width": 1920,
+      "window_inner_width": 1920,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Services",
+          "width": 82,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 72,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Reviews",
+          "width": 80,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 77,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Book Now",
+          "width": 122,
+          "height": 35,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 9976
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 9976
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 9805
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 9840
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 9876
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 9911
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 9947
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 207,
+          "height": 43,
+          "top": 9805
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 9866
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 9901
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 9805
+        }
+      ],
+      "total_interactive": 48,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 11,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/services",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\services_desktop.png"
+    },
+    "mobile": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Our Services",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 298,
+        "left": 20,
+        "right": 370
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "document_scroll_width": 390,
+      "window_inner_width": 390,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Toggle menu",
+          "width": 38,
+          "height": 38,
+          "top": 25
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 11796
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 11796
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 11911
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 11947
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 11983
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 12018
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 12054
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 334,
+          "height": 17,
+          "top": 12151
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 12186
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 12222
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 12354
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic IR",
+          "width": 72,
+          "height": 17,
+          "top": 12390
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic Plus",
+          "width": 87,
+          "height": 17,
+          "top": 12426
+        },
+        {
+          "tag": "A",
+          "text": "Windshield",
+          "width": 73,
+          "height": 17,
+          "top": 12461
+        },
+        {
+          "tag": "A",
+          "text": "Sunroof",
+          "width": 53,
+          "height": 17,
+          "top": 12497
+        },
+        {
+          "tag": "A",
+          "text": "Panoramic Sunroof",
+          "width": 127,
+          "height": 17,
+          "top": 12532
+        },
+        {
+          "tag": "A",
+          "text": "Sun Strip",
+          "width": 60,
+          "height": 17,
+          "top": 12568
+        }
+      ],
+      "total_interactive": 48,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 11,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/services",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\services_mobile.png"
+    }
+  },
+  "book": {
+    "desktop": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Book An Appointment",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 446,
+        "left": 566,
+        "right": 1354
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 26,
+        "bottom": 62,
+        "left": 1430,
+        "right": 1552,
+        "width": 122,
+        "height": 35
+      },
+      "document_scroll_width": 1920,
+      "window_inner_width": 1920,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Services",
+          "width": 82,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 72,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Reviews",
+          "width": 80,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 77,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Book Now",
+          "width": 122,
+          "height": 35,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 2089
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 2089
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 1918
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 1953
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 1989
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 2024
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 2060
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 207,
+          "height": 43,
+          "top": 1918
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 1979
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 2014
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 1918
+        }
+      ],
+      "total_interactive": 51,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 2,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/book",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\book_desktop.png"
+    },
+    "mobile": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Book An Appointment",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 348,
+        "left": 20,
+        "right": 370
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "document_scroll_width": 390,
+      "window_inner_width": 390,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Toggle menu",
+          "width": 38,
+          "height": 38,
+          "top": 25
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Continue",
+          "width": 119,
+          "height": 38,
+          "top": 1600
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 1995
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 1995
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 2111
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 2146
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 2182
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 2217
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 2253
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 334,
+          "height": 17,
+          "top": 2350
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 2386
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 2421
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 2554
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic IR",
+          "width": 72,
+          "height": 17,
+          "top": 2589
+        },
+        {
+          "tag": "A",
+          "text": "Ceramic Plus",
+          "width": 87,
+          "height": 17,
+          "top": 2625
+        },
+        {
+          "tag": "A",
+          "text": "Windshield",
+          "width": 73,
+          "height": 17,
+          "top": 2660
+        },
+        {
+          "tag": "A",
+          "text": "Sunroof",
+          "width": 53,
+          "height": 17,
+          "top": 2696
+        },
+        {
+          "tag": "A",
+          "text": "Panoramic Sunroof",
+          "width": 127,
+          "height": 17,
+          "top": 2732
+        }
+      ],
+      "total_interactive": 51,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 2,
+      "images_missing_alt": 0,
+      "url": "https://www.oscurotintz.com/book",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\book_mobile.png"
+    }
+  },
+  "contact": {
+    "desktop": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Contact",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 348,
+        "left": 566,
+        "right": 1354
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 26,
+        "bottom": 62,
+        "left": 1430,
+        "right": 1552,
+        "width": 122,
+        "height": 35
+      },
+      "document_scroll_width": 1920,
+      "window_inner_width": 1920,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Services",
+          "width": 82,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 72,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 65,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Reviews",
+          "width": 80,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 77,
+          "height": 37,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Book Now",
+          "width": 122,
+          "height": 35,
+          "top": 26
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 116,
+          "height": 19,
+          "top": 726
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 167,
+          "height": 19,
+          "top": 803
+        },
+        {
+          "tag": "DIV",
+          "text": "",
+          "width": 20,
+          "height": 20,
+          "top": 1679
+        },
+        {
+          "tag": "A",
+          "text": "+",
+          "width": 30,
+          "height": 30,
+          "top": 1452
+        },
+        {
+          "tag": "A",
+          "text": "\u2212",
+          "width": 30,
+          "height": 30,
+          "top": 1482
+        },
+        {
+          "tag": "A",
+          "text": "Leaflet",
+          "width": 43,
+          "height": 11,
+          "top": 1925
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 2343
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 2343
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 2172
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 2207
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 2243
+        }
+      ],
+      "total_interactive": 52,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 20,
+      "images_missing_alt": 18,
+      "url": "https://www.oscurotintz.com/contact",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\contact_desktop.png"
+    },
+    "mobile": {
+      "viewport_meta": "width=device-width, initial-scale=1",
+      "h1_text": "Contact",
+      "h1_visible_above_fold": true,
+      "h1_rect": {
+        "top": 249,
+        "bottom": 298,
+        "left": 20,
+        "right": 370
+      },
+      "cta_text": "Book Now",
+      "cta_visible_above_fold": true,
+      "cta_rect": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "width": 0,
+        "height": 0
+      },
+      "document_scroll_width": 390,
+      "window_inner_width": 390,
+      "horizontal_overflow": false,
+      "overflow_elements": [],
+      "small_tap_targets": [
+        {
+          "tag": "A",
+          "text": "Oscuro Tintz home",
+          "width": 68,
+          "height": 40,
+          "top": 24
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Toggle menu",
+          "width": 38,
+          "height": 38,
+          "top": 25
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 44,
+          "height": 18,
+          "top": 176
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 116,
+          "height": 19,
+          "top": 1524
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 167,
+          "height": 19,
+          "top": 1601
+        },
+        {
+          "tag": "DIV",
+          "text": "",
+          "width": 20,
+          "height": 20,
+          "top": 2140
+        },
+        {
+          "tag": "A",
+          "text": "+",
+          "width": 30,
+          "height": 30,
+          "top": 2088
+        },
+        {
+          "tag": "A",
+          "text": "\u2212",
+          "width": 30,
+          "height": 30,
+          "top": 2118
+        },
+        {
+          "tag": "A",
+          "text": "Leaflet",
+          "width": 43,
+          "height": 11,
+          "top": 2211
+        },
+        {
+          "tag": "A",
+          "text": "Instagram",
+          "width": 40,
+          "height": 40,
+          "top": 2537
+        },
+        {
+          "tag": "A",
+          "text": "TikTok",
+          "width": 40,
+          "height": 40,
+          "top": 2537
+        },
+        {
+          "tag": "A",
+          "text": "Home",
+          "width": 39,
+          "height": 17,
+          "top": 2652
+        },
+        {
+          "tag": "A",
+          "text": "About",
+          "width": 39,
+          "height": 17,
+          "top": 2688
+        },
+        {
+          "tag": "A",
+          "text": "Gallery",
+          "width": 47,
+          "height": 17,
+          "top": 2723
+        },
+        {
+          "tag": "A",
+          "text": "FAQs",
+          "width": 34,
+          "height": 17,
+          "top": 2759
+        },
+        {
+          "tag": "A",
+          "text": "Contact",
+          "width": 52,
+          "height": 17,
+          "top": 2795
+        },
+        {
+          "tag": "A",
+          "text": "Serving Yuba City, Marysville & Surround",
+          "width": 334,
+          "height": 17,
+          "top": 2892
+        },
+        {
+          "tag": "A",
+          "text": "(530) 443-4336",
+          "width": 108,
+          "height": 17,
+          "top": 2927
+        },
+        {
+          "tag": "A",
+          "text": "oscurotintz@gmail.com",
+          "width": 156,
+          "height": 17,
+          "top": 2963
+        },
+        {
+          "tag": "A",
+          "text": "Carbon IR",
+          "width": 66,
+          "height": 17,
+          "top": 3095
+        }
+      ],
+      "total_interactive": 52,
+      "body_font_size": "16px",
+      "body_color": "rgb(245, 245, 245)",
+      "body_bg": "rgb(0, 0, 0)",
+      "nav_height": 56,
+      "nav_visible": true,
+      "images_total": 4,
+      "images_missing_alt": 2,
+      "url": "https://www.oscurotintz.com/contact",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C:/Users/Peyman/source/repos/oscuro-tintz/screenshots\\contact_mobile.png"
+    }
+  }
+}

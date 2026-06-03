@@ -40,7 +40,8 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME}, Premium Window Tinting in Yuba City, CA`,
     description: SITE_DESCRIPTION,
-    url: SITE_URL,
+    // og:url is intentionally omitted — a layout-level static URL would mark every
+    // page as the homepage. Crawlers fall back to each page's canonical.
     locale: 'en_US',
     images: [
       {

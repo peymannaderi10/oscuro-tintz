@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { BreadcrumbJsonLd, ServicesJsonLd } from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Window Tinting Services in Yuba City, CA',
   description:
     'Carbon IR, Ceramic IR, Ceramic Plus, tint removal, windshield, sunroof, sun strip, and overnight appointments in Yuba City, CA. Lifetime warranty on every install.',
   alternates: { canonical: '/services' },
@@ -81,6 +82,9 @@ export default function ServicesPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: servicesStyles }} />
 
+      <BreadcrumbJsonLd items={[{ name: 'Services', path: '/services' }]} />
+      <ServicesJsonLd />
+
       <section className="pagehead">
         <div className="pagehead__bg"></div>
         <div className="container pagehead__inner reveal">
@@ -88,10 +92,15 @@ export default function ServicesPage() {
             <Link href="/">Home</Link> <span className="sep">/</span> <span>Services</span>
           </div>
           <span className="eyebrow">What We Do</span>
-          <h1>Our Services</h1>
+          <h1>
+            Window Tinting Services
+            <br />
+            Yuba City, CA
+          </h1>
           <p>
             Carbon IR, Ceramic IR, Ceramic Plus, windshield, sunroof, sun strip, tint removal, and overnight
-            appointments. Premium installs done right and backed by a lifetime warranty.
+            appointments. Premium installs done right and backed by a lifetime warranty — in-shop or{' '}
+            <Link href="/mobile-window-tinting-yuba-city">mobile, anywhere in the Yuba-Sutter area</Link>.
           </p>
         </div>
       </section>
@@ -103,7 +112,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/15039-thumb.webp"
-                alt="Carbon Install"
+                alt="HITEK Carbon IR window tint installed on a sedan in Yuba City, CA"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -164,7 +173,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/15286-thumb.webp"
-                alt="Ceramic Install"
+                alt="HITEK Ceramic IR window tint install with deep, even finish — Yuba City, CA"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
               />
@@ -180,7 +189,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/IMG_8148-thumb.webp"
-                alt="Ceramic Plus Install"
+                alt="HITEK Ceramic Plus maximum heat rejection tint on rear windows — Oscuro Tintz"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -241,7 +250,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/6636-thumb.webp"
-                alt="Removal Process"
+                alt="Old window tint film being safely removed before a fresh install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -257,7 +266,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/IMG_8046-thumb.webp"
-                alt="Windshield Tint"
+                alt="Windshield tint for heat and glare reduction installed in Yuba City, CA"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -277,7 +286,8 @@ export default function ServicesPage() {
                 <li>Clear ceramic options available for maximum heat rejection with minimal appearance change</li>
               </ul>
               <p className="muted" style={{ fontSize: 13, marginTop: -8, marginBottom: 12 }}>
-                Windshield film options may vary based on California regulations and customer-specific exemptions.
+                Windshield film options may vary based on California regulations and customer-specific exemptions —
+                see our <Link href="/california-window-tint-laws">California tint law guide</Link>.
               </p>
               <p className="muted" style={{ fontSize: 13, marginBottom: 24 }}>
                 Final price varies by vehicle. Some vehicles (e.g. Ram trucks) require extra prep around the rain
@@ -324,7 +334,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/15383-thumb.webp"
-                alt="Sunroof Tint"
+                alt="Sunroof window tint install blocking overhead heat — Oscuro Tintz, Yuba City"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -340,7 +350,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/after8-thumb.webp"
-                alt="Panoramic Sunroof Tint"
+                alt="Panoramic sunroof tinted with HITEK ceramic film on an SUV in Yuba City, CA"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -399,7 +409,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/IMG_8418-thumb.webp"
-                alt="Sun Strip Tint"
+                alt="Windshield sun strip visor tint on the AS-1 line — Oscuro Tintz, Yuba City"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
@@ -415,7 +425,7 @@ export default function ServicesPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Oscuro%20tints/15259-thumb.webp"
-                alt="Overnight Appointment"
+                alt="Vehicle dropped off for an overnight window tint appointment in Yuba City, CA"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />

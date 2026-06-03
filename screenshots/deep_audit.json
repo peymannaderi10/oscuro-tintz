@@ -1,0 +1,894 @@
+{
+  "home": {
+    "nav_book_btn": {
+      "text": "Book Now",
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "1",
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "left": 0,
+      "in_viewport": false
+    },
+    "hamburger": {
+      "display": "flex",
+      "width": 38,
+      "height": 38,
+      "visible": true
+    },
+    "hero_ctas": [
+      {
+        "tag": "A",
+        "text": "Book Now",
+        "href": "/book",
+        "width": 154,
+        "height": 50,
+        "top": 517,
+        "visible": true
+      },
+      {
+        "tag": "A",
+        "text": "Our Services",
+        "href": "/services",
+        "width": 178,
+        "height": 50,
+        "top": 517,
+        "visible": true
+      }
+    ],
+    "learn_more_links": [
+      {
+        "text": "Learn More about Carbon Window Tinting",
+        "width": 282,
+        "height": 19,
+        "fontSize": "12px"
+      },
+      {
+        "text": "Learn More about Ceramic Window Tinting",
+        "width": 282,
+        "height": 19,
+        "fontSize": "12px"
+      },
+      {
+        "text": "Learn More about Tint Removal",
+        "width": 282,
+        "height": 19,
+        "fontSize": "12px"
+      }
+    ],
+    "footer_links_count": 21,
+    "footer_small_links": [
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "Home",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "About",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "Gallery",
+        "w": 47,
+        "h": 17
+      },
+      {
+        "text": "FAQs",
+        "w": 34,
+        "h": 17
+      },
+      {
+        "text": "Contact",
+        "w": 52,
+        "h": 17
+      },
+      {
+        "text": "Serving Yuba City, Marysville ",
+        "w": 334,
+        "h": 17
+      },
+      {
+        "text": "(530) 443-4336",
+        "w": 108,
+        "h": 17
+      },
+      {
+        "text": "oscurotintz@gmail.com",
+        "w": 156,
+        "h": 17
+      },
+      {
+        "text": "Carbon IR",
+        "w": 66,
+        "h": 17
+      },
+      {
+        "text": "Ceramic IR",
+        "w": 72,
+        "h": 17
+      },
+      {
+        "text": "Ceramic Plus",
+        "w": 87,
+        "h": 17
+      },
+      {
+        "text": "Windshield",
+        "w": 73,
+        "h": 17
+      },
+      {
+        "text": "Sunroof",
+        "w": 53,
+        "h": 17
+      },
+      {
+        "text": "Panoramic Sunroof",
+        "w": 127,
+        "h": 17
+      },
+      {
+        "text": "Sun Strip",
+        "w": 60,
+        "h": 17
+      },
+      {
+        "text": "Overnight Appointments",
+        "w": 161,
+        "h": 17
+      },
+      {
+        "text": "Tint Removal",
+        "w": 86,
+        "h": 17
+      },
+      {
+        "text": "Book Appointment",
+        "w": 122,
+        "h": 17
+      }
+    ],
+    "low_opacity_text": [
+      {
+        "tag": "SPAN",
+        "text": "Four",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Steps.",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Done",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Right.",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Quality",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Over",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      },
+      {
+        "tag": "SPAN",
+        "text": "Shortcuts.",
+        "opacity": 0,
+        "color": "rgb(245, 245, 245)"
+      }
+    ],
+    "step_tabs": [
+      {
+        "class": "cprocess__step",
+        "w": 350,
+        "h": 217
+      },
+      {
+        "class": "cprocess__step",
+        "w": 350,
+        "h": 264
+      },
+      {
+        "class": "cprocess__step",
+        "w": 350,
+        "h": 264
+      },
+      {
+        "class": "cprocess__step",
+        "w": 350,
+        "h": 217
+      }
+    ],
+    "viewport": {
+      "w": 390,
+      "h": 844
+    }
+  },
+  "services": {
+    "nav_book_btn": {
+      "text": "Book Now",
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "1",
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "left": 0,
+      "in_viewport": false
+    },
+    "hamburger": {
+      "display": "flex",
+      "width": 38,
+      "height": 38,
+      "visible": true
+    },
+    "hero_ctas": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "href": "/",
+        "width": 44,
+        "height": 18,
+        "top": 176,
+        "visible": true
+      }
+    ],
+    "learn_more_links": [],
+    "footer_links_count": 21,
+    "footer_small_links": [
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "Home",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "About",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "Gallery",
+        "w": 47,
+        "h": 17
+      },
+      {
+        "text": "FAQs",
+        "w": 34,
+        "h": 17
+      },
+      {
+        "text": "Contact",
+        "w": 52,
+        "h": 17
+      },
+      {
+        "text": "Serving Yuba City, Marysville ",
+        "w": 334,
+        "h": 17
+      },
+      {
+        "text": "(530) 443-4336",
+        "w": 108,
+        "h": 17
+      },
+      {
+        "text": "oscurotintz@gmail.com",
+        "w": 156,
+        "h": 17
+      },
+      {
+        "text": "Carbon IR",
+        "w": 66,
+        "h": 17
+      },
+      {
+        "text": "Ceramic IR",
+        "w": 72,
+        "h": 17
+      },
+      {
+        "text": "Ceramic Plus",
+        "w": 87,
+        "h": 17
+      },
+      {
+        "text": "Windshield",
+        "w": 73,
+        "h": 17
+      },
+      {
+        "text": "Sunroof",
+        "w": 53,
+        "h": 17
+      },
+      {
+        "text": "Panoramic Sunroof",
+        "w": 127,
+        "h": 17
+      },
+      {
+        "text": "Sun Strip",
+        "w": 60,
+        "h": 17
+      },
+      {
+        "text": "Overnight Appointments",
+        "w": 161,
+        "h": 17
+      },
+      {
+        "text": "Tint Removal",
+        "w": 86,
+        "h": 17
+      },
+      {
+        "text": "Book Appointment",
+        "w": 122,
+        "h": 17
+      }
+    ],
+    "low_opacity_text": [],
+    "viewport": {
+      "w": 390,
+      "h": 844
+    }
+  },
+  "book": {
+    "nav_book_btn": {
+      "text": "Book Now",
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "1",
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "left": 0,
+      "in_viewport": false
+    },
+    "hamburger": {
+      "display": "flex",
+      "width": 38,
+      "height": 38,
+      "visible": true
+    },
+    "hero_ctas": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "href": "/",
+        "width": 44,
+        "height": 18,
+        "top": 176,
+        "visible": true
+      }
+    ],
+    "learn_more_links": [],
+    "footer_links_count": 21,
+    "footer_small_links": [
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "Home",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "About",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "Gallery",
+        "w": 47,
+        "h": 17
+      },
+      {
+        "text": "FAQs",
+        "w": 34,
+        "h": 17
+      },
+      {
+        "text": "Contact",
+        "w": 52,
+        "h": 17
+      },
+      {
+        "text": "Serving Yuba City, Marysville ",
+        "w": 334,
+        "h": 17
+      },
+      {
+        "text": "(530) 443-4336",
+        "w": 108,
+        "h": 17
+      },
+      {
+        "text": "oscurotintz@gmail.com",
+        "w": 156,
+        "h": 17
+      },
+      {
+        "text": "Carbon IR",
+        "w": 66,
+        "h": 17
+      },
+      {
+        "text": "Ceramic IR",
+        "w": 72,
+        "h": 17
+      },
+      {
+        "text": "Ceramic Plus",
+        "w": 87,
+        "h": 17
+      },
+      {
+        "text": "Windshield",
+        "w": 73,
+        "h": 17
+      },
+      {
+        "text": "Sunroof",
+        "w": 53,
+        "h": 17
+      },
+      {
+        "text": "Panoramic Sunroof",
+        "w": 127,
+        "h": 17
+      },
+      {
+        "text": "Sun Strip",
+        "w": 60,
+        "h": 17
+      },
+      {
+        "text": "Overnight Appointments",
+        "w": 161,
+        "h": 17
+      },
+      {
+        "text": "Tint Removal",
+        "w": 86,
+        "h": 17
+      },
+      {
+        "text": "Book Appointment",
+        "w": 122,
+        "h": 17
+      }
+    ],
+    "low_opacity_text": [],
+    "step_tabs": [
+      {
+        "class": "steps",
+        "w": 350,
+        "h": 70
+      },
+      {
+        "class": "steps__n",
+        "w": 28,
+        "h": 28
+      },
+      {
+        "class": "steps__label",
+        "w": 39,
+        "h": 16
+      },
+      {
+        "class": "steps__sub",
+        "w": 0,
+        "h": 0
+      },
+      {
+        "class": "steps__n",
+        "w": 28,
+        "h": 28
+      },
+      {
+        "class": "steps__label",
+        "w": 50,
+        "h": 16
+      },
+      {
+        "class": "steps__sub",
+        "w": 0,
+        "h": 0
+      },
+      {
+        "class": "steps__n",
+        "w": 28,
+        "h": 28
+      },
+      {
+        "class": "steps__label",
+        "w": 33,
+        "h": 16
+      },
+      {
+        "class": "steps__sub",
+        "w": 0,
+        "h": 0
+      }
+    ],
+    "viewport": {
+      "w": 390,
+      "h": 844
+    }
+  },
+  "contact": {
+    "nav_book_btn": {
+      "text": "Book Now",
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "1",
+      "width": 0,
+      "height": 0,
+      "top": 0,
+      "left": 0,
+      "in_viewport": false
+    },
+    "hamburger": {
+      "display": "flex",
+      "width": 38,
+      "height": 38,
+      "visible": true
+    },
+    "hero_ctas": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "href": "/",
+        "width": 44,
+        "height": 18,
+        "top": 176,
+        "visible": true
+      }
+    ],
+    "learn_more_links": [],
+    "footer_links_count": 21,
+    "footer_small_links": [
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "Home",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "About",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "Gallery",
+        "w": 47,
+        "h": 17
+      },
+      {
+        "text": "FAQs",
+        "w": 34,
+        "h": 17
+      },
+      {
+        "text": "Contact",
+        "w": 52,
+        "h": 17
+      },
+      {
+        "text": "Serving Yuba City, Marysville ",
+        "w": 334,
+        "h": 17
+      },
+      {
+        "text": "(530) 443-4336",
+        "w": 108,
+        "h": 17
+      },
+      {
+        "text": "oscurotintz@gmail.com",
+        "w": 156,
+        "h": 17
+      },
+      {
+        "text": "Carbon IR",
+        "w": 66,
+        "h": 17
+      },
+      {
+        "text": "Ceramic IR",
+        "w": 72,
+        "h": 17
+      },
+      {
+        "text": "Ceramic Plus",
+        "w": 87,
+        "h": 17
+      },
+      {
+        "text": "Windshield",
+        "w": 73,
+        "h": 17
+      },
+      {
+        "text": "Sunroof",
+        "w": 53,
+        "h": 17
+      },
+      {
+        "text": "Panoramic Sunroof",
+        "w": 127,
+        "h": 17
+      },
+      {
+        "text": "Sun Strip",
+        "w": 60,
+        "h": 17
+      },
+      {
+        "text": "Overnight Appointments",
+        "w": 161,
+        "h": 17
+      },
+      {
+        "text": "Tint Removal",
+        "w": 86,
+        "h": 17
+      },
+      {
+        "text": "Book Appointment",
+        "w": 122,
+        "h": 17
+      }
+    ],
+    "low_opacity_text": [],
+    "viewport": {
+      "w": 390,
+      "h": 844
+    }
+  },
+  "book_desktop": {
+    "nav_book_btn": {
+      "text": "Book Now",
+      "display": "flex",
+      "visibility": "visible",
+      "opacity": "1",
+      "width": 122,
+      "height": 35,
+      "top": 26,
+      "left": 1430,
+      "in_viewport": true
+    },
+    "hamburger": {
+      "display": "none",
+      "width": 0,
+      "height": 0,
+      "visible": false
+    },
+    "hero_ctas": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "href": "/",
+        "width": 44,
+        "height": 18,
+        "top": 176,
+        "visible": true
+      }
+    ],
+    "learn_more_links": [],
+    "footer_links_count": 21,
+    "footer_small_links": [
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "text": "Home",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "About",
+        "w": 39,
+        "h": 17
+      },
+      {
+        "text": "Gallery",
+        "w": 47,
+        "h": 17
+      },
+      {
+        "text": "FAQs",
+        "w": 34,
+        "h": 17
+      },
+      {
+        "text": "Contact",
+        "w": 52,
+        "h": 17
+      },
+      {
+        "text": "Serving Yuba City, Marysville ",
+        "w": 207,
+        "h": 43
+      },
+      {
+        "text": "(530) 443-4336",
+        "w": 108,
+        "h": 17
+      },
+      {
+        "text": "oscurotintz@gmail.com",
+        "w": 156,
+        "h": 17
+      },
+      {
+        "text": "Carbon IR",
+        "w": 66,
+        "h": 17
+      },
+      {
+        "text": "Ceramic IR",
+        "w": 72,
+        "h": 17
+      },
+      {
+        "text": "Ceramic Plus",
+        "w": 87,
+        "h": 17
+      },
+      {
+        "text": "Windshield",
+        "w": 73,
+        "h": 17
+      },
+      {
+        "text": "Sunroof",
+        "w": 53,
+        "h": 17
+      },
+      {
+        "text": "Panoramic Sunroof",
+        "w": 127,
+        "h": 17
+      },
+      {
+        "text": "Sun Strip",
+        "w": 60,
+        "h": 17
+      },
+      {
+        "text": "Overnight Appointments",
+        "w": 161,
+        "h": 17
+      },
+      {
+        "text": "Tint Removal",
+        "w": 86,
+        "h": 17
+      },
+      {
+        "text": "Book Appointment",
+        "w": 122,
+        "h": 17
+      }
+    ],
+    "low_opacity_text": [],
+    "step_tabs": [
+      {
+        "class": "steps",
+        "w": 457,
+        "h": 486
+      },
+      {
+        "class": "steps__n",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "class": "steps__label",
+        "w": 349,
+        "h": 26
+      },
+      {
+        "class": "steps__sub",
+        "w": 349,
+        "h": 19
+      },
+      {
+        "class": "steps__n",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "class": "steps__label",
+        "w": 349,
+        "h": 26
+      },
+      {
+        "class": "steps__sub",
+        "w": 349,
+        "h": 19
+      },
+      {
+        "class": "steps__n",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "class": "steps__label",
+        "w": 349,
+        "h": 26
+      },
+      {
+        "class": "steps__sub",
+        "w": 349,
+        "h": 19
+      }
+    ],
+    "viewport": {
+      "w": 1920,
+      "h": 1080
+    }
+  }
+}
