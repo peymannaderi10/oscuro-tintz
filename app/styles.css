@@ -10,7 +10,7 @@
   --bg-3: #171717;
   --ink: #F5F5F5;
   --ink-muted: #B0B0B0;
-  --ink-dim: #6B6B6B;
+  --ink-dim: #8A8A8A; /* was #6B6B6B — failed WCAG AA contrast (3.9:1) on black */
   --line: rgba(255,255,255,0.12);
   --line-strong: rgba(255,255,255,0.22);
   --chrome-1: #E9E9E9;
@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -45,7 +45,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---------- Type ---------- */
 .display, h1, h2, h3 {
-  font-family: 'Oswald', 'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-family: var(--font-oswald), 'Bebas Neue', 'Anton', Impact, sans-serif;
   font-weight: 600;
   letter-spacing: -0.005em;
   line-height: 0.95;
@@ -58,7 +58,7 @@ h3 { font-size: clamp(22px, 2.4vw, 32px); }
 p  { margin: 0 0 1em; }
 
 .eyebrow {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -74,6 +74,20 @@ p  { margin: 0 0 1em; }
 
 .muted { color: var(--ink-muted); }
 .dim { color: var(--ink-dim); }
+
+/* Screen-reader-only text — used to give repeated link labels ("Learn More")
+   descriptive accessible names without changing the visual design. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ---------- Layout ---------- */
 .container {
@@ -146,7 +160,7 @@ p  { margin: 0 0 1em; }
   display: inline-flex;
   align-items: baseline;
   gap: 14px;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -195,7 +209,7 @@ p  { margin: 0 0 1em; }
   border-bottom: 0;
 }
 .marquee--text .marquee__item {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: clamp(56px, 9vw, 128px);
   font-weight: 600;
   text-transform: uppercase;
@@ -228,7 +242,7 @@ p  { margin: 0 0 1em; }
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -320,7 +334,7 @@ p  { margin: 0 0 1em; }
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 20px 22px;
-  font-family: 'Inter', 'Roboto', system-ui, sans-serif;
+  font-family: var(--font-inter), 'Roboto', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -346,7 +360,7 @@ p  { margin: 0 0 1em; }
   font-size: 16px;
   letter-spacing: 0;
   text-transform: uppercase;
-  font-family: 'Roboto', 'Inter', sans-serif;
+  font-family: 'Roboto', var(--font-inter), sans-serif;
 }
 .greview__name-wrap { flex: 1; min-width: 0; }
 .greview__name {
@@ -416,7 +430,7 @@ p  { margin: 0 0 1em; }
   justify-content: center;
   gap: 10px;
   padding: 16px 28px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -491,7 +505,7 @@ p  { margin: 0 0 1em; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -576,7 +590,7 @@ p  { margin: 0 0 1em; }
 }
 .header.is-menu-open .mobile-menu { transform: translateX(0); }
 .mobile-menu a {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 28px;
   font-weight: 500;
   text-transform: uppercase;
@@ -616,7 +630,7 @@ p  { margin: 0 0 1em; }
 .hero__bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: url('https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+  background: url('/images/hero-bg.webp') center/cover no-repeat;
   opacity: 0.55;
   filter: contrast(1.1) brightness(.7) saturate(.6);
 }
@@ -782,7 +796,7 @@ p  { margin: 0 0 1em; }
   border-bottom: 1px solid var(--line);
 }
 .service-card__eyebrow {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -790,7 +804,7 @@ p  { margin: 0 0 1em; }
   color: var(--ink-dim);
 }
 .service-card__tier {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
@@ -823,7 +837,7 @@ p  { margin: 0 0 1em; }
   align-items: baseline;
 }
 .service-card__price strong {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-weight: 600;
   color: var(--ink);
   font-size: 22px;
@@ -860,7 +874,7 @@ p  { margin: 0 0 1em; }
 .feature-callout__bg {
   position: absolute; inset: 0; z-index: -2;
   background:
-    url('https://images.pexels.com/photos/3354648/pexels-photo-3354648.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat,
+    url('/images/feature-callout-bg.webp') center/cover no-repeat,
     #000;
   filter: brightness(.6) saturate(.7);
 }
@@ -906,7 +920,7 @@ p  { margin: 0 0 1em; }
 }
 .about__content { display: flex; flex-direction: column; gap: 22px; }
 .about__tagline {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: clamp(20px, 2vw, 26px);
   font-weight: 500;
   text-transform: uppercase;
@@ -947,7 +961,7 @@ p  { margin: 0 0 1em; }
   position: absolute;
   top: 20px;
   right: 24px;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -963,7 +977,7 @@ p  { margin: 0 0 1em; }
 }
 .reason__icon svg { width: 28px; height: 28px; }
 .reason__title {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: clamp(22px, 1.8vw, 26px);
   font-weight: 600;
   text-transform: uppercase;
@@ -1067,7 +1081,7 @@ p  { margin: 0 0 1em; }
   justify-content: space-between;
   gap: 24px;
   text-align: left;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: clamp(18px, 2vw, 24px);
   font-weight: 500;
   text-transform: uppercase;
@@ -1130,7 +1144,7 @@ p  { margin: 0 0 1em; }
   border-radius: 50%;
   background: linear-gradient(135deg, #333, #111);
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 14px;
   font-weight: 600;
   color: var(--chrome-3);
@@ -1158,7 +1172,7 @@ p  { margin: 0 0 1em; }
 }
 .final-cta__bg {
   position: absolute; inset: 0; z-index: -2;
-  background: url('https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat, #000;
+  background: url('/images/final-cta-bg.webp') center/cover no-repeat, #000;
   filter: brightness(.5) saturate(.6);
 }
 .final-cta__overlay {
@@ -1184,8 +1198,8 @@ p  { margin: 0 0 1em; }
   gap: 48px;
   margin-bottom: 64px;
 }
-.footer__col h4 {
-  font-family: 'Inter', sans-serif;
+.footer__col h3 {
+  font-family: var(--font-inter), sans-serif;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.24em;
@@ -1227,7 +1241,7 @@ p  { margin: 0 0 1em; }
   letter-spacing: 0.1em;
 }
 .footer__bottom .tag {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
@@ -1322,7 +1336,7 @@ p  { margin: 0 0 1em; }
   content: attr(data-label);
   position: absolute;
   bottom: 14px; left: 16px;
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: 10px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
@@ -1346,7 +1360,7 @@ p  { margin: 0 0 1em; }
 .aboutcta__text { max-width: 640px; }
 .aboutcta__text .eyebrow { margin-bottom: 14px; }
 .aboutcta__text h2 {
-  font-family: 'Oswald', sans-serif;
+  font-family: var(--font-oswald), sans-serif;
   font-size: clamp(32px, 4vw, 52px);
   line-height: 1.05;
   font-weight: 600;

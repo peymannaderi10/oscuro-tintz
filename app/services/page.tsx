@@ -18,7 +18,7 @@ const servicesStyles = `
     gap: 10px;
   }
   .quote-note__tag {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-oswald), sans-serif;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.28em;
@@ -47,7 +47,7 @@ const servicesStyles = `
     padding: 10px 16px;
     border: 1px solid var(--line-strong);
     margin-bottom: 24px;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-oswald), sans-serif;
     font-size: 12px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -66,7 +66,7 @@ const servicesStyles = `
   .service-detail__features li::before { content: ','; color: var(--chrome-3); flex-shrink: 0; }
   .service-detail__pricing { padding: 24px 0; margin: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: baseline; gap: 18px; }
   .service-detail__pricing dt { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-dim); margin: 0; }
-  .service-detail__pricing dd { font-family: 'Oswald', sans-serif; font-size: 32px; margin: 0; }
+  .service-detail__pricing dd { font-family: var(--font-oswald), sans-serif; font-size: 32px; margin: 0; }
   .service-detail.is-reverse .service-detail__grid { grid-template-columns: 1.1fr 1fr; }
   .service-detail.is-reverse .service-detail__body { order: -1; }
   @media (max-width: 900px) {
@@ -102,7 +102,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/15039.webp"
+                src="/Oscuro%20tints/15039-thumb.webp"
                 alt="Carbon Install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -163,7 +163,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/15286.webp"
+                src="/Oscuro%20tints/15286-thumb.webp"
                 alt="Ceramic Install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
@@ -179,7 +179,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/IMG_8148.webp"
+                src="/Oscuro%20tints/IMG_8148-thumb.webp"
                 alt="Ceramic Plus Install"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -240,7 +240,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/6636.webp"
+                src="/Oscuro%20tints/6636-thumb.webp"
                 alt="Removal Process"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -256,7 +256,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/IMG_8046.webp"
+                src="/Oscuro%20tints/IMG_8046-thumb.webp"
                 alt="Windshield Tint"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -323,7 +323,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/15383.webp"
+                src="/Oscuro%20tints/15383-thumb.webp"
                 alt="Sunroof Tint"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -339,7 +339,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/after8.webp"
+                src="/Oscuro%20tints/after8-thumb.webp"
                 alt="Panoramic Sunroof Tint"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -398,7 +398,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal reveal--delay-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/IMG_8418.webp"
+                src="/Oscuro%20tints/IMG_8418-thumb.webp"
                 alt="Sun Strip Tint"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -414,7 +414,7 @@ export default function ServicesPage() {
             <div className="service-detail__img reveal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Oscuro%20tints/15259.webp"
+                src="/Oscuro%20tints/15259-thumb.webp"
                 alt="Overnight Appointment"
                 loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}

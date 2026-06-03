@@ -23,7 +23,7 @@ const contactStyles = `
 
   .map { aspect-ratio: 21/9; border: 1px solid var(--line); position: relative; overflow: hidden; background: #0a0a0a; margin-top: 72px; }
   .map__inner { position: absolute; inset: 0; }
-  .map__inner .leaflet-container { background: #0a0a0a; font-family: 'Inter', sans-serif; }
+  .map__inner .leaflet-container { background: #0a0a0a; font-family: var(--font-inter), sans-serif; }
   .map__inner .leaflet-control-attribution { background: rgba(0,0,0,0.7); color: var(--ink-dim); font-size: 10px; }
   .map__inner .leaflet-control-attribution a { color: var(--ink-muted); }
   .map__inner .leaflet-control-zoom a { background: rgba(0,0,0,0.85); color: var(--ink); border: 1px solid var(--line); }
@@ -43,7 +43,7 @@ const contactStyles = `
   }
   .map__inner .leaflet-popup-tip { background: var(--bg-2); }
   .map__inner .leaflet-popup-content { margin: 14px 18px; font-size: 13px; line-height: 1.5; }
-  .map__inner .leaflet-popup-content strong { font-family: 'Oswald', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; }
+  .map__inner .leaflet-popup-content strong { font-family: var(--font-oswald), sans-serif; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; }
 `;
 
 export default function ContactPage() {

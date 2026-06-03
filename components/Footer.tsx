@@ -9,7 +9,7 @@ export function Footer() {
           <div className="footer__col footer__brand">
             <Link href="/" className="logo">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="footer__logo" src="/assets/oscuro-logo.png" alt="Oscuro Tintz" />
+              <img className="footer__logo" src="/assets/oscuro-logo-nav.webp" alt="Oscuro Tintz" width={218} height={128} />
             </Link>
             <p>
               Premium automotive window tinting in Yuba City, CA using HITEK Carbon IR, Ceramic IR, and Ceramic Plus
@@ -31,7 +31,7 @@ export function Footer() {
             </div>
           </div>
           <div className="footer__col">
-            <h4>Explore</h4>
+            <h3>Explore</h3>
             <ul>
               <li>
                 <Link href="/">Home</Link>
@@ -51,7 +51,7 @@ export function Footer() {
             </ul>
           </div>
           <div className="footer__col">
-            <h4>Contact</h4>
+            <h3>Contact</h3>
             <ul>
               <li>
                 <Link href="/contact">Serving Yuba City, Marysville &amp; Surrounding Areas</Link>
@@ -68,7 +68,7 @@ export function Footer() {
             </ul>
           </div>
           <div className="footer__col">
-            <h4>Services</h4>
+            <h3>Services</h3>
             <ul>
               <li>
                 <Link href="/services#carbon">Carbon IR</Link>

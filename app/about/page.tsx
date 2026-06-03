@@ -13,7 +13,7 @@ const aboutStyles = `
   .about-story__img { aspect-ratio: 3/4; border: 1px solid var(--line); position: relative; overflow: hidden; position: sticky; top: calc(var(--header-h) + 40px); }
   .about-story__body p { color: var(--ink-muted); font-size: 17px; line-height: 1.8; margin-bottom: 24px; }
   .about-story__body p:first-of-type::first-letter {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-oswald), sans-serif;
     font-size: 72px;
     font-weight: 700;
     float: left;
@@ -24,8 +24,8 @@ const aboutStyles = `
   .values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 72px; }
   .values__item { padding: clamp(32px, 4vw, 56px) clamp(20px, 2vw, 32px); border-right: 1px solid var(--line); }
   .values__item:last-child { border-right: none; }
-  .values__num { font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.32em; color: var(--ink-dim); margin-bottom: 24px; }
-  .values__label { font-family: 'Oswald', sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 10px; }
+  .values__num { font-family: var(--font-oswald), sans-serif; font-size: 14px; letter-spacing: 0.32em; color: var(--ink-dim); margin-bottom: 24px; }
+  .values__label { font-family: var(--font-oswald), sans-serif; font-size: 22px; text-transform: uppercase; margin-bottom: 10px; }
   .values__desc { color: var(--ink-muted); font-size: 14px; line-height: 1.6; }
   @media (max-width: 900px) {
     .about-story { grid-template-columns: 1fr; }
@@ -41,7 +41,7 @@ const aboutStyles = `
   }
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin: 72px 0 0; padding-top: 72px; border-top: 1px solid var(--line); }
   .stat { text-align: center; }
-  .stat__num { font-family: 'Oswald', sans-serif; font-size: clamp(56px, 7vw, 96px); line-height: 1; margin-bottom: 12px; }
+  .stat__num { font-family: var(--font-oswald), sans-serif; font-size: clamp(56px, 7vw, 96px); line-height: 1; margin-bottom: 12px; }
   .stat__label { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
   @media (max-width: 700px) { .stats { grid-template-columns: 1fr; } }
 `;

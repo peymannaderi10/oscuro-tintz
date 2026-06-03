@@ -66,7 +66,7 @@ const galleryStyles = `
     position: absolute;
     top: 12px;
     z-index: 4;
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-oswald), sans-serif;
     font-size: 9px;
     font-weight: 500;
     letter-spacing: 0.24em;
@@ -89,7 +89,7 @@ const galleryStyles = `
     gap: 16px;
   }
   .ba__caption h3 {
-    font-family: 'Oswald', sans-serif;
+    font-family: var(--font-oswald), sans-serif;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 0.04em;
@@ -124,14 +124,14 @@ const ITEMS: { title: string; sub: string; before: string; after: string }[] = [
   ...NAMED_PAIRS.map((p, i) => ({
     title: `Install ${String(i + 1).padStart(2, '0')}`,
     sub: p.sub,
-    before: `${DIR}/${p.slug}-before.webp`,
-    after: `${DIR}/${p.slug}-after.webp`,
+    before: `${DIR}/${p.slug}-before-1200.webp`,
+    after: `${DIR}/${p.slug}-after-1200.webp`,
   })),
   ...NUMBERED_PAIRS.map((n, i) => ({
     title: `Install ${String(NAMED_PAIRS.length + i + 1).padStart(2, '0')}`,
     sub: 'Window Tint',
-    before: `${DIR}/before${n}.webp`,
-    after: `${DIR}/after${n}.webp`,
+    before: `${DIR}/before${n}-1200.webp`,
+    after: `${DIR}/after${n}-1200.webp`,
   })),
 ];
 

@@ -36,7 +36,7 @@ export function Nav() {
       <div className="cnav__inner lg">
         <Link href="/" className="cnav__brand" aria-label="Oscuro Tintz home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="cnav__brand-logo" src="/assets/oscuro-logo.png" alt="Oscuro Tintz" />
+          <img className="cnav__brand-logo" src="/assets/oscuro-logo-nav.webp" alt="Oscuro Tintz" width={218} height={128} />
         </Link>
         <nav className="cnav__links" aria-label="Primary">
           {LINKS.map((l) => (

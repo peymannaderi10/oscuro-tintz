@@ -18,9 +18,9 @@ const bookStyles = `
   .steps li { padding: 20px 24px; border: 1px solid var(--line); background: var(--bg-2); display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; transition: border-color .2s; }
   .steps li.is-current { border-color: var(--ink); background: var(--bg-3); }
   .steps li.is-done { opacity: 0.6; }
-  .steps__n { width: 40px; height: 40px; border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; font-family: 'Oswald', sans-serif; font-size: 16px; letter-spacing: 0.1em; }
+  .steps__n { width: 40px; height: 40px; border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; font-family: var(--font-oswald), sans-serif; font-size: 16px; letter-spacing: 0.1em; }
   .steps li.is-current .steps__n { border-color: var(--ink); background: var(--ink); color: #000; }
-  .steps__label { font-family: 'Oswald', sans-serif; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .steps__label { font-family: var(--font-oswald), sans-serif; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; }
   .steps__sub { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 4px; }
 
   @media (max-width: 900px) {
@@ -45,7 +45,7 @@ const bookStyles = `
   }
 
   .booking-panel { border: 1px solid var(--line); background: var(--bg-2); padding: clamp(28px, 4vw, 48px); min-height: 560px; }
-  .panel-title { font-family: 'Oswald', sans-serif; font-size: 28px; text-transform: uppercase; margin-bottom: 10px; }
+  .panel-title { font-family: var(--font-oswald), sans-serif; font-size: 28px; text-transform: uppercase; margin-bottom: 10px; }
   .panel-sub { color: var(--ink-muted); margin-bottom: 32px; }
 
   @media (max-width: 480px) {
@@ -59,7 +59,7 @@ const bookStyles = `
   .tile { padding: 20px 18px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; transition: all .2s; text-align: left; display: grid; gap: 6px; }
   .tile:hover { border-color: var(--line-strong); }
   .tile.is-selected { border-color: var(--ink); background: var(--bg-3); }
-  .tile__label { font-family: 'Oswald', sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tile__label { font-family: var(--font-oswald), sans-serif; font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; }
   .tile__meta { font-size: 12px; color: var(--ink-muted); }
 
   @media (max-width: 480px) {
@@ -91,7 +91,7 @@ const bookStyles = `
   .summary { border: 1px solid var(--line); padding: 24px; background: var(--bg); margin-top: 32px; display: grid; gap: 12px; }
   .summary-row { display: flex; justify-content: space-between; font-size: 14px; gap: 12px; }
   .summary-row dt { color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; flex-shrink: 0; }
-  .summary-row dd { margin: 0; font-family: 'Oswald', sans-serif; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; text-align: right; word-break: break-word; }
+  .summary-row dd { margin: 0; font-family: var(--font-oswald), sans-serif; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; text-align: right; word-break: break-word; }
 
   @media (max-width: 480px) {
     .summary { padding: 16px; gap: 8px; margin-top: 20px; }

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { HomeReviews } from '@/components/HomeReviews';
+import { LazyVideo } from '@/components/LazyVideo';
 import { SITE_DESCRIPTION, SITE_NAME } from '@/lib/siteMeta';
 
 export const metadata: Metadata = {
@@ -25,11 +26,11 @@ export default function HomePage() {
             <span className="line">Protect Your Ride.</span>
             <span className="line accent">Beat The Heat.</span>
           </h1>
-          <p className="hero__sub c-fade-up" style={{ ['--c-delay' as string]: '0.95s' } as React.CSSProperties}>
+          <p className="hero__sub c-fade-up" style={{ ['--c-delay' as string]: '0.45s' } as React.CSSProperties}>
             Hitek Carbon IR, Ceramic IR, and Ceramic Plus films. Up to 99% UV protection, serious heat rejection, and a
             lifetime warranty on every install, done right the first time.
           </p>
-          <div className="hero__ctas c-fade-up" style={{ ['--c-delay' as string]: '1.15s' } as React.CSSProperties}>
+          <div className="hero__ctas c-fade-up" style={{ ['--c-delay' as string]: '0.6s' } as React.CSSProperties}>
             <Link href="/book" className="btn-c btn-c--primary">
               Book Now
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -48,11 +49,11 @@ export default function HomePage() {
         <div className="hero__partners">
           <span
             className="hero__partners-label lg c-fade-up"
-            style={{ ['--c-delay' as string]: '1.4s' } as React.CSSProperties}
+            style={{ ['--c-delay' as string]: '0.85s' } as React.CSSProperties}
           >
             Trusted Films We Use
           </span>
-          <div className="hero__partners-row c-fade-up" style={{ ['--c-delay' as string]: '1.55s' } as React.CSSProperties}>
+          <div className="hero__partners-row c-fade-up" style={{ ['--c-delay' as string]: '1s' } as React.CSSProperties}>
             <span>Hitek Carbon IR</span>
             <span>Hitek Ceramic IR</span>
             <span>Hitek Ceramic Plus</span>
@@ -118,7 +119,7 @@ export default function HomePage() {
                 <strong>$290</strong>
               </div>
               <Link href="/services#carbon" className="service-card__link">
-                Learn More
+                Learn More<span className="visually-hidden"> about Carbon Window Tinting</span>
               </Link>
             </article>
 
@@ -140,7 +141,7 @@ export default function HomePage() {
                 <strong>$390</strong>
               </div>
               <Link href="/services#ceramic" className="service-card__link">
-                Learn More
+                Learn More<span className="visually-hidden"> about Ceramic Window Tinting</span>
               </Link>
             </article>
 
@@ -162,7 +163,7 @@ export default function HomePage() {
                 <strong>$50</strong>
               </div>
               <Link href="/services#removal" className="service-card__link">
-                Learn More
+                Learn More<span className="visually-hidden"> about Tint Removal</span>
               </Link>
             </article>
           </div>
@@ -234,7 +235,7 @@ export default function HomePage() {
         <div
           className="banner__bg"
           style={{
-            backgroundImage: "url('/Oscuro%20tints/tint_from_insideview.webp')",
+            backgroundImage: "url('/Oscuro%20tints/tint_from_insideview-1600.webp')",
           }}
         ></div>
         <div className="banner__overlay banner__overlay--left"></div>
@@ -404,9 +405,7 @@ export default function HomePage() {
 
       {/* ============ STATS ============ */}
       <section className="cstats" data-screen-label="04c Stats">
-        <video className="cstats__bg" autoPlay loop muted playsInline aria-hidden="true">
-          <source src="/Oscuro%20tints/video1.webm" type="video/webm" />
-        </video>
+        <LazyVideo className="cstats__bg" src="/Oscuro%20tints/video1-bg.webm" />
         <div className="cstats__fade-t"></div>
         <div className="cstats__fade-b"></div>
 
@@ -458,13 +457,13 @@ export default function HomePage() {
           </div>
           <div className="gallery__grid reveal">
             {[
-              'after9.webp',
-              'after7.webp',
-              'after6.webp',
-              'backright-lexus.webp',
-              'after2.webp',
-              'after3.webp',
-              'IMG_8148.webp',
+              'after9-thumb.webp',
+              'after7-thumb.webp',
+              'after6-thumb.webp',
+              'backright-lexus-thumb.webp',
+              'after2-thumb.webp',
+              'after3-thumb.webp',
+              'IMG_8148-thumb.webp',
             ].map((file, i) => (
               <div key={i} className="gallery__item">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -490,7 +489,7 @@ export default function HomePage() {
         <div
           className="banner__bg"
           style={{
-            backgroundImage: "url('/Oscuro%20tints/IMG_8148.webp')",
+            backgroundImage: "url('/Oscuro%20tints/IMG_8148-1600.webp')",
           }}
         ></div>
         <div className="banner__overlay banner__overlay--center"></div>

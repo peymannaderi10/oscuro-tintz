@@ -1,10 +1,16 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Oswald } from 'next/font/google';
 import { Footer } from '@/components/Footer';
 import { LocalBusinessJsonLd } from '@/components/JsonLd';
 import { LegacyScripts } from '@/components/LegacyScripts';
 import { Nav } from '@/components/Nav';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/siteMeta';
+import './styles.css';
+import './cinematic-additions.css';
 import './globals.css';
+
+const oswald = Oswald({ subsets: ['latin'], variable: '--font-oswald', display: 'swap' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,8 +58,8 @@ export const metadata: Metadata = {
     images: ['/assets/oscuro-logo.png'],
   },
   icons: {
-    icon: '/assets/oscuro-logo.png',
-    apple: '/assets/oscuro-logo.png',
+    icon: '/assets/oscuro-logo-icon.png',
+    apple: '/assets/oscuro-logo-icon.png',
   },
 };
 
@@ -65,16 +71,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${oswald.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="stylesheet" href="/assets/styles.css" />
-        <link rel="stylesheet" href="/assets/cinematic-additions.css" />
         <LocalBusinessJsonLd />
       </head>
       <body>

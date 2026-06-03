@@ -75,7 +75,7 @@ const OVERRIDES = `
 /* Summary badge (left card) */
 .sk-ww-google-reviews .sk-badge__name {
   color: #F5F5F5 !important;
-  font-family: 'Oswald', 'Inter', sans-serif !important;
+  font-family: var(--font-oswald), var(--font-inter), sans-serif !important;
   text-transform: uppercase !important;
   letter-spacing: 0.04em !important;
 }
@@ -123,7 +123,7 @@ const OVERRIDES = `
   background: #F5F5F5 !important;
   color: #000000 !important;
   border: 1px solid #F5F5F5 !important;
-  font-family: 'Oswald', 'Inter', sans-serif !important;
+  font-family: var(--font-oswald), var(--font-inter), sans-serif !important;
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
 }
