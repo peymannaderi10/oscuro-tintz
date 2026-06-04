@@ -229,23 +229,22 @@
   letter-spacing: 0.04em;
 }
 
-/* Mobile tap-to-call — hidden on desktop where the Book CTA shows */
-.cnav__call { display: none; }
-
 @media (max-width: 920px) {
   .cnav__links { display: none; }
   .cnav__cta { display: none; }
   .cnav__hamburger { display: flex; }
-  .cnav__call {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
-    color: var(--ink);
-  }
+}
+
+/* Tap-to-call inside the mobile sheet — secondary action under Book Now */
+.cnav__sheet a.is-call {
+  justify-content: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* Tap-target sizing — 44px minimum on primary controls, comfortable padding elsewhere */

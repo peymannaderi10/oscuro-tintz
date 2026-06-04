@@ -59,8 +59,11 @@ export const metadata: Metadata = {
     images: ['/assets/oscuro-logo.png'],
   },
   icons: {
-    icon: '/assets/oscuro-logo-icon.png',
-    apple: '/assets/oscuro-logo-icon.png',
+    icon: [
+      { url: '/assets/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/assets/favicon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/assets/apple-touch-icon.png',
   },
 };
 
