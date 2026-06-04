@@ -14,36 +14,45 @@ export function LegacyScripts() {
 
   useEffect(() => {
     // ---------- BlurText word-stagger wrap ----------
-    document.querySelectorAll<HTMLElement>('[data-blur-text]').forEach((el) => {
-      if (el.dataset.blurWrapped) return;
-      el.dataset.blurWrapped = '1';
+    // Runs inside the first rAF below (not synchronously) so the replaceChild
+    // churn + style writes stay off the hydration critical path — running it
+    // synchronously showed up as ~160ms of forced reflow in Lighthouse.
+    const wrapBlurText = () => {
+      document.querySelectorAll<HTMLElement>('[data-blur-text]').forEach((el) => {
+        if (el.dataset.blurWrapped) return;
+        el.dataset.blurWrapped = '1';
 
-      const wrapNode = (node: ChildNode) => {
-        if (node.nodeType === 3) {
-          const text = node.textContent ?? '';
-          const parts = text.split(/(\s+)/);
-          const frag = document.createDocumentFragment();
-          parts.forEach((part) => {
-            if (/^\s+$/.test(part)) {
-              frag.appendChild(document.createTextNode(part));
-            } else if (part.length) {
-              const span = document.createElement('span');
-              span.textContent = part;
-              frag.appendChild(span);
-            }
-          });
-          node.parentNode?.replaceChild(frag, node);
-        } else if (node.nodeType === 1) {
-          Array.from(node.childNodes).forEach(wrapNode);
-        }
-      };
-      Array.from(el.childNodes).forEach(wrapNode);
+        // Collect the word spans as we create them instead of querying
+        // `span:not(:has(span))` afterwards — :has() forces a synchronous
+        // style/layout pass right after the DOM mutation above.
+        const wordSpans: HTMLElement[] = [];
+        const wrapNode = (node: ChildNode) => {
+          if (node.nodeType === 3) {
+            const text = node.textContent ?? '';
+            const parts = text.split(/(\s+)/);
+            const frag = document.createDocumentFragment();
+            parts.forEach((part) => {
+              if (/^\s+$/.test(part)) {
+                frag.appendChild(document.createTextNode(part));
+              } else if (part.length) {
+                const span = document.createElement('span');
+                span.textContent = part;
+                frag.appendChild(span);
+                wordSpans.push(span);
+              }
+            });
+            node.parentNode?.replaceChild(frag, node);
+          } else if (node.nodeType === 1) {
+            Array.from(node.childNodes).forEach(wrapNode);
+          }
+        };
+        Array.from(el.childNodes).forEach(wrapNode);
 
-      const wordSpans = el.querySelectorAll<HTMLElement>('span:not(:has(span))');
-      wordSpans.forEach((s, i) => {
-        s.style.transitionDelay = (i * 0.07).toFixed(2) + 's';
+        wordSpans.forEach((s, i) => {
+          s.style.transitionDelay = (i * 0.07).toFixed(2) + 's';
+        });
       });
-    });
+    };
 
     // ---------- Reveal observers ----------
     // Defer observer attachment by two animation frames. With slow remote
@@ -82,6 +91,10 @@ export function LegacyScripts() {
     observers.push(fadeObs);
 
     requestAnimationFrame(() => {
+      if (cancelled) return;
+      // Wrap one frame before the observers attach so the spans exist (with
+      // their hidden initial styles painted) when .is-in lands.
+      wrapBlurText();
       requestAnimationFrame(() => {
         if (cancelled) return;
         document.querySelectorAll('.c-blur').forEach((el) => blurObs.observe(el));

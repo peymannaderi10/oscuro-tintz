@@ -250,9 +250,19 @@
 /* Tap-target sizing — 44px minimum on primary controls, comfortable padding elsewhere */
 .cnav__hamburger { width: 44px; height: 44px; }
 .cnav__sheet a { min-height: 44px; display: flex; align-items: center; }
-.footer__social a { width: 44px; height: 44px; }
 .footer__col a { display: inline-block; padding: 8px 0; }
 .footer__bottom a { display: inline-block; padding: 8px 2px; }
+/* Must come after .footer__col a — the social anchors live inside a footer
+   column, so the inline-block/padding rule above would otherwise override the
+   flex centering from styles.css and knock the icons out of their boxes. */
+.footer__social a {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
 .service-card__link { min-height: 44px; }
 .btn, .btn-c { min-height: 44px; }
 
