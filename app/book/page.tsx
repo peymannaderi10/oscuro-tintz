@@ -12,6 +12,10 @@ export const metadata: Metadata = {
 
 const bookStyles = `
   .book-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(32px, 5vw, 72px); align-items: flex-start; max-width: 100%; overflow: hidden; }
+  /* Let grid children shrink below their intrinsic content width — without
+     this, the Square card iframe and long email/booking-ID strings force the
+     track wider than the phone viewport and the page pans horizontally. */
+  .book-grid > * { min-width: 0; }
   @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; } }
 
   /* Steps — full cards on desktop, compact horizontal bar on mobile */
@@ -45,7 +49,10 @@ const bookStyles = `
     .steps__sub { display: none; }
   }
 
-  .booking-panel { border: 1px solid var(--line); background: var(--bg-2); padding: clamp(28px, 4vw, 48px); min-height: 560px; }
+  .booking-panel { border: 1px solid var(--line); background: var(--bg-2); padding: clamp(28px, 4vw, 48px); min-height: 560px; max-width: 100%; overflow-x: clip; }
+  /* Square injects an iframe — keep it (and its wrapper) inside the panel. */
+  .square-card-form, #square-card-container { max-width: 100%; overflow: hidden; }
+  #square-card-container iframe { max-width: 100% !important; }
   .panel-title { font-family: var(--font-oswald), sans-serif; font-size: 28px; text-transform: uppercase; margin-bottom: 10px; }
   .panel-sub { color: var(--ink-muted); margin-bottom: 32px; }
 
@@ -92,7 +99,7 @@ const bookStyles = `
   .summary { border: 1px solid var(--line); padding: 24px; background: var(--bg); margin-top: 32px; display: grid; gap: 12px; }
   .summary-row { display: flex; justify-content: space-between; font-size: 14px; gap: 12px; }
   .summary-row dt { color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; flex-shrink: 0; }
-  .summary-row dd { margin: 0; font-family: var(--font-oswald), sans-serif; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; text-align: right; word-break: break-word; }
+  .summary-row dd { margin: 0; min-width: 0; font-family: var(--font-oswald), sans-serif; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; text-align: right; word-break: break-word; overflow-wrap: anywhere; }
 
   @media (max-width: 480px) {
     .summary { padding: 16px; gap: 8px; margin-top: 20px; }
