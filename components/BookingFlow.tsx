@@ -145,6 +145,15 @@ export function BookingFlow() {
   // Payment
   const cardFormRef = useRef<SquareCardFormHandle>(null);
 
+  // Cancellation policy acknowledgment (gates the deposit payment).
+  // Mirrored into a ref so the memoized wallet callback reads the live value.
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
+  const agreedRef = useRef(false);
+  const setAgreed = (v: boolean) => {
+    setAgreedToPolicy(v);
+    agreedRef.current = v;
+  };
+
   // Submit
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -370,6 +379,10 @@ export function BookingFlow() {
   // Manual confirm — tokenizes the card form, then submits.
   const handleConfirm = async () => {
     if (!validateContactStep()) return;
+    if (!agreedToPolicy) {
+      setSubmitError('Please acknowledge the cancellation policy before paying the deposit.');
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitError(null);
@@ -386,6 +399,10 @@ export function BookingFlow() {
   // Wallet auto-submit — called when Apple Pay / Google Pay completes.
   // Validates contact info first (in case user somehow skipped step 4).
   const handleWalletToken = useCallback((token: string) => {
+    if (!agreedRef.current) {
+      setSubmitError('Please acknowledge the cancellation policy before paying the deposit.');
+      return;
+    }
     if (!validateContactStep()) return;
     submitBooking(token);
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -834,7 +851,20 @@ export function BookingFlow() {
                 Applied toward your final invoice. Remaining balance due at the time of service.
               </p>
             </div>
-            <SquareCardForm ref={cardFormRef} onWalletToken={handleWalletToken} disabled={isSubmitting} />
+            <label className="policy-ack">
+              <input
+                type="checkbox"
+                checked={agreedToPolicy}
+                onChange={(e) => setAgreed(e.target.checked)}
+              />
+              <span>
+                I understand the <strong>$30 deposit is refundable</strong> if I cancel at least 24 hours before my
+                scheduled appointment, and that cancellations <strong>within 24 hours are non-refundable</strong>.
+              </span>
+            </label>
+            {agreedToPolicy && (
+              <SquareCardForm ref={cardFormRef} onWalletToken={handleWalletToken} disabled={isSubmitting} />
+            )}
             {submitError && (
               <p className="form__status" style={{ color: '#ff8080', marginTop: 16 }}>
                 {submitError}
@@ -847,7 +877,7 @@ export function BookingFlow() {
               <button
                 className="btn btn--primary"
                 onClick={handleConfirm}
-                disabled={isSubmitting}
+                disabled={isSubmitting || !agreedToPolicy}
                 style={{ minWidth: 180 }}
               >
                 {isSubmitting ? 'Processing…' : 'Confirm & Pay Deposit'}

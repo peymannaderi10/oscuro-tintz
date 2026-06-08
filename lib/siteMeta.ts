@@ -14,9 +14,8 @@ export const REVIEW_RATING = '5.0';
 export const VEHICLES_TINTED = 200;
 export const OWNER_NAME = 'Juan';
 
-// TODO(owner): verify these handles are live before launch — assumed from the brand email handle.
-export const INSTAGRAM_URL = 'https://www.instagram.com/oscurotintz';
-export const TIKTOK_URL = 'https://www.tiktok.com/@oscurotintz';
+export const INSTAGRAM_URL = 'https://www.instagram.com/oscuro.tintz/';
+export const TIKTOK_URL = 'https://www.tiktok.com/@oscuro.tintz';
 // TODO(owner): replace with the direct review short link from the GBP dashboard ("Ask for reviews" share link).
 export const GOOGLE_MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Oscuro+Tintz+Yuba+City+CA';
 export const GOOGLE_REVIEW_URL = GOOGLE_MAPS_URL;

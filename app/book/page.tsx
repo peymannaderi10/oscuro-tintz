@@ -100,6 +100,11 @@ const bookStyles = `
     .summary-row dd { font-size: 12px; }
   }
 
+  .policy-ack { display: flex; gap: 12px; align-items: flex-start; margin-top: 16px; padding: 16px 18px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; }
+  .policy-ack input { margin-top: 1px; width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--ink); cursor: pointer; }
+  .policy-ack span { font-size: 13px; line-height: 1.55; color: var(--ink-muted); }
+  .policy-ack strong { color: var(--ink); font-weight: 600; }
+
   .panel-nav { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); gap: 14px; }
 
   @media (max-width: 480px) {
